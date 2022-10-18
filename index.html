@@ -21,20 +21,40 @@
 
 <body>
     <header class="bg-primary">
-        <div class="container d-flex">
-            <h1 class="text-white">es'tation</h1>
-            <input type="text" name="search" id="search">
-            <button>payment</button>
-            <button>shipping</button>
-            <button><i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
-            <button><i class="fa fa-user" aria-hidden="true"></i></button>
+        <div class="container d-flex" style="height: 10%;" id="headerContainerDiv">
+            <div class="col-md-2" id="webNameDiv">
+                <h1 class="text-white" style="margin-top: 10px;">es'tation</h1>
+            </div>
+            <div class="col-md-4" id="searchInputDiv">
+                <input type="text" name="search" id="searchInput">
+            </div>
+            <div class="col-md-6 text-end" style="margin-top: 20px;" id="headerButtonDiv">
+                <button class="headerButton btn btn-primary" id="headerPaymentButton">payment</button>
+                <button class="headerButton btn btn-primary" id="headerShippingButton">shipping</button>
+                <button class="headerButton btn btn-primary" id="headerCartButton"><i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+                <button class="headerButton btn btn-primary" id="headerProfileButton"><i class="fa fa-user" aria-hidden="true"></i></button>
+            </div>
         </div>
     </header>
 
     <main>
-        <div id="reccommended">
-            <img src="https://images.unsplash.com/45/tkLOe7nnQ7mnMsiuijBy_hm.jpg?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1174&q=80"
-                width="100%" alt="">
+        <div id="mainRecommended">
+            <div class="text-end" id="mainButtonDiv">
+                <button class="mainButton btn btn-primary" id="mainNewButton">new arrival</button>
+                <button class="mainButton btn btn-primary" id="mainPromoButton">promotion</button>
+                <button class="mainButton btn btn-primary" id="mainAllButton">all product</button>
+            </div>
+            <div id="recommendedBookCover">
+                <img src="https://upload.wikimedia.org/wikipedia/en/e/e1/BEASTARS%2C_volume_1.jpg" alt="comedy book" id="bookCover">
+            </div>
+            <div id="recommendedWhite">
+                <div id="recommendTexts">
+                    <p id="recommendedTitle">Look at this man</p>
+                    <p id="recomendedParagraph">
+                        Funny Comedy for age 3 and up.
+                    </p>
+                </div>
+            </div>  
         </div>
         <div id="popular">popular</div>
         <div id="new-arrival">new arrivals</div>
@@ -45,13 +65,14 @@
     </main>
 
     <footer class="bg-primary text-white d-flex">
-        <div>
+        <div class="col-md-4" id="footerAddressDiv">
             คณะเทคโนโลยีสารสนเทศ<br>
             สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง<br>
             <br>
             เลขที่ 1 ซอยฉลองกรุง 1 แขวงลาดกระบัง เขตลาดกระบัง กรุงเทพฯ 10520
         </div>
-        <div class="text-end">
+        <div class="col-md-4"></div>
+        <div class="text-end col-md-4" id="footerContactDiv">
             <p>
                 โซเชียลมีเดีย<br>
                 Facebook Twitter YouTube
