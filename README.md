@@ -5,8 +5,8 @@ es'tation is a books, stationeries, and board games store
 
 ## Books
 
-| ID  | Name | Stock | Price | Img | Description | Language | Pages | Author | Translator | Publisher | Size | Genres | Edition |
-| --- | ---- | ----- | ----- | --- | ----------- | -------- | ----- | ------ | ---------- | --------- | ---- | ------ | ------- |
+| ID  | Name | Stock | Price | Img | Description | Language | Pages | Author | Translator | Publisher | Genres | Edition |
+| --- | ---- | ----- | ----- | --- | ----------- | -------- | ----- | ------ | ---------- | --------- | ------ | ------- |
 
 ## Board Games
 

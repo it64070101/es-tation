@@ -17,7 +17,43 @@
 </head>
 
 <body>
+    <?php
+    // Connect to Database 
+    class MyDB extends SQLite3
+    {
+        function __construct()
+        {
+            $this->open('products.db');
+        }
+    }
 
+    // Open Database 
+    $db = new MyDB();
+    if (!$db) {
+        echo $db->lastErrorMsg();
+    }
+
+    // Query process 
+    $sql = "SELECT * from BOOKS WHERE ID = " . $_GET['id'];
+
+    $ret = $db->query($sql);
+    while ($row = $ret->fetchArray(SQLITE3_ASSOC)) {
+        echo '<h1 class="name">' . $row["BOOK_NAME"] . '</h1>';
+        echo '<h2 class="author">' . $row["AUTHOR"] . '</h2>';
+        if ($row['TRANSLATOR'] != NULL) {
+            echo '<h2 class="translator">' . $row["TRANSLATOR"] . '</h2>';
+        }
+        echo '<h3 class="price">฿' . $row['PRICE'] . '</h3>';
+        if ($row['STOCK'] != 0) {
+            echo '<p class="status">เหลืออยู่: ' . $row['STOCK'] . '</p>';
+            echo '<button class="addToCart">เพิ่มลงรถเข็น</button>';
+        }
+        echo '<p class="description">' . $row['DESCRIPTION'] . '</p>';
+    }
+    // Close database
+    $db->close();
+
+    ?>
 </body>
 
 </html>
