@@ -23,22 +23,7 @@
 </head>
 
 <body style="height: 100%;">
-    <header class="bg-primary">
-        <div class="container d-flex" style="height: 10%;" id="headerContainerDiv">
-            <div class="col-md-2" id="webNameDiv">
-                <a href="index.html"><h1 class="text-white" style="margin-top: 10px;">es'tation</h1></a>
-            </div>
-            <div class="col-md-4" id="searchInputDiv">
-                <input type="text" name="search" id="searchInput">
-            </div>
-            <div class="col-md-6 text-end" style="margin-top: 20px;" id="headerButtonDiv">
-                <a href="payment.html"><button class="headerButton btn btn-primary" id="headerPaymentButton">payment</button></a>
-                <a href="shipping.html"><button class="headerButton btn btn-primary" id="headerShippingButton">shipping</button></a>
-                <a href="cart.html"><button class="headerButton btn btn-primary" id="headerCartButton"><i class="fa fa-shopping-cart" aria-hidden="true"></i></button></a>
-                <a href="login.html"><button class="headerButton btn btn-primary" id="headerProfileButton"><i class="fa fa-user" aria-hidden="true"></i></button></a>
-            </div>
-        </div>
-    </header>
+    <?php include 'includes/header.php';?>
 
     <main style="height: 70%;">
         <div id="mainLoginDiv">

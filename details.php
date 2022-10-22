@@ -17,24 +17,8 @@
 </head>
 
 <body>
-    <header class="bg-primary">
-        <div class="container d-flex" style="height: 10%;" id="headerContainerDiv">
-            <div class="col-md-2" id="webNameDiv">
-                <a href="index.html">
-                    <h1 class="text-white" style="margin-top: 10px;">es'tation</h1>
-                </a>
-            </div>
-            <div class="col-md-4" id="searchInputDiv">
-                <input type="text" name="search" id="searchInput">
-            </div>
-            <div class="col-md-6 text-end" style="margin-top: 20px;" id="headerButtonDiv">
-                <a href="payment.html"><button class="headerButton btn btn-primary" id="headerPaymentButton">payment</button></a>
-                <a href="shipping.html"><button class="headerButton btn btn-primary" id="headerShippingButton">shipping</button></a>
-                <a href="cart.html"><button class="headerButton btn btn-primary" id="headerCartButton"><i class="fa fa-shopping-cart" aria-hidden="true"></i></button></a>
-                <a href="login.html"><button class="headerButton btn btn-primary" id="headerProfileButton"><i class="fa fa-user" aria-hidden="true"></i></button></a>
-            </div>
-        </div>
-    </header>
+    <?php include 'includes/header.php';?>
+    
     <?php
     // Connect to Database 
     class MyDB extends SQLite3
@@ -102,21 +86,7 @@
     </div>
     <br><br>
 
-    <footer class="bg-primary text-white d-flex" style="height: 20%;">
-        <div class="col-md-4" id="footerAddressDiv">
-            คณะเทคโนโลยีสารสนเทศ<br>
-            สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง<br>
-            <br>
-            เลขที่ 1 ซอยฉลองกรุง 1 แขวงลาดกระบัง เขตลาดกระบัง กรุงเทพฯ 10520
-        </div>
-        <div class="col-md-4"></div>
-        <div class="text-end col-md-4" id="footerContactDiv">
-            <p>
-                โซเชียลมีเดีย<br>
-                Facebook Twitter YouTube
-            </p>
-        </div>
-    </footer>
+    <?php include 'includes/footer.php';?>
 </body>
 
 </html>
