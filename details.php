@@ -56,29 +56,44 @@
 
     $ret = $db->query($sql);
     while ($row = $ret->fetchArray(SQLITE3_ASSOC)) {
-        echo '<div class="container"><br><br>';
-        echo '<div class="row">';
-        echo '<div class="col-md-3">';
-        echo '<img src="https://cdn.discordapp.com/attachments/847393439704285204/1033374037180698675/Untitled.png" style="width: 90%; height: 100%; margin: auto;">';//this is the image div
-        echo '</div>'; 
-        echo '<div class="col-md-9">';
-        echo '<h1 class="bookName">' . $row["BOOK_NAME"] . '</h1>';
-        echo '<h2 class="bookAuthor">' . $row["AUTHOR"] . '</h2>';
-        if ($row['TRANSLATOR'] != NULL) {
-            echo '<h2 class="bookTranslator">' . $row["TRANSLATOR"] . '</h2>';
-        }
-        echo '<h3 class="BookPrice">฿' . $row['PRICE'] . '</h3>';
-        if ($row['STOCK'] != 0) {
-            echo '<p class="bookStatus">เหลืออยู่: ' . $row['STOCK'] . '</p>';
-            echo '<button class="headerButton btn btn-primary" id="headerPaymentButton" style="height:10%;">Add to cart</button>';
-        }
-        echo '<p class="bookDescription">' . $row['DESCRIPTION'] . '</p>';
-        echo '</div></div><br><br></div>';
+        $bookName = $row["BOOK_NAME"];
+        $authorName = $row["AUTHOR"];
+        $translatorName = $row["TRANSLATOR"];
+        $bookPrice = $row['PRICE'];
+        $bookStock = $row['STOCK'];
+        $bookDes = $row['DESCRIPTION'];
+        
     }
-    // Close database
     $db->close();
-
     ?>
+
+    <div class="container"><br><br>
+        <div class="row">
+            <div class="col-md-3">
+                <img src="https://cdn.discordapp.com/attachments/847393439704285204/1033374037180698675/Untitled.png" style="width: 90%; height: 100%; margin: auto;">
+            </div>
+            <div class="col-md-9">
+                <h1 class="bookName"><?php echo $bookName;?></h1>
+                <h2 class="bookAuthor"><?php echo $authorName;?></h2>
+                <?php
+                if ($translatorName != NULL) {
+                    echo '<h2 class="bookTranslator">' . $translatorName . '</h2>';
+                    }
+                ?>
+                <h3 class="BookPrice">฿<?php echo $bookPrice;?></h3>
+                <?php
+                if ($bookStock != 0) {
+                    echo '<p class="bookStatus">เหลืออยู่: ' . $bookStock . '</p>';
+                    echo '<button class="headerButton btn btn-primary" id="headerPaymentButton" style="height:10%;">Add to cart</button>';
+                }
+                ?>
+                <br><br>
+                <p class="bookDescription"><?php echo $bookDes;?></p>
+            </div>
+        </div><br><br>
+    </div>
+    
+    
     <div id="relatedDiv">
             <div class="categoryText" id="popularCatText">คุณอาจสนใจ</div>
             <div class="categoryCarousel" id="popularCarousel">
