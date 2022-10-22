@@ -17,6 +17,24 @@
 </head>
 
 <body>
+    <header class="bg-primary">
+        <div class="container d-flex" style="height: 10%;" id="headerContainerDiv">
+            <div class="col-md-2" id="webNameDiv">
+                <a href="index.html">
+                    <h1 class="text-white" style="margin-top: 10px;">es'tation</h1>
+                </a>
+            </div>
+            <div class="col-md-4" id="searchInputDiv">
+                <input type="text" name="search" id="searchInput">
+            </div>
+            <div class="col-md-6 text-end" style="margin-top: 20px;" id="headerButtonDiv">
+                <a href="payment.html"><button class="headerButton btn btn-primary" id="headerPaymentButton">payment</button></a>
+                <a href="shipping.html"><button class="headerButton btn btn-primary" id="headerShippingButton">shipping</button></a>
+                <a href="cart.html"><button class="headerButton btn btn-primary" id="headerCartButton"><i class="fa fa-shopping-cart" aria-hidden="true"></i></button></a>
+                <a href="login.html"><button class="headerButton btn btn-primary" id="headerProfileButton"><i class="fa fa-user" aria-hidden="true"></i></button></a>
+            </div>
+        </div>
+    </header>
     <?php
     // Connect to Database 
     class MyDB extends SQLite3
@@ -38,22 +56,52 @@
 
     $ret = $db->query($sql);
     while ($row = $ret->fetchArray(SQLITE3_ASSOC)) {
-        echo '<h1 class="name">' . $row["BOOK_NAME"] . '</h1>';
-        echo '<h2 class="author">' . $row["AUTHOR"] . '</h2>';
+        echo '<div class="container"><br><br>';
+        echo '<div class="row">';
+        echo '<div class="col-md-3">';
+        echo '<img src="https://cdn.discordapp.com/attachments/847393439704285204/1033374037180698675/Untitled.png" style="width: 90%; height: 100%; margin: auto;">';//this is the image div
+        echo '</div>'; 
+        echo '<div class="col-md-9">';
+        echo '<h1 class="bookName">' . $row["BOOK_NAME"] . '</h1>';
+        echo '<h2 class="bookAuthor">' . $row["AUTHOR"] . '</h2>';
         if ($row['TRANSLATOR'] != NULL) {
-            echo '<h2 class="translator">' . $row["TRANSLATOR"] . '</h2>';
+            echo '<h2 class="bookTranslator">' . $row["TRANSLATOR"] . '</h2>';
         }
-        echo '<h3 class="price">฿' . $row['PRICE'] . '</h3>';
+        echo '<h3 class="BookPrice">฿' . $row['PRICE'] . '</h3>';
         if ($row['STOCK'] != 0) {
-            echo '<p class="status">เหลืออยู่: ' . $row['STOCK'] . '</p>';
-            echo '<button class="addToCart">เพิ่มลงรถเข็น</button>';
+            echo '<p class="bookStatus">เหลืออยู่: ' . $row['STOCK'] . '</p>';
+            echo '<button class="headerButton btn btn-primary" id="headerPaymentButton" style="height:10%;">Add to cart</button>';
         }
-        echo '<p class="description">' . $row['DESCRIPTION'] . '</p>';
+        echo '<p class="bookDescription">' . $row['DESCRIPTION'] . '</p>';
+        echo '</div></div><br><br></div>';
     }
     // Close database
     $db->close();
 
     ?>
+    <div id="relatedDiv">
+            <div class="categoryText" id="popularCatText">คุณอาจสนใจ</div>
+            <div class="categoryCarousel" id="popularCarousel">
+                คุณอาจสนใจทำ carousel 
+            </div>
+    </div>
+    <br><br>
+
+    <footer class="bg-primary text-white d-flex" style="height: 20%;">
+        <div class="col-md-4" id="footerAddressDiv">
+            คณะเทคโนโลยีสารสนเทศ<br>
+            สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง<br>
+            <br>
+            เลขที่ 1 ซอยฉลองกรุง 1 แขวงลาดกระบัง เขตลาดกระบัง กรุงเทพฯ 10520
+        </div>
+        <div class="col-md-4"></div>
+        <div class="text-end col-md-4" id="footerContactDiv">
+            <p>
+                โซเชียลมีเดีย<br>
+                Facebook Twitter YouTube
+            </p>
+        </div>
+    </footer>
 </body>
 
 </html>
