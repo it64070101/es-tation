@@ -1,3 +1,5 @@
+/* overall */
+
 body {
     font-family: 'Mitr', sans-serif;
     background-color: rgb(234, 234, 234);
@@ -107,6 +109,8 @@ p#recommendedTitle{
 
 /* details page */
 
+
+/* feet  */
 
 footer {
     padding: 1% 3% 1% 3%;

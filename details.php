@@ -70,7 +70,7 @@
     <div class="container"><br><br>
         <div class="row">
             <div class="col-md-3">
-                <img src="https://cdn.discordapp.com/attachments/847393439704285204/1033374037180698675/Untitled.png" style="width: 90%; height: 100%; margin: auto;">
+                <img src="https://cdn.discordapp.com/attachments/847393439704285204/1033374037180698675/Untitled.png" style="width: 90%; height: 105%; margin: auto;">
             </div>
             <div class="col-md-9">
                 <h1 class="bookName"><?php echo $bookName;?></h1>
