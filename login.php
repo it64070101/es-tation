@@ -35,7 +35,7 @@
                 <input type="password" placeholder="Password" id="passwordInput" class="form-control"><br>
             </form>
             <div style="text-align:center;">
-                <button type="submit" class="btn btn-primary">Log in</button><br>
+                <a href="profile.php"><button type="submit" class="btn btn-primary">Log in</button></a><br>
                 <p style="text-align: center;">or</p>
                 <button type="button" class="btn btn-success">Sign up</button>
             </div>

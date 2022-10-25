@@ -141,6 +141,73 @@ p#recommendedTitle{
     font-size:25px;
 }
 
+/* profile */
+
+.profileMainDiv {
+    margin: 0px;
+    width: 65%;
+    background-color: white;
+    position: relative;
+    margin-top: 12%;
+    left: 16%;
+    padding-bottom: 20px;
+}
+
+#purchaseHistoryLabel{
+    font-size: 23px;
+    margin-left:15px;
+    margin-bottom: 10px;
+}
+
+#profileDetail{
+    padding: 30px;
+}
+
+.profileData{
+    padding: 6px;
+    margin-top: 10px;
+    width: 90%;
+    height: 37px;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+#purchaseHistory {
+    margin: 20px;
+    width: calc(100% - 40px);
+}
+
+#historyTable {
+    border: 2px solid black;
+}
+
+#historyTable > table,tr {
+    text-align: center;
+}
+
+#profilePicture {
+    position: absolute;
+    top: 20%;
+    left: 11.5%;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    border: 3px solid black;
+    z-index: 1;
+}
+
+#profileCredit{
+    position: absolute;
+    top:58%;
+    left:15%;
+    background-color: antiquewhite;
+    border: 3px solid black;
+    border-radius: 10px;
+    padding: 10px 10px 10px 10px;
+    z-index: 2;
+    font-size: 20px;
+}
+
 /* feet  */
 
 footer {

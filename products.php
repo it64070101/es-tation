@@ -30,6 +30,7 @@
             <option value="AUTHOR" <?php if (isset($_POST['sel_name']) && $_POST['sel_name'] == "AUTHOR") echo "selected"; ?>>AUTHOR</option>
         </select>
     </form>
+    <br>
     <div class="container">
         <div class="grid-container">
             <?php
@@ -66,7 +67,7 @@
                 $bookDes = $row['DESCRIPTION'];
                 $bookIMG = $row['IMAGE'];
 
-                echo '<div style="border: 1px solid black; padding:15px;">
+                echo '<div>
                 <a href="details.php?id=' . $bookID . '"><img class="listingBookCover" src="' . $bookIMG . '"></a>';
                 echo '<a class="invisiLink" href="details.php?id=' . $bookID . '"><br><br><p class="listingBookName">' . $bookName . '</p></a>';
                 echo '<p class="bookAuthor" style="text-align:center;">' . $authorName . '</p>';
