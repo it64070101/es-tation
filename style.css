@@ -5,6 +5,11 @@ body {
     background-color: rgb(234, 234, 234);
 }
 
+.invisiLink{
+    color: black; 
+    text-decoration: none;
+}
+
 /* index.html styling */
 
 button.headerButton {
@@ -109,9 +114,32 @@ p#recommendedTitle{
 
 /* details page */
 
+.bookCover {
+    width: 90%; 
+    height: 105%; 
+    margin: auto;
+}
 
 /* product */
 
+.grid-container{
+    width: 100%; 
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr; 
+    gap: 10px;
+}
+
+.listingBookCover{
+    width: 50%; 
+    height: 55%;
+    margin:0 auto; 
+    display:block;
+}
+
+.listingBookName{
+    text-align:center; 
+    font-size:25px;
+}
 
 /* feet  */
 

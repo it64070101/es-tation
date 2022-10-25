@@ -14,7 +14,7 @@
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
         crossorigin="anonymous"></script>
     <script src="script.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <style><?php include "style.css" ?></style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Mitr&display=swap" rel="stylesheet">
@@ -23,7 +23,7 @@
 </head>
 
 <body>
-    <?php include 'includes/header.php';?>
+    <?php include 'includes/header.html';?>
 </body>
 
 </html>

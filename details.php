@@ -9,15 +9,15 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     <script src="script.js"></script>
-    <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Mitr&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <style><?php include "style.css" ?></style>
 </head>
 
 <body>
-    <?php include 'includes/header.php';?>
+    <?php include 'includes/header.html';?>
     
     <?php
     // Connect to Database 
@@ -54,7 +54,7 @@
     <div class="container"><br><br>
         <div class="row">
             <div class="col-md-3">
-                <img src="https://cdn.discordapp.com/attachments/847393439704285204/1033374037180698675/Untitled.png" style="width: 90%; height: 105%; margin: auto;">
+                <img class="bookCover" src="https://cdn.discordapp.com/attachments/847393439704285204/1033374037180698675/Untitled.png">
             </div>
             <div class="col-md-9">
                 <h1 class="bookName"><?php echo $bookName;?></h1>
@@ -86,7 +86,7 @@
     </div>
     <br><br>
 
-    <?php include 'includes/footer.php';?>
+    <?php include 'includes/footer.html';?>
 </body>
 
 </html>

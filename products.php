@@ -9,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     <script src="script.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <style><?php include "style.css" ?></style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Mitr&display=swap" rel="stylesheet">
@@ -17,7 +17,7 @@
 </head>
 
 <body>
-    <?php include 'includes/header.php';
+    <?php include 'includes/header.html';
 
     ?>
     <form method="post" name='sort1' style="margin: 20px;">
@@ -31,7 +31,7 @@
         </select>
     </form>
     <div class="container">
-        <div class="grid-container" style="width: 100%; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px;">
+        <div class="grid-container">
             <?php
             // Connect to Database 
             class MyDB extends SQLite3
@@ -67,8 +67,8 @@
                 $bookIMG = $row['IMAGE'];
 
                 echo '<div style="border: 1px solid black; padding:15px;">
-                <a href="details.php?id=' . $bookID . '"><img src="' . $bookIMG . '" style="width: 50%; height: 55%;margin:0 auto; display:block;"></a>';
-                echo '<br><br><p class="bookName" style="text-align:center; font-size:25px;">' . $bookName . '</p>';
+                <a href="details.php?id=' . $bookID . '"><img class="listingBookCover" src="' . $bookIMG . '"></a>';
+                echo '<a class="invisiLink" href="details.php?id=' . $bookID . '"><br><br><p class="listingBookName">' . $bookName . '</p></a>';
                 echo '<p class="bookAuthor" style="text-align:center;">' . $authorName . '</p>';
                 echo '<p class="BookPrice" style="text-align:center;font-size:20px;">฿' . $bookPrice . '</p>';
                 echo '</div>';
@@ -79,7 +79,7 @@
     </div>
     
 
-    <?php include 'includes/footer.php'; ?>
+    <?php include 'includes/footer.html'; ?>
 </body>
 
 </html>
