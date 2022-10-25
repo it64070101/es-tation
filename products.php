@@ -17,7 +17,69 @@
 </head>
 
 <body>
-    <?php include 'includes/header.php';?>
+    <?php include 'includes/header.php';
+
+    ?>
+    <form method="post" name='sort1' style="margin: 20px;">
+        <select id="sel_id" name="sel_name" onchange="this.form.submit();">
+            <option value="ID" selected>DEFAULT</option>
+            <option value="BOOK_NAME" <?php if (isset($_POST['sel_name']) && $_POST['sel_name'] == "BOOK_NAME") echo "selected"; ?>>A - Z</option>
+            <option value="BOOK_NAME DESC" <?php if (isset($_POST['sel_name']) && $_POST['sel_name'] == "BOOK_NAME DESC") echo "selected"; ?>>Z - A</option>
+            <option value="PRICE" <?php if (isset($_POST['sel_name']) && $_POST['sel_name'] == "PRICE") echo "selected"; ?>>lowerest to highest</option>
+            <option value="PRICE DESC" <?php if (isset($_POST['sel_name']) && $_POST['sel_name'] == "PRICE DESC") echo "selected"; ?>>highest to lowerest</option>
+            <option value="AUTHOR" <?php if (isset($_POST['sel_name']) && $_POST['sel_name'] == "AUTHOR") echo "selected"; ?>>AUTHOR</option>
+        </select>
+    </form>
+    <div class="container">
+        <div class="grid-container" style="width: 100%; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px;">
+            <?php
+            // Connect to Database 
+            class MyDB extends SQLite3
+            {
+                function __construct()
+                {
+                    $this->open('products.db');
+                }
+            }
+
+            // Open Database 
+            $db = new MyDB();
+            if (!$db) {
+                echo $db->lastErrorMsg();
+            }
+
+            // Query process 
+            if (isset($_POST['sel_name'])) {
+                $sql = "SELECT * from BOOKS ORDER BY " . $_POST['sel_name'];
+            } else {
+                $sql = "SELECT * from BOOKS ORDER BY ID";
+            }
+
+            $ret = $db->query($sql);
+            while ($row = $ret->fetchArray(SQLITE3_ASSOC)) {
+                $bookID = $row["ID"];
+                $bookName = $row["BOOK_NAME"];
+                $authorName = $row["AUTHOR"];
+                $translatorName = $row["TRANSLATOR"];
+                $bookPrice = $row['PRICE'];
+                $bookStock = $row['STOCK'];
+                $bookDes = $row['DESCRIPTION'];
+                $bookIMG = $row['IMAGE'];
+
+                echo '<div style="border: 1px solid black; padding:15px;">
+                <a href="details.php?id=' . $bookID . '"><img src="' . $bookIMG . '" style="width: 50%; height: 55%;margin:0 auto; display:block;"></a>';
+                echo '<br><br><p class="bookName" style="text-align:center; font-size:25px;">' . $bookName . '</p>';
+                echo '<p class="bookAuthor" style="text-align:center;">' . $authorName . '</p>';
+                echo '<p class="BookPrice" style="text-align:center;font-size:20px;">฿' . $bookPrice . '</p>';
+                echo '</div>';
+            }
+            $db->close();
+            ?> 
+        </div>
+    </div>
+    
+
+    <?php include 'includes/footer.php'; ?>
 </body>
 
 </html>

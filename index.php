@@ -30,7 +30,7 @@
             <div class="text-end" id="mainButtonDiv">
                 <button class="mainButton btn btn-primary" id="mainNewButton">new arrival</button>
                 <button class="mainButton btn btn-primary" id="mainPromoButton">promotion</button>
-                <button class="mainButton btn btn-primary" id="mainAllButton">all product</button>
+                <a href="products.php"><button class="mainButton btn btn-primary" id="mainAllButton">all product</button></a>
             </div>
             <div id="recommendedBookCover">
                 <img src="https://upload.wikimedia.org/wikipedia/en/e/e1/BEASTARS%2C_volume_1.jpg" alt="comedy book" id="bookCover">
