@@ -102,6 +102,19 @@ p#recommendedTitle{
     
 }
 
+#mainRegDiv{
+    background-color: white;
+    width: 70%;
+    height: 80%;
+    margin: auto;
+    position: absolute;
+    top: 58%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    
+}
+
 #loginForm {
     margin-top: 3%;
     margin-left: 20%;

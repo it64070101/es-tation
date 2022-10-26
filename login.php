@@ -26,21 +26,57 @@
     <?php include 'includes/header.html';?>
 
     <main style="height: 70%;">
+    <!-- <div> -->
         <div id="mainLoginDiv">
             <p style="font-size: 40px; margin-top: 15px; text-align: center;">es'tation</p>
-            <form action="<!-- php to do things -->" method="post" id="loginForm" class="form-group">
+            <form method="post" id="loginForm" class="form-group">
                 <label for="username" id="usernameLabel">Username</label><br>
-                <input type="text" placeholder="Username" id="usernameInput" class="form-control"><br>
+                <input type="text" placeholder="Username" id="usernameInput" class="form-control" name='user1'><br>
                 <label for="password" id="passwordLabel">Password</label><br>
-                <input type="password" placeholder="Password" id="passwordInput" class="form-control"><br>
+                <input type="password" placeholder="Password" id="passwordInput" class="form-control" name='pass1'><br>
+                <button style="text-align:center;" type="submit" class="btn btn-primary text-center" name='log1'>Log in</button><br>
             </form>
             <div style="text-align:center;">
-                <a href="profile.php"><button type="submit" class="btn btn-primary">Log in</button></a><br>
+                <!-- <a href="profile.php"> -->
+                    <!-- <button type="submit" class="btn btn-primary" name='log1'>Log in</button> -->
+                <!-- </a> -->
+                <!-- <br> -->
                 <p style="text-align: center;">or</p>
-                <button type="button" class="btn btn-success">Sign up</button>
+                <a href="register.php"><button type="submit" class="btn btn-success">Sign up</button></a>
             </div>
         </div>
     </main>
+
+    <?php 
+        class MyDB extends SQLite3 {
+            function __construct() {
+               $this->open('Register.db');
+            }
+         }
+
+        $db = new MyDB();
+        if(!$db) {
+            echo $db->lastErrorMsg();
+        } 
+
+
+        if(isset($_POST['log1'])){
+            $email2 = $_POST['user1'];
+            $pass2 = $_POST['pass1'];
+            $sql = "SELECT FNAME FROM REGISTER WHERE REGISTER.EMAIL= '$email2' AND REGISTER.PASSLOG='$pass2'"; // ."AND REGISTER.PASSLOG=". $pass2;
+            $ret = $db->query($sql);
+            // $ret2 = db_num_rows($ret);
+    
+            if (($ret->fetchArray(SQLITE3_ASSOC))) {
+                echo "<script> location.href='profile.php'; </script>";
+            }
+            else {
+                echo "INCORRECT";
+            }
+    
+            $db->close();
+        }
+    ?>
 
 </body>
 
