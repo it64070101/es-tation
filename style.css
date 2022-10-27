@@ -1,5 +1,13 @@
 /* overall */
-
+.button{
+    border: 2px solid white;
+    background-color: #0d6efd;
+    border-radius: 0.2rem;
+    color: white;
+    padding: 0.7rem;
+    padding-left:1rem;
+    padding-right:1rem;
+}
 body {
     font-family: 'Mitr', sans-serif;
     background-color: rgb(234, 234, 234);
