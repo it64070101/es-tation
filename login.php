@@ -1,5 +1,5 @@
 <!-- if user pressed on the icon of a funny looking guy but hasn't logged in lead here -->
-
+<?php session_start(); ?>
 <html lang="en">
 
 <head>
@@ -47,7 +47,7 @@
         </div>
     </main>
 
-    <?php 
+    <?php
         class MyDB extends SQLite3 {
             function __construct() {
                $this->open('Register.db');
@@ -63,11 +63,13 @@
         if(isset($_POST['log1'])){
             $email2 = $_POST['user1'];
             $pass2 = $_POST['pass1'];
-            $sql = "SELECT FNAME FROM REGISTER WHERE REGISTER.EMAIL= '$email2' AND REGISTER.PASSLOG='$pass2'"; // ."AND REGISTER.PASSLOG=". $pass2;
+            $sql = "SELECT * FROM REGISTER WHERE REGISTER.EMAIL= '$email2' AND REGISTER.PASSLOG='$pass2'"; // ."AND REGISTER.PASSLOG=". $pass2;
             $ret = $db->query($sql);
             // $ret2 = db_num_rows($ret);
     
-            if (($ret->fetchArray(SQLITE3_ASSOC))) {
+            $rows = ($ret->fetchArray(SQLITE3_ASSOC));
+            if ($rows) {
+                $_SESSION["USERS1"] = $rows['ID'];
                 echo "<script> location.href='profile.php'; </script>";
             }
             else {

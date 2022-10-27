@@ -24,8 +24,8 @@
     <?php include 'includes/header.html';?>
 
     <main style="height: 70%;">
-    <div>
-        <!-- <div id="mainRegDiv"> -->
+    <!-- <div> -->
+        <div id="mainRegDiv">
             <p style="font-size: 40px; margin-top: 15px; text-align: center;">es'tation</p>
             <form method="post" id="loginForm" class="form-group">
                 <div class="row">

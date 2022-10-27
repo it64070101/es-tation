@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <html lang="en">
 
 <head>
@@ -21,7 +22,70 @@
 <body>
     <?php include "includes/header.html" ?>
 
-    <img id="profilePicture" src="https://cdn.discordapp.com/attachments/847393439704285204/1016577438513373236/funny_whoa_cat.jpg" alt="bruh">
+
+    <?php
+        class MyDB extends SQLite3 {
+            function __construct() {
+               $this->open('Register.db');
+            }
+         }
+     
+         // Open Database 
+         $db1 = new MyDB();
+         if(!$db1) {
+            echo $db1->lastErrorMsg();
+         } 
+
+         $sql = "SELECT * from REGISTER WHERE REGISTER.ID = ".$_SESSION['USERS1'];
+         $ret = $db1->query($sql);
+         $row = $ret->fetchArray(SQLITE3_ASSOC);
+        echo "<img id='profilePicture' src='https://cdn.discordapp.com/attachments/847393439704285204/1016577438513373236/funny_whoa_cat.jpg' alt='bruh'>";
+        echo "<div id='profileCredit'>Credits : 0 👎☹️</div>
+        <div class='profileMainDiv'>
+            <div class='row'>
+                <div class='col-md-3'></div>
+                <div class='col-md-9' id='profileDetail'>
+                    <label for='fname'>FirstName : </label><br>
+                    <div class='profileData'>". $row['FNAME'] ."</div><br>
+                    <label for='lname'>Last Name : </label><br>
+                    <div class='profileData'>". $row['LNAME'] ."</div><br>
+                    <label for='address'>Address : </label><br>
+                    <div class='profileData'>". $row['ADDRESS'] ."</div><br>
+                    <label for='phone'>Phone : </label><br>
+                    <div class='profileData'>". $row['PHONE'] ."</div><br>
+                    <label for='email'>Email : </label><br>
+                    <div class='profileData'>". $row['EMAIL'] ."</div><br>
+                </div>
+            </div>
+            <div class='container' id='purchaseHistory'>
+                <label id='purchaseHistoryLabel' for='purchaseHistory'>Purchase History</label><br>
+                <div id='historyTable' class='card'>
+                    <table class='table table-bordered'>
+                        <tr>
+                            <th>Name</th>
+                            <th>Qtt.</th>
+                        </tr>
+                        <tr>
+                            <td>Used Bricks</td>
+                            <td>7 millions</td>
+                        </tr>
+                        <tr>
+                            <td>7 pints of blood</td>
+                            <td>85 Swiss Franc</td>
+                        </tr>
+                        <tr>
+                            <td>7 pints of blood</td>
+                            <td>85 Swiss Franc</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <br><br>";
+
+
+    ?>
+    <!-- <img id="profilePicture" src="https://cdn.discordapp.com/attachments/847393439704285204/1016577438513373236/funny_whoa_cat.jpg" alt="bruh">
     <div id="profileCredit">Credits : 0 👎☹️</div>
 
     <div class="profileMainDiv">
@@ -64,7 +128,7 @@
             </div>
         </div>
     </div>
-    <br><br>
+    <br><br> -->
 </body>
 
 </html>
