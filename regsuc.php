@@ -26,9 +26,9 @@
     <?php include 'includes/header.html';?>
 
     <main style="height: 70%;">
-        <div id="mainLoginDiv">
+        <div class="mainLoginDiv">
             <p style="font-size: 3em; margin-top: 15px; text-align: center; color:green; font-weight:bold;">Your Register Successful !</p>
-            <a href="login.php"><button type="submit" class="btn btn-primary d-flex justify-content-center">go to log in page.</button></a><br>
+            <a href="login.php"><button type="submit" class="btn btn-primary d-flex" style="position:relative; left:41%;">go to log in page.</button></a><br>
         </div>
     </main>
 

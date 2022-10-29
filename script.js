@@ -6,12 +6,12 @@ function Check111() {
     let passcheck = document.getElementById("passInput").value;
     let addcheck = document.getElementById("addInput").value;
 
-    if (fnamecheck.length < 3 || fnamecheck > 50) {
+    if (fnamecheck.length < 3 && fnamecheck.length > 50) {
         alert("Firstname must be filled out");
         document.getElementById("signbut2").value = "2";
         return false;
     }
-    else if (lnamecheck.length < 3 || lnamecheck > 50) {
+    else if (lnamecheck.length < 3 && lnamecheck.length > 50) {
         alert("Lastname must be filled out");
         document.getElementById("signbut2").value = "2";
         return false;
@@ -21,7 +21,7 @@ function Check111() {
         document.getElementById("signbut2").value = "2";
         return false;
     }
-    else if (emailcheck.length < 15 || emailcheck > 100) {
+    else if (emailcheck.length < 15 && emailcheck.length > 100) {
         alert("Firstname must be filled out");
         document.getElementById("signbut2").value = "2";
         return false;
@@ -31,7 +31,7 @@ function Check111() {
         document.getElementById("signbut2").value = "2";
         return false;
     }
-    else if (addcheck.length < 30 || addcheck > 200) {
+    else if (addcheck.length < 30 && addcheck.length > 200) {
         alert("Address must be filled out");
         document.getElementById("signbut2").value = "2";
         return false;

@@ -47,7 +47,7 @@
                     </div>
                     <div class="col-10">
                         <label for="pass" id="passLabel">Password</label><br>
-                        <input type="text" placeholder="more than 10 Characters" id="passInput" class="form-control" name='pass1'><br>
+                        <input type="password" placeholder="more than 10 Characters" id="passInput" class="form-control" name='pass1'><br>
                     </div>
                     <div class="col-10">
                         <label for="addr" id="addrLabel">Address</label><br>
