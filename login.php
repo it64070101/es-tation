@@ -28,22 +28,16 @@
     <main style="height: 70%;">
     <!-- <div> -->
         <div id="mainLoginDiv">
-            <p style="font-size: 40px; margin-top: 15px; text-align: center;">es'tation</p>
             <form method="post" id="loginForm" class="form-group">
+                <p style="font-size: 40px; margin-top: 15px; text-align: center;">es'tation</p>
                 <label for="username" id="usernameLabel">Username</label><br>
                 <input type="text" placeholder="Username" id="usernameInput" class="form-control" name='user1'><br>
                 <label for="password" id="passwordLabel">Password</label><br>
-                <input type="password" placeholder="Password" id="passwordInput" class="form-control" name='pass1'><br>
+                <input type="password" placeholder="Password" id="passwordInput" class="form-control" name='pass1'><br><div style="text-align:center;">
                 <button style="text-align:center;" type="submit" class="btn btn-primary text-center" name='log1'>Log in</button><br>
-            </form>
-            <div style="text-align:center;">
-                <!-- <a href="profile.php"> -->
-                    <!-- <button type="submit" class="btn btn-primary" name='log1'>Log in</button> -->
-                <!-- </a> -->
-                <!-- <br> -->
                 <p style="text-align: center;">or</p>
                 <a href="register.php"><button type="submit" class="btn btn-success">Sign up</button></a>
-            </div>
+            </form>
         </div>
     </main>
 
@@ -73,7 +67,7 @@
                 echo "<script> location.href='profile.php'; </script>";
             }
             else {
-                echo "INCORRECT";
+                echo 'INCORRECT';
             }
     
             $db->close();
