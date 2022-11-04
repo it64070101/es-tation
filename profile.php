@@ -40,7 +40,7 @@
          $ret = $db1->query($sql);
          $row = $ret->fetchArray(SQLITE3_ASSOC);
         echo "<img id='profilePicture' src='https://cdn.discordapp.com/attachments/847393439704285204/1016577438513373236/funny_whoa_cat.jpg' alt='bruh'>";
-        echo "<div id='profileCredit'>Credits : 0 👎☹️</div>
+        echo "
         <div class='profileMainDiv'>
             <div class='row'>
                 <div class='col-md-3'></div>

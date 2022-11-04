@@ -59,7 +59,7 @@
             $ret = $db->query($sql);
             while ($row = $ret->fetchArray(SQLITE3_ASSOC)) {
                 $bookID = $row["ID"];
-                $bookName = $row["BOOK_NAME"];
+                $bookName = $row["PRODUCT_NAME"];
                 $authorName = $row["AUTHOR"];
                 $translatorName = $row["TRANSLATOR"];
                 $bookPrice = $row['PRICE'];
@@ -68,7 +68,7 @@
                 $bookIMG = $row['IMAGE'];
 
                 echo '<div>
-                <a href="details.php?id=' . $bookID . '"><img class="listingBookCover" src="' . $bookIMG . '"></a>';
+                <a href="details.php?id=' . $bookID . '"><img class="listingBookCover" src="https://cdn.discordapp.com/attachments/847393439704285204/1033374037180698675/Untitled.png"></a>';
                 echo '<a class="invisiLink" href="details.php?id=' . $bookID . '"><br><br><p class="listingBookName">' . $bookName . '</p></a>';
                 echo '<p class="bookAuthor" style="text-align:center;">' . $authorName . '</p>';
                 echo '<p class="BookPrice" style="text-align:center;font-size:20px;">฿' . $bookPrice . '</p>';

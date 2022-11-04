@@ -40,7 +40,7 @@
 
     $ret = $db->query($sql);
     while ($row = $ret->fetchArray(SQLITE3_ASSOC)) {
-        $bookName = $row["BOOK_NAME"];
+        $bookName = $row["PRODUCT_NAME"];
         $authorName = $row["AUTHOR"];
         $translatorName = $row["TRANSLATOR"];
         $bookPrice = $row['PRICE'];
