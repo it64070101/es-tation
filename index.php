@@ -23,23 +23,46 @@
 </head>
 
 <body>
-    <?php include 'includes/header.html';?>
+    <?php include 'boiler/header.html';?>
 
     <main>
         <div id="mainRecommendedDiv">
+            <?php
+            class MyDB extends SQLite3
+            {
+                function __construct()
+                {
+                    $this->open('products.db');
+                }
+            }
+
+            $db = new MyDB();
+            if (!$db) {
+                echo $db->lastErrorMsg();
+            }
+
+            $sql = "SELECT * from BOOKS where ID = 3";
+            $ret = $db->query($sql);
+            while ($row = $ret->fetchArray(SQLITE3_ASSOC)) {
+                $id = $row["ID"];
+                $bookName = $row["PRODUCT_NAME"];
+                $bookDes = $row['DESCRIPTION'];
+            }
+            $db->close();
+            ?>
             <div class="text-end" id="mainButtonDiv">
                 <button class="mainButton btn btn-primary" id="mainNewButton">new arrival</button>
                 <button class="mainButton btn btn-primary" id="mainPromoButton">promotion</button>
                 <a href="products.php"><button class="mainButton btn btn-primary" id="mainAllButton">all product</button></a>
             </div>
             <div id="recommendedBookCover">
-                <img src="https://upload.wikimedia.org/wikipedia/en/e/e1/BEASTARS%2C_volume_1.jpg" alt="comedy book" id="bookCover">
+                <a href="details.php?id=<?php echo $id;?>" class="invisiLink"><img src="images/books/<?php echo $id;?>.jpg" alt="comedy book" id="bookCover"><a>
             </div>
             <div id="recommendedWhite">
                 <div id="recommendTexts">
-                    <a href="details.php?id=1" class="invisiLink"><p id="recommendedTitle">Look at this man</p></a>
+                    <a href="details.php?id=<?php echo $id;?>" class="invisiLink"><p id="recommendedTitle"><?php echo $bookName;?></p></a>
                     <p id="recomendedParagraph">
-                        Funny Comedy for age 3 and up. How do I make link normal text.
+                        <?php echo $bookDes;?>
                     </p>
                 </div>
             </div>  
@@ -89,7 +112,7 @@
         <br>
     </main>
 
-    <?php include 'includes/footer.html';?>
+    <?php include 'boiler/footer.html';?>
 </body>
 
 </html>

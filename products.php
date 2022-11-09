@@ -17,7 +17,7 @@
 </head>
 
 <body>
-    <?php include 'includes/header.html';
+    <?php include 'boiler/header.html';
     ?>
     <form method="post" name='sort1' style="margin: 20px;">
         <select id="sel_id" name="sel_name" onchange="this.form.submit();">
@@ -100,7 +100,7 @@
                     $authorName = $row["AUTHOR"];
                     $translatorName = $row["TRANSLATOR"];
                     echo '<div>
-                    <a href="details.php?id=' . $bookID . '"><img class="listingBookCover" src="https://cdn.discordapp.com/attachments/847393439704285204/1033374037180698675/Untitled.png"></a>';
+                    <a href="details.php?id=' . $bookID . '"><img class="listingBookCover" src="images/books/'.$bookID.'.jpg'.'"></a>';
                     echo '<a class="invisiLink" href="details.php?id=' . $bookID . '"><br><br><p class="listingBookName">' . $bookName . '</p></a>';
                     echo '<p class="bookAuthor" style="text-align:center;">' . $authorName . '</p>';
                     echo '<p class="BookPrice" style="text-align:center;font-size:20px;">฿' . $bookPrice . '</p>';
@@ -109,7 +109,7 @@
                 else if (isset($_POST['cat_name']) && $_POST['cat_name'] == 'BOARDGAME'){
                     $manu = $row['MANUFACTURER'];
                     echo '<div>
-                    <a href="details.php?id=' . $bookID . '"><img class="listingBookCover" src="https://cdn.discordapp.com/attachments/847393439704285204/1033374037180698675/Untitled.png"></a>';
+                    <a href="details.php?id=' . $bookID . '"><img class="listingBookCover" src="images/books/'.$bookID.'.jpg'.'"></a>';
                     echo '<a class="invisiLink" href="details.php?id=' . $bookID . '"><br><br><p class="listingBookName">' . $bookName . '</p></a>';
                     echo '<p class="bookAuthor" style="text-align:center;">' . $manu . '</p>';
                     echo '<p class="BookPrice" style="text-align:center;font-size:20px;">฿' . $bookPrice . '</p>';
@@ -117,7 +117,7 @@
                 }
                 else if (isset($_POST['cat_name']) && $_POST['cat_name'] == 'STATIONARIES'){
                     echo '<div>
-                    <a href="details.php?id=' . $bookID . '"><img class="listingBookCover" src="https://cdn.discordapp.com/attachments/847393439704285204/1033374037180698675/Untitled.png"></a>';
+                    <a href="details.php?id=' . $bookID . '"><img class="listingBookCover" src="images/books/'.$bookID.'.jpg'.'"></a>';
                     echo '<a class="invisiLink" href="details.php?id=' . $bookID . '"><br><br><p class="listingBookName">' . $bookName . '</p></a>';
                     echo '<p class="BookPrice" style="text-align:center;font-size:20px;">฿' . $bookPrice . '</p>';
                     echo '</div>';
@@ -126,7 +126,7 @@
                     $authorName = $row["AUTHOR"];
                     $translatorName = $row["TRANSLATOR"];
                     echo '<div>
-                    <a href="details.php?id=' . $bookID . '"><img class="listingBookCover" src="https://cdn.discordapp.com/attachments/847393439704285204/1033374037180698675/Untitled.png"></a>';
+                    <a href="details.php?id=' . $bookID . '"><img class="listingBookCover" src="images/books/'.$bookID.'.jpg'.'"></a>';
                     echo '<a class="invisiLink" href="details.php?id=' . $bookID . '"><br><br><p class="listingBookName">' . $bookName . '</p></a>';
                     echo '<p class="bookAuthor" style="text-align:center;">' . $authorName . '</p>';
                     echo '<p class="BookPrice" style="text-align:center;font-size:20px;">฿' . $bookPrice . '</p>';
@@ -139,7 +139,7 @@
     </div>
     
 
-    <?php include 'includes/footer.html'; ?>
+    <?php include 'boiler/footer.html'; ?>
 </body>
 
 </html>
