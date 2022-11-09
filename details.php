@@ -17,7 +17,7 @@
 </head>
 
 <body>
-    <?php include 'includes/header.html';?>
+    <?php include 'boiler/header.html';?>
     
     <?php
     // Connect to Database 
@@ -40,6 +40,7 @@
 
     $ret = $db->query($sql);
     while ($row = $ret->fetchArray(SQLITE3_ASSOC)) {
+        $id = $row["ID"];
         $bookName = $row["PRODUCT_NAME"];
         $authorName = $row["AUTHOR"];
         $translatorName = $row["TRANSLATOR"];
@@ -54,7 +55,7 @@
     <div class="container"><br><br>
         <div class="row">
             <div class="col-md-3">
-                <img class="bookCover" src="https://cdn.discordapp.com/attachments/847393439704285204/1033374037180698675/Untitled.png">
+                <img class="bookCover" src="images/books/<?php echo $id.'.jpg'; ?>">
             </div>
             <div class="col-md-9">
                 <h1 class="bookName"><?php echo $bookName;?></h1>
@@ -86,7 +87,7 @@
     </div>
     <br><br>
 
-    <?php include 'includes/footer.html';?>
+    <?php include 'boiler/footer.html';?>
 </body>
 
 </html>
