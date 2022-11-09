@@ -43,7 +43,7 @@
         $id = $row["ID"];
         $bookName = $row["PRODUCT_NAME"];
         $authorName = $row["AUTHOR"];
-        $translatorName = $row["TRANSLATOR"];
+        // $translatorName = $row["TRANSLATOR"];
         $bookPrice = $row['PRICE'];
         $bookStock = $row['STOCK'];
         $bookDes = $row['DESCRIPTION'];
@@ -61,9 +61,9 @@
                 <h1 class="bookName"><?php echo $bookName;?></h1>
                 <h2 class="bookAuthor"><?php echo $authorName;?></h2>
                 <?php
-                if ($translatorName != NULL) {
-                    echo '<h2 class="bookTranslator">' . $translatorName . '</h2>';
-                    }
+                // if ($translatorName != NULL) {
+                //     echo '<h2 class="bookTranslator">' . $translatorName . '</h2>';
+                //     }
                 ?>
                 <h3 class="BookPrice">฿<?php echo $bookPrice;?></h3>
                 <?php
