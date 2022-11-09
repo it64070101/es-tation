@@ -1,5 +1,5 @@
 <html lang="en">
-
+<?php session_start(); ?>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,7 +17,7 @@
 </head>
 
 <body>
-    <?php include 'boiler/header.html';
+    <?php include 'header.php';
     ?>
     <form method="post" name='sort1' style="margin: 20px;">
         <select id="sel_id" name="sel_name" onchange="this.form.submit();">
@@ -98,7 +98,7 @@
     
                 if (isset($_POST['cat_name']) && $_POST['cat_name'] == 'BOOKS'){
                     $authorName = $row["AUTHOR"];
-                    $translatorName = $row["TRANSLATOR"];
+                    // $translatorName = $row["TRANSLATOR"];
                     echo '<div>
                     <a href="details.php?id=' . $bookID . '"><img class="listingBookCover" src="images/books/'.$bookID.'.jpg'.'"></a>';
                     echo '<a class="invisiLink" href="details.php?id=' . $bookID . '"><br><br><p class="listingBookName">' . $bookName . '</p></a>';
@@ -124,7 +124,7 @@
                 }
                 else{
                     $authorName = $row["AUTHOR"];
-                    $translatorName = $row["TRANSLATOR"];
+                    // $translatorName = $row["TRANSLATOR"];
                     echo '<div>
                     <a href="details.php?id=' . $bookID . '"><img class="listingBookCover" src="images/books/'.$bookID.'.jpg'.'"></a>';
                     echo '<a class="invisiLink" href="details.php?id=' . $bookID . '"><br><br><p class="listingBookName">' . $bookName . '</p></a>';

@@ -1,5 +1,12 @@
 <!-- if user pressed on the icon of a funny looking guy but hasn't logged in lead here -->
-<?php session_start(); ?>
+<?php session_start(); 
+if($_SESSION['count1'] != '1' || $_SESSION['count1'] != ''){
+    $_SESSION['count1'] = '1';
+}
+else{
+    $_SESSION['count1']=$_GET['count1'];
+}
+?>
 <html lang="en">
 
 <head>
@@ -23,8 +30,7 @@
 </head>
 
 <body style="height: 100%;">
-    <?php include 'boiler/header.html';?>
-
+    <?php include 'header.php';?>
     <main style="height: 70%;">
     <!-- <div> -->
         <div class="mainLoginDiv">
@@ -40,7 +46,7 @@
             </form>
         </div>
     </main>
-
+    
     <?php
         class MyDB extends SQLite3 {
             function __construct() {
@@ -64,6 +70,7 @@
             $rows = ($ret->fetchArray(SQLITE3_ASSOC));
             if ($rows) {
                 $_SESSION["USERS1"] = $rows['ID'];
+                $_SESSION["count1"] = "2";
                 echo "<script> location.href='profile.php'; </script>";
             }
             else {

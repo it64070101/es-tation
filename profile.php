@@ -20,7 +20,7 @@
 </head>
 
 <body>
-    <?php include "boiler/header.html" ?>
+    <?php include 'header.php';?>
 
 
     <?php
@@ -82,53 +82,11 @@
             </div>
         </div>
         <br><br>";
-
-
+        // $_SESSION["count1"] = "2";
     ?>
-    <!-- <img id="profilePicture" src="https://cdn.discordapp.com/attachments/847393439704285204/1016577438513373236/funny_whoa_cat.jpg" alt="bruh">
-    <div id="profileCredit">Credits : 0 👎☹️</div>
-
-    <div class="profileMainDiv">
-        <div class="row">
-            <div class="col-md-3"></div>
-            <div class="col-md-9" id="profileDetail">
-                <label for="fname">FirstName : </label><br>
-                <div class="profileData">dog</div><br>
-                <label for="lname">Last Name : </label><br>
-                <div class="profileData">water</div><br>
-                <label for="address">Address : </label><br>
-                <div class="profileData">unsuspecting innocent's wall</div><br>
-                <label for="phone">Phone : </label><br>
-                <div class="profileData">iPhone 3</div><br>
-                <label for="email">Email : </label><br>
-                <div class="profileData">yes</div><br>
-            </div>
-        </div>
-        <div class="container" id="purchaseHistory">
-            <label id="purchaseHistoryLabel" for="purchaseHistory">Purchase History</label><br>
-            <div id="historyTable" class="card">
-                <table class="table table-bordered">
-                    <tr>
-                        <th>Name</th>
-                        <th>Qtt.</th>
-                    </tr>
-                    <tr>
-                        <td>Used Bricks</td>
-                        <td>7 millions</td>
-                    </tr>
-                    <tr>
-                        <td>7 pints of blood</td>
-                        <td>85 Swiss Franc</td>
-                    </tr>
-                    <tr>
-                        <td>7 pints of blood</td>
-                        <td>85 Swiss Franc</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-    </div>
-    <br><br> -->
+    <p><a class="btn-auth btn-twitter large" href="login.php?count1=1"> log out </a></p>
+    <!-- <button type='submit' class='btn btn-primary' onclick='location.href="login.php"; '>Log out</button> -->
+    
 </body>
 
 </html>

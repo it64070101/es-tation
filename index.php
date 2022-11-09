@@ -1,5 +1,5 @@
 <!-- Main page, portal to anything else -->
-
+<?php session_start(); ?>
 <html lang="en">
 
 <head>
@@ -23,7 +23,7 @@
 </head>
 
 <body>
-    <?php include 'boiler/header.html';?>
+    <?php include 'header.php';?>
 
     <main>
         <div id="mainRecommendedDiv">

@@ -1,5 +1,5 @@
 <!-- if user pressed on the icon of a funny looking guy but hasn't logged in lead here -->
-
+<?php session_start(); ?>
 <html lang="en">
 
 <head>
@@ -23,7 +23,7 @@
 </head>
 
 <body style="height: 100%;">
-    <?php include 'boiler/header.html';?>
+    <?php include 'header.php';?>
 
     <main style="height: 70%;">
         <div class="mainLoginDiv">
