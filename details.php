@@ -35,6 +35,20 @@
         echo $db->lastErrorMsg();
     }
 
+    switch ($_GET['cat']) {
+        case 'BOOKS':
+            $cat = "books";
+            break;
+        case 'BOARD_GAMES':
+            $cat = "boardgames";
+            break;
+        case 'STATIONERIES':
+            # code...
+            break;
+        default:
+            # code...
+            break;
+    }
     // Query process 
     $sql = "SELECT * from ". $_GET['cat'] ." WHERE ID = " . $_GET['id'];
 
@@ -62,7 +76,7 @@
     <div class="container"><br><br>
         <div class="row">
             <div class="col-md-3">
-                <img class="bookCover" src="images/books/<?php echo $id.'.jpg'; ?>">
+                <img class="bookCover" src="images/<?php echo $cat; ?>/<?php echo $id.'.jpg'; ?>">
             </div>
             <div class="col-md-9">
                 <h1 class="bookName"><?php echo $bookName;?></h1>

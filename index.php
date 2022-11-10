@@ -69,7 +69,7 @@
             </div>
             <div id="recommendedWhite">
                 <div id="recommendTexts">
-                    <a href="details.php?id=<?php echo $id;?>" class="invisiLink"><p id="recommendedTitle"><?php echo $bookName;?></p></a>
+                    <a href="details.php?id=<?php echo $id;?>&cat=BOOKS" class="invisiLink"><p id="recommendedTitle"><?php echo $bookName;?></p></a>
                     <p id="recomendedParagraph">
                         <?php echo $bookDes;?>
                     </p>
