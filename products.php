@@ -100,26 +100,26 @@
                     $authorName = $row["AUTHOR"];
                     // $translatorName = $row["TRANSLATOR"];
                     echo '<div>
-                    <a href="details.php?id=' . $bookID . '"><img class="listingBookCover" src="images/books/'.$bookID.'.jpg'.'"></a>';
+                    <a href="details.php?id=' . $bookID . '&cat=BOOKS"><img class="listingBookCover" src="images/books/'.$bookID.'.jpg'.'"></a>';
                     echo '<a class="invisiLink" href="details.php?id=' . $bookID . '"><br><br><p class="listingBookName">' . $bookName . '</p></a>';
                     echo '<p class="bookAuthor" style="text-align:center;">' . $authorName . '</p>';
-                    echo '<p class="BookPrice" style="text-align:center;font-size:20px;">฿' . $bookPrice . '</p>';
+                    echo '<p class="BookPrice" style="text-align:center;font-size:20px;">$' . $bookPrice . '</p>';
                     echo '</div>';
                 }
                 else if (isset($_POST['cat_name']) && $_POST['cat_name'] == 'BOARDGAME'){
                     $manu = $row['MANUFACTURER'];
                     echo '<div>
-                    <a href="details.php?id=' . $bookID . '"><img class="listingBookCover" src="images/books/'.$bookID.'.jpg'.'"></a>';
+                    <a href="details.php?id=' . $bookID . '&cat=BOARD_GAMES"><img class="listingBookCover" src="images/books/'.$bookID.'.jpg'.'"></a>';
                     echo '<a class="invisiLink" href="details.php?id=' . $bookID . '"><br><br><p class="listingBookName">' . $bookName . '</p></a>';
                     echo '<p class="bookAuthor" style="text-align:center;">' . $manu . '</p>';
-                    echo '<p class="BookPrice" style="text-align:center;font-size:20px;">฿' . $bookPrice . '</p>';
+                    echo '<p class="BookPrice" style="text-align:center;font-size:20px;">$' . $bookPrice . '</p>';
                     echo '</div>';
                 }
                 else if (isset($_POST['cat_name']) && $_POST['cat_name'] == 'STATIONARIES'){
                     echo '<div>
-                    <a href="details.php?id=' . $bookID . '"><img class="listingBookCover" src="images/books/'.$bookID.'.jpg'.'"></a>';
+                    <a href="details.php?id=' . $bookID . '&cat=STATIONERIES"><img class="listingBookCover" src="images/books/'.$bookID.'.jpg'.'"></a>';
                     echo '<a class="invisiLink" href="details.php?id=' . $bookID . '"><br><br><p class="listingBookName">' . $bookName . '</p></a>';
-                    echo '<p class="BookPrice" style="text-align:center;font-size:20px;">฿' . $bookPrice . '</p>';
+                    echo '<p class="BookPrice" style="text-align:center;font-size:20px;">$' . $bookPrice . '</p>';
                     echo '</div>';
                 }
                 else{
@@ -129,7 +129,7 @@
                     <a href="details.php?id=' . $bookID . '"><img class="listingBookCover" src="images/books/'.$bookID.'.jpg'.'"></a>';
                     echo '<a class="invisiLink" href="details.php?id=' . $bookID . '"><br><br><p class="listingBookName">' . $bookName . '</p></a>';
                     echo '<p class="bookAuthor" style="text-align:center;">' . $authorName . '</p>';
-                    echo '<p class="BookPrice" style="text-align:center;font-size:20px;">฿' . $bookPrice . '</p>';
+                    echo '<p class="BookPrice" style="text-align:center;font-size:20px;">$' . $bookPrice . '</p>';
                     echo '</div>';
                 }
             }

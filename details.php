@@ -36,13 +36,20 @@
     }
 
     // Query process 
-    $sql = "SELECT * from BOOKS WHERE ID = " . $_GET['id'];
+    $sql = "SELECT * from ". $_GET['cat'] ." WHERE ID = " . $_GET['id'];
 
     $ret = $db->query($sql);
     while ($row = $ret->fetchArray(SQLITE3_ASSOC)) {
         $id = $row["ID"];
         $bookName = $row["PRODUCT_NAME"];
-        $authorName = $row["AUTHOR"];
+        if($_GET['cat'] == "BOOKS"){
+            $authorName = $row["AUTHOR"]; 
+        }else if($_GET['cat'] == "BOARD_GAMES"){
+            $authorName = $row["MANUFACTURER"]; 
+        }else if($_GET['cat'] == "STATIONERIES"){
+            $authorName = "";
+        }
+        
         // $translatorName = $row["TRANSLATOR"];
         $bookPrice = $row['PRICE'];
         $bookStock = $row['STOCK'];
@@ -65,7 +72,7 @@
                 //     echo '<h2 class="bookTranslator">' . $translatorName . '</h2>';
                 //     }
                 ?>
-                <h3 class="BookPrice">฿<?php echo $bookPrice;?></h3>
+                <h3 class="BookPrice">$<?php echo $bookPrice;?></h3>
                 <?php
                 if ($bookStock != 0) {
                     echo '<p class="bookStatus">เหลืออยู่: ' . $bookStock . '</p>';

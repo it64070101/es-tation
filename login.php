@@ -77,7 +77,7 @@ else{
                 echo "<script> location.href='profile.php'; </script>";
             }
             else {
-                echo 'INCORRECT';
+                echo '<script>alert("Login failed, incorrect password and wrong E-mail.");</script>';
             }
     
             $db->close();
