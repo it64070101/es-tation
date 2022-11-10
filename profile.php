@@ -84,7 +84,7 @@
         <br><br>";
         // $_SESSION["count1"] = "2";
     ?>
-    <p><a class="btn-auth btn-twitter large" href="login.php?count1=1"> log out </a></p>
+    <p><a class="btn-auth btn-twitter large" href="login.php?count2=1"> log out </a></p>
     <!-- <button type='submit' class='btn btn-primary' onclick='location.href="login.php"; '>Log out</button> -->
     
 </body>

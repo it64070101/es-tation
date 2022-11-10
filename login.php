@@ -2,9 +2,11 @@
 <?php session_start(); 
 if($_SESSION['count1'] != '1' || $_SESSION['count1'] != ''){
     $_SESSION['count1'] = '1';
+    $_SESSION['count2'] = '1';
 }
 else{
     $_SESSION['count1']=$_GET['count1'];
+    $_SESSION['count2']=$_GET['count2'];
 }
 ?>
 <html lang="en">
@@ -71,6 +73,7 @@ else{
             if ($rows) {
                 $_SESSION["USERS1"] = $rows['ID'];
                 $_SESSION["count1"] = "2";
+                $_SESSION["count2"] = "2";
                 echo "<script> location.href='profile.php'; </script>";
             }
             else {

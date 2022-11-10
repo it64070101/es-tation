@@ -23,6 +23,15 @@
 </head>
 
 <body>
+    <?php include 'keepsession.php';?>
+    <?php if(isset($_SESSION['count2'])){
+        if ($_SESSION['count2'] == '1'){
+            $_SESSION['count1'] = '1';
+        }
+        if ($_SESSION['count2'] == '2'){
+            $_SESSION['count1'] = '2';
+        }
+    } ?>
     <?php include 'header.php';?>
 
     <main>

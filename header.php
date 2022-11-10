@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <?php
-// $_SESSION["link1"] = 'login.php';
-// $_SESSION["link2"] = 'profile.php';
-// $_SESSION["count1"] = '1';
+
+// echo $_SESSION['count1'] . "<br>";
+// echo $_SESSION['count2'];
 ?>
 <html lang="en">
 <head>
