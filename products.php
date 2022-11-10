@@ -109,7 +109,7 @@
                 else if (isset($_POST['cat_name']) && $_POST['cat_name'] == 'BOARDGAME'){
                     $manu = $row['MANUFACTURER'];
                     echo '<div>
-                    <a href="details.php?id=' . $bookID . '&cat=BOARD_GAMES"><img class="listingBookCover" src="images/books/'.$bookID.'.jpg'.'"></a>';
+                    <a href="details.php?id=' . $bookID . '&cat=BOARD_GAMES"><img class="listingBookCover" src="images/boardgames/'.$bookID.'.jpg'.'"></a>';
                     echo '<a class="invisiLink" href="details.php?id=' . $bookID . '"><br><br><p class="listingBookName">' . $bookName . '</p></a>';
                     echo '<p class="bookAuthor" style="text-align:center;">' . $manu . '</p>';
                     echo '<p class="BookPrice" style="text-align:center;font-size:20px;">$' . $bookPrice . '</p>';

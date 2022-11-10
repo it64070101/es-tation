@@ -65,7 +65,7 @@
                 <a href="products.php"><button class="mainButton btn btn-primary" id="mainAllButton">all product</button></a>
             </div>
             <div id="recommendedBookCover">
-                <a href="details.php?id=<?php echo $id;?>" class="invisiLink"><img src="images/books/<?php echo $id;?>.jpg" alt="comedy book" id="bookCover"><a>
+                <a href="details.php?id=<?php echo $id;?>&cat=BOOKS" class="invisiLink"><img src="images/books/<?php echo $id;?>.jpg" alt="comedy book" id="bookCover"><a>
             </div>
             <div id="recommendedWhite">
                 <div id="recommendTexts">
