@@ -43,7 +43,7 @@
             $cat = "boardgames";
             break;
         case 'STATIONERIES':
-            # code...
+            $cat = "stationeries";
             break;
         default:
             # code...

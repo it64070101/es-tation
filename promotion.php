@@ -27,12 +27,6 @@
             <option value="PRICE" <?php if (isset($_POST['sel_name']) && $_POST['sel_name'] == "PRICE") echo "selected"; ?>>lowerest to highest</option>
             <option value="PRICE DESC" <?php if (isset($_POST['sel_name']) && $_POST['sel_name'] == "PRICE DESC") echo "selected"; ?>>highest to lowerest</option>
         </select>
-        <select id="cat_sel" name="cat_name" onchange="this.form.submit();">
-            <!-- <option value="ID" selected>ALL</option> -->
-            <option value="BOOKS" <?php if (isset($_POST['cat_name']) && $_POST['cat_name'] == "BOOKS") echo "selected"; ?>>BOOKS</option>
-            <option value="BOARDGAME" <?php if (isset($_POST['cat_name']) && $_POST['cat_name'] == "BOARDGAME") echo "selected"; ?>>BOARDGAME</option>
-            <option value="STATIONARIES" <?php if (isset($_POST['cat_name']) && $_POST['cat_name'] == "STATIONARIES") echo "selected"; ?>>STATIONARIES</option>
-        </select>
     </form>
     <br>
     <div class="container">
@@ -55,36 +49,39 @@
 
             // Query process 
             // $_POST['cat_name'] = null;
-            if (isset($_POST['sel_name']) && $_POST['cat_name']) {
-                if ($_POST['cat_name'] == 'BOOKS'){
+            if (isset($_POST['sel_name'])) {
+                // if ($_POST['cat_name'] == 'BOOKS'){
                     $sql = "SELECT * from BOOKS ORDER BY " . $_POST['sel_name'];
+                // }
+                // else if ($_POST['cat_name'] == 'BOARDGAME'){
+                    // $sql = "SELECT * from BOARD_GAMES ORDER BY " . $_POST['sel_name'];
                 }
-                else if ($_POST['cat_name'] == 'BOARDGAME'){
-                    $sql = "SELECT * from BOARD_GAMES ORDER BY " . $_POST['sel_name'];
-                }
-                else if ($_POST['cat_name'] == 'STATIONARIES'){
-                    $sql = "SELECT * from STATIONERIES ORDER BY " . $_POST['sel_name'];
-                }
-                else{
-                    $sql = "SELECT * from BOOKS ORDER BY " . $_POST['sel_name'];
-                }
+                // else if ($_POST['cat_name'] == 'STATIONARIES'){
+                    // $sql = "SELECT * from STATIONERIES ORDER BY " . $_POST['sel_name'];
+                // }
+                // else{
+                    // $sql = "SELECT * from BOOKS ORDER BY " . $_POST['sel_name'];
+                // }
                 // $sql = "SELECT * from BOOKS ORDER BY " . $_POST['sel_name'];
-            } 
+            // } 
             else
             {
-                $_POST['cat_name'] = '';
-                if ($_POST['cat_name'] == 'BOOKS'){
-                    $sql = "SELECT * from BOOKS ORDER BY ID";
-                }
-                else if ($_POST['cat_name'] == 'BOARDGAME'){
-                    $sql = "SELECT * from BOARD_GAMES ORDER BY ID";
-               }
-                else if ($_POST['cat_name'] == 'STATIONARIES'){
-                    $sql = "SELECT * from STATIONERIES ORDER BY ID";
-               }
-               else{
-                    $sql = "SELECT * from BOOKS ORDER BY ID";
-               }
+                $b1 = "BOOKS";
+                // $_POST['cat_name'] = '';
+                // if ($_POST['cat_name'] == 'BOOKS'){
+                    $sql = "SELECT * from BOOKS INNER JOIN PROMOTION ON BOOKS.ID = PROMOTION.ID AND PROMOTION.TYPES = 'BOOKS'";
+                    $sql1 = "SELECT * from BOARD_GAMES INNER JOIN PROMOTION ON BOARD_GAMES.ID = PROMOTION.ID AND PROMOTION.TYPES = 'BOARD_GAMES'";
+                    $sql2 = "SELECT * from STATIONERIES INNER JOIN PROMOTION ON STATIONERIES.ID = PROMOTION.ID AND PROMOTION.TYPES = 'STATIONERIES'";
+                // }
+            //     else if ($_POST['cat_name'] == 'BOARDGAME'){
+            //         $sql = "SELECT * from BOARD_GAMES ORDER BY ID";
+            //    }
+            //     else if ($_POST['cat_name'] == 'STATIONARIES'){
+            //         $sql = "SELECT * from STATIONERIES ORDER BY ID";
+            //    }
+            //    else{
+            //         $sql = "SELECT * from BOOKS ORDER BY ID";
+            //    }
             }
 
             $ret = $db->query($sql);
@@ -95,10 +92,7 @@
                 $bookStock = $row['STOCK'];
                 $bookDes = $row['DESCRIPTION'];
                 $bookIMG = $row['IMAGE'];
-    
-                if (isset($_POST['cat_name']) && $_POST['cat_name'] == 'BOOKS'){
-                    $authorName = $row["AUTHOR"];
-                    // $translatorName = $row["TRANSLATOR"];
+                $authorName = $row["AUTHOR"];
                     echo '<div>
                     <a href="details.php?id=' . $bookID . '&cat=BOOKS"><img class="listingBookCover" src="images/books/'.$bookID.'.jpg'.'"></a>';
                     echo '<a class="invisiLink" href="details.php?id=' . $bookID . '&cat=BOOKS"><br><br><p class="listingBookName">' . $bookName . '</p></a>';
@@ -106,7 +100,14 @@
                     echo '<p class="BookPrice" style="text-align:center;font-size:20px;">$' . $bookPrice . '</p>';
                     echo '</div>';
                 }
-                else if (isset($_POST['cat_name']) && $_POST['cat_name'] == 'BOARDGAME'){
+            $ret = $db->query($sql1);
+            while ($row = $ret->fetchArray(SQLITE3_ASSOC)) {
+                $bookID = $row["ID"];
+                $bookName = $row["PRODUCT_NAME"];
+                $bookPrice = $row['PRICE'];
+                $bookStock = $row['STOCK'];
+                $bookDes = $row['DESCRIPTION'];
+                $bookIMG = $row['IMAGE'];
                     $manu = $row['MANUFACTURER'];
                     echo '<div>
                     <a href="details.php?id=' . $bookID . '&cat=BOARD_GAMES"><img class="listingBookCover" src="images/boardgames/'.$bookID.'.jpg'.'"></a>';
@@ -115,24 +116,20 @@
                     echo '<p class="BookPrice" style="text-align:center;font-size:20px;">$' . $bookPrice . '</p>';
                     echo '</div>';
                 }
-                else if (isset($_POST['cat_name']) && $_POST['cat_name'] == 'STATIONARIES'){
+            $ret = $db->query($sql2);
+            while ($row = $ret->fetchArray(SQLITE3_ASSOC)) {
+                $bookID = $row["ID"];
+                $bookName = $row["PRODUCT_NAME"];
+                $bookPrice = $row['PRICE'];
+                $bookStock = $row['STOCK'];
+                $bookDes = $row['DESCRIPTION'];
+                $bookIMG = $row['IMAGE'];
                     echo '<div>
                     <a href="details.php?id=' . $bookID . '&cat=STATIONERIES"><img class="listingBookCover" src="images/stationeries/'.$bookID.'.jpg'.'"></a>';
                     echo '<a class="invisiLink" href="details.php?id=' . $bookID . '&cat=STATIONERIES"><br><br><p class="listingBookName">' . $bookName . '</p></a>';
                     echo '<p class="BookPrice" style="text-align:center;font-size:20px;">$' . $bookPrice . '</p>';
                     echo '</div>';
                 }
-                else{
-                    $authorName = $row["AUTHOR"];
-                    // $translatorName = $row["TRANSLATOR"];
-                    echo '<div>
-                    <a href="details.php?id=' . $bookID . '&cat=BOOKS"><img class="listingBookCover" src="images/books/'.$bookID.'.jpg'.'"></a>';
-                    echo '<a class="invisiLink" href="details.php?id=' . $bookID . '&cat=BOOKS"><br><br><p class="listingBookName">' . $bookName . '</p></a>';
-                    echo '<p class="bookAuthor" style="text-align:center;">' . $authorName . '</p>';
-                    echo '<p class="BookPrice" style="text-align:center;font-size:20px;">$' . $bookPrice . '</p>';
-                    echo '</div>';
-                }
-            }
             $db->close();
             ?> 
         </div>

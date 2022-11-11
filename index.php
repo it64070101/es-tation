@@ -60,8 +60,8 @@
             $db->close();
             ?>
             <div class="text-end" id="mainButtonDiv">
-                <button class="mainButton btn btn-primary" id="mainNewButton">new arrival</button>
-                <button class="mainButton btn btn-primary" id="mainPromoButton">promotion</button>
+                <a href="newari.php"><button class="mainButton btn btn-primary" id="mainAllButton">new arrival</button></a>
+                <a href="promotion.php"><button class="mainButton btn btn-primary" id="mainAllButton">promotion</button></a>
                 <a href="products.php"><button class="mainButton btn btn-primary" id="mainAllButton">all product</button></a>
             </div>
             <div id="recommendedBookCover">
