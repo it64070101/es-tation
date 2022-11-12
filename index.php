@@ -8,31 +8,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>es'tation: Books, Stationeries, and Board games</title>
     <link rel="icon" href="images/icon.png">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-        crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     <script src="script.js"></script>
-    <style><?php include "style.css" ?></style>
+    <style>
+        <?php include "style.css" ?>
+    </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Mitr&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
-        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 </head>
 
 <body>
-    <?php include 'keepsession.php';?>
-    <?php if(isset($_SESSION['count2'])){
-        if ($_SESSION['count2'] == '1'){
+    <?php include 'keepsession.php'; ?>
+    <?php if (isset($_SESSION['count2'])) {
+        if ($_SESSION['count2'] == '1') {
             $_SESSION['count1'] = '1';
         }
-        if ($_SESSION['count2'] == '2'){
+        if ($_SESSION['count2'] == '2') {
             $_SESSION['count1'] = '2';
         }
     } ?>
-    <?php include 'header.php';?>
+    <?php include 'header.php'; ?>
 
     <main>
         <div id="mainRecommendedDiv">
@@ -50,7 +48,7 @@
                 echo $db->lastErrorMsg();
             }
 
-            $sql = "SELECT * from BOOKS where ID = 3";
+            $sql = "SELECT * from BOOKS where TAG = 'RECOMMENDED'";
             $ret = $db->query($sql);
             while ($row = $ret->fetchArray(SQLITE3_ASSOC)) {
                 $id = $row["ID"];
@@ -62,32 +60,90 @@
             <div class="text-end" id="mainButtonDiv">
                 <a href="newari.php"><button class="mainButton btn btn-primary" id="mainAllButton">new arrival</button></a>
                 <a href="promotion.php"><button class="mainButton btn btn-primary" id="mainAllButton">promotion</button></a>
-                <a href="products.php"><button class="mainButton btn btn-primary" id="mainAllButton">all product</button></a>
+                <a href="products.php"><button class="mainButton btn btn-primary" id="mainAllButton">all products</button></a>
             </div>
             <div id="recommendedBookCover">
-                <a href="details.php?id=<?php echo $id;?>&cat=BOOKS" class="invisiLink"><img src="images/books/<?php echo $id;?>.jpg" alt="comedy book" id="bookCover"><a>
+                <a href="details.php?id=<?php echo $id; ?>&cat=BOOKS" class="invisiLink"><img src="images/books/<?php echo $id; ?>.jpg" alt="comedy book" id="bookCover"><a>
             </div>
             <div id="recommendedWhite">
                 <div id="recommendTexts">
-                    <a href="details.php?id=<?php echo $id;?>&cat=BOOKS" class="invisiLink"><p id="recommendedTitle"><?php echo $bookName;?></p></a>
+                    <a href="details.php?id=<?php echo $id; ?>&cat=BOOKS" class="invisiLink">
+                        <p id="recommendedTitle"><?php echo $bookName; ?></p>
+                    </a>
                     <p id="recomendedParagraph">
-                        <?php echo $bookDes;?>
+                        <?php echo $bookDes; ?>
                     </p>
                 </div>
-            </div>  
+            </div>
         </div>
         <br><br>
         <div id="mainPopularDiv">
             <div class="categoryText" id="popularCatText">popular</div>
             <div class="categoryCarousel" id="popularCarousel">
-                why are we making this a carousel lmao
+                <?php
+
+                // Open Database 
+                $db = new MyDB();
+                if (!$db) {
+                    echo $db->lastErrorMsg();
+                }
+
+                $sql = "SELECT * from BOOKS WHERE TAG = 'POPULAR'";
+                $ret = $db->query($sql);
+
+                while ($row = $ret->fetchArray(SQLITE3_ASSOC)) {
+                    $bookID = $row["ID"];
+                    $bookName = $row["PRODUCT_NAME"];
+                    $bookPrice = $row['PRICE'];
+                    $bookStock = $row['STOCK'];
+                    $bookDes = $row['DESCRIPTION'];
+                    $bookIMG = $row['IMAGE'];
+
+                    $authorName = $row["AUTHOR"];
+                    echo '<div class="item">
+                    <a href="details.php?id=' . $bookID . '&cat=BOOKS"><img class="listingBookCover" src="images/books/' . $bookID . '.jpg' . '"></a>';
+                    echo '<a class="invisiLink" href="details.php?id=' . $bookID . '&cat=BOOKS"><br><br><p class="listingBookName">' . $bookName . '</p></a>';
+                    echo '<p class="bookAuthor" style="text-align:center;">' . $authorName . '</p>';
+                    echo '<p class="BookPrice" style="text-align:center;font-size:20px;">$' . $bookPrice . '</p>';
+                    echo '</div>';
+                }
+                $db->close();
+                ?>
             </div>
         </div>
         <br>
         <div id="mainNewArrivalDiv">
             <div class="categoryText" id="newArrivalCatText">new arrivals</div>
             <div class="categoryCarousel" id="newArrivalCarousel">
-                why are we making this a carousel lmao
+                <?php
+
+                // Open Database 
+                $db = new MyDB();
+                if (!$db) {
+                    echo $db->lastErrorMsg();
+                }
+
+                $sql = "SELECT * from BOOKS WHERE ID > 10";
+                $ret = $db->query($sql);
+
+                while ($row = $ret->fetchArray(SQLITE3_ASSOC)) {
+                    $bookID = $row["ID"];
+                    $bookName = $row["PRODUCT_NAME"];
+                    $bookPrice = $row['PRICE'];
+                    $bookStock = $row['STOCK'];
+                    $bookDes = $row['DESCRIPTION'];
+                    $bookIMG = $row['IMAGE'];
+
+                    $authorName = $row["AUTHOR"];
+                    echo '<div class="item">
+                    <a href="details.php?id=' . $bookID . '&cat=BOOKS"><img class="listingBookCover" src="images/books/' . $bookID . '.jpg' . '"></a>';
+                    echo '<a class="invisiLink" href="details.php?id=' . $bookID . '&cat=BOOKS"><br><br><p class="listingBookName">' . $bookName . '</p></a>';
+                    echo '<p class="bookAuthor" style="text-align:center;">' . $authorName . '</p>';
+                    echo '<p class="BookPrice" style="text-align:center;font-size:20px;">$' . $bookPrice . '</p>';
+                    echo '</div>';
+                }
+                $db->close();
+                ?>
             </div>
         </div>
         <br>
@@ -101,27 +157,107 @@
         <div id="mainBooksDiv">
             <div class="categoryText" id="booksCatText">books</div>
             <div class="categoryCarousel" id="booksCarousel">
-                why are we making this a carousel lmao
+                <?php
+
+                // Open Database 
+                $db = new MyDB();
+                if (!$db) {
+                    echo $db->lastErrorMsg();
+                }
+
+                $sql = "SELECT * from BOOKS";
+                $ret = $db->query($sql);
+
+                while ($row = $ret->fetchArray(SQLITE3_ASSOC)) {
+                    $bookID = $row["ID"];
+                    $bookName = $row["PRODUCT_NAME"];
+                    $bookPrice = $row['PRICE'];
+                    $bookStock = $row['STOCK'];
+                    $bookDes = $row['DESCRIPTION'];
+                    $bookIMG = $row['IMAGE'];
+
+                    $authorName = $row["AUTHOR"];
+                    echo '<div class="item">
+                    <a href="details.php?id=' . $bookID . '&cat=BOOKS"><img class="listingBookCover" src="images/books/' . $bookID . '.jpg' . '"></a>';
+                    echo '<a class="invisiLink" href="details.php?id=' . $bookID . '&cat=BOOKS"><br><br><p class="listingBookName">' . $bookName . '</p></a>';
+                    echo '<p class="bookAuthor" style="text-align:center;">' . $authorName . '</p>';
+                    echo '<p class="BookPrice" style="text-align:center;font-size:20px;">$' . $bookPrice . '</p>';
+                    echo '</div>';
+                }
+                $db->close();
+                ?>
             </div>
         </div>
         <br>
         <div id="mainStationeriesDiv">
             <div class="categoryText" id="stationeriesCatText">stationeries</div>
             <div class="categoryCarousel" id="stationeriesCarousel">
-                why are we making this a carousel lmao
+                <?php
+
+                // Open Database 
+                $db = new MyDB();
+                if (!$db) {
+                    echo $db->lastErrorMsg();
+                }
+
+                $sql = "SELECT * from STATIONERIES";
+                $ret = $db->query($sql);
+
+                while ($row = $ret->fetchArray(SQLITE3_ASSOC)) {
+                    $bookID = $row["ID"];
+                    $bookName = $row["PRODUCT_NAME"];
+                    $bookPrice = $row['PRICE'];
+                    $bookStock = $row['STOCK'];
+                    $bookDes = $row['DESCRIPTION'];
+                    $bookIMG = $row['IMAGE'];
+
+                    echo '<div class="item">
+                    <a href="details.php?id=' . $bookID . '&cat=STATIONERIES"><img class="listingBookCover" src="images/stationeries/' . $bookID . '.jpg' . '"></a>';
+                    echo '<a class="invisiLink" href="details.php?id=' . $bookID . '&cat=STATIONERIES"><br><br><p class="listingBookName">' . $bookName . '</p></a>';
+                    echo '<p class="BookPrice" style="text-align:center;font-size:20px;">$' . $bookPrice . '</p>';
+                    echo '</div>';
+                }
+                $db->close();
+                ?>
             </div>
         </div>
         <br>
         <div id="mainBoardGamesDiv">
             <div class="categoryText" id="boardGamesCatText">board games</div>
             <div class="categoryCarousel" id="boardGamesCarousel">
-                why are we making this a carousel lmao
+                <?php
+
+                // Open Database 
+                $db = new MyDB();
+                if (!$db) {
+                    echo $db->lastErrorMsg();
+                }
+
+                $sql = "SELECT * from BOARD_GAMES";
+                $ret = $db->query($sql);
+
+                while ($row = $ret->fetchArray(SQLITE3_ASSOC)) {
+                    $bookID = $row["ID"];
+                    $bookName = $row["PRODUCT_NAME"];
+                    $bookPrice = $row['PRICE'];
+                    $bookStock = $row['STOCK'];
+                    $bookDes = $row['DESCRIPTION'];
+                    $bookIMG = $row['IMAGE'];
+
+                    echo '<div class="item">
+                    <a href="details.php?id=' . $bookID . '&cat=BOARD_GAMES"><img class="listingBookCover" src="images/boardgames/' . $bookID . '.jpg' . '"></a>';
+                    echo '<a class="invisiLink" href="details.php?id=' . $bookID . '&cat=BOARD_GAMES"><br><br><p class="listingBookName">' . $bookName . '</p></a>';
+                    echo '<p class="BookPrice" style="text-align:center;font-size:20px;">$' . $bookPrice . '</p>';
+                    echo '</div>';
+                }
+                $db->close();
+                ?>
             </div>
         </div>
         <br>
     </main>
 
-    <?php include 'boiler/footer.html';?>
+    <?php include 'boiler/footer.html'; ?>
 </body>
 
 </html>
