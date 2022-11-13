@@ -108,11 +108,12 @@ p#recommendedTitle {
 
 .categoryCarousel::-webkit-scrollbar {
     width: 0px;
+    height: 8px;
 }
 
 .categoryCarousel::-webkit-scrollbar-thumb {
-    background: blue;
-    border-radius: 10px;
+    background: #0d6efd;
+    /* border-radius: 10px; */
     height: 0px;
 }
 
@@ -309,7 +310,7 @@ tr {
     font-size: 20px;
 }
 
-#logoutDiv{
+#logoutDiv {
     position: absolute;
     left: 290px;
     top: 460px;

@@ -59,7 +59,7 @@
             ?>
             <div class="text-end" id="mainButtonDiv">
                 <a href="newari.php"><button class="mainButton btn btn-primary" id="mainAllButton">new arrival</button></a>
-                <a href="promotion.php"><button class="mainButton btn btn-primary" id="mainAllButton">promotion</button></a>
+                <a href="promotion.php"><button class="mainButton btn btn-primary" id="mainAllButton">sales</button></a>
                 <a href="products.php"><button class="mainButton btn btn-primary" id="mainAllButton">all products</button></a>
             </div>
             <div id="recommendedBookCover">
@@ -148,9 +148,75 @@
         </div>
         <br>
         <div id="mainPromotionDiv">
-            <div class="categoryText" id="promotionCatText">promotions</div>
+            <div class="categoryText" id="promotionCatText">sales</div>
             <div class="categoryCarousel" id="promotionCarousel">
-                why are we making this a carousel lmao
+                <?php
+
+                // Open Database 
+                $db = new MyDB();
+                if (!$db) {
+                    echo $db->lastErrorMsg();
+                }
+
+                $sql = "SELECT * from BOOKS INNER JOIN PROMOTION ON BOOKS.ID = PROMOTION.ID AND PROMOTION.TYPES = 'BOOKS'";
+                $sql1 = "SELECT * from BOARD_GAMES INNER JOIN PROMOTION ON BOARD_GAMES.ID = PROMOTION.ID AND PROMOTION.TYPES = 'BOARD_GAMES'";
+                $sql2 = "SELECT * from STATIONERIES INNER JOIN PROMOTION ON STATIONERIES.ID = PROMOTION.ID AND PROMOTION.TYPES = 'STATIONERIES'";
+
+                $ret = $db->query($sql);
+                while ($row = $ret->fetchArray(SQLITE3_ASSOC)) {
+                    $bookID = $row["ID"];
+                    $bookName = $row["PRODUCT_NAME"];
+                    $bookPrice = $row['PRICE'];
+                    $bookStock = $row['STOCK'];
+                    $bookDes = $row['DESCRIPTION'];
+                    $bookIMG = $row['IMAGE'];
+                    $authorName = $row["AUTHOR"];
+                    $percent1 = $row["PERCENT"];
+                    $cal1 = $bookPrice * ($percent1 / 100);
+                    $fo1 = '<p class="BookPrice" style="text-align:center;font-size:20px;"><del>$%s</del><span style="color:red;"> $%.2f</span> </p>';
+                    echo '<div class="item">
+                    <a href="details.php?id=' . $bookID . '&cat=BOOKS"><img class="listingBookCover" src="images/books/' . $bookID . '.jpg' . '"></a>';
+                    echo '<a class="invisiLink" href="details.php?id=' . $bookID . '&cat=BOOKS"><br><br><p class="listingBookName">' . $bookName . '</p></a>';
+                    echo '<p class="bookAuthor" style="text-align:center;">' . $authorName . '</p>';
+                    echo sprintf($fo1, $bookPrice, $cal1);
+                    echo '</div>';
+                }
+                $ret = $db->query($sql1);
+                while ($row = $ret->fetchArray(SQLITE3_ASSOC)) {
+                    $bookID = $row["ID"];
+                    $bookName = $row["PRODUCT_NAME"];
+                    $bookPrice = $row['PRICE'];
+                    $bookStock = $row['STOCK'];
+                    $bookDes = $row['DESCRIPTION'];
+                    $bookIMG = $row['IMAGE'];
+                    $manu = $row['MANUFACTURER'];
+                    $cal1 = $bookPrice * ($percent1 / 100);
+                    $fo1 = '<p class="BookPrice" style="text-align:center;font-size:20px;"><del>$%s</del><span style="color:red;"> $%.2f</span> </p>';
+                    echo '<div class="item">
+                    <a href="details.php?id=' . $bookID . '&cat=BOARD_GAMES"><img class="listingBookCover" src="images/boardgames/' . $bookID . '.jpg' . '"></a>';
+                    echo '<a class="invisiLink" href="details.php?id=' . $bookID . '&cat=BOARD_GAMES"><br><br><p class="listingBookName">' . $bookName . '</p></a>';
+                    echo '<p class="bookAuthor" style="text-align:center;">' . $manu . '</p>';
+                    echo sprintf($fo1, $bookPrice, $cal1);
+                    echo '</div>';
+                }
+                $ret = $db->query($sql2);
+                while ($row = $ret->fetchArray(SQLITE3_ASSOC)) {
+                    $bookID = $row["ID"];
+                    $bookName = $row["PRODUCT_NAME"];
+                    $bookPrice = $row['PRICE'];
+                    $bookStock = $row['STOCK'];
+                    $bookDes = $row['DESCRIPTION'];
+                    $bookIMG = $row['IMAGE'];
+                    $cal1 = $bookPrice * ($percent1 / 100);
+                    $fo1 = '<p class="BookPrice" style="text-align:center;font-size:20px;"><del>$%s</del>  <span style="color:red;"> $%.2f</span> </p>';
+                    echo '<div class="item">
+                    <a href="details.php?id=' . $bookID . '&cat=STATIONERIES"><img class="listingBookCover" src="images/stationeries/' . $bookID . '.jpg' . '"></a>';
+                    echo '<a class="invisiLink" href="details.php?id=' . $bookID . '&cat=STATIONERIES"><br><br><p class="listingBookName">' . $bookName . '</p></a>';
+                    echo sprintf($fo1, $bookPrice, $cal1);
+                    echo '</div>';
+                }
+                $db->close();
+                ?>
             </div>
         </div>
         <br>
