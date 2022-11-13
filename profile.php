@@ -22,7 +22,7 @@
 <body>
     <?php include 'header.php';?>
 
-
+    <div id="logoutDiv"><a class="btn-auth btn-twitter large invisilink" href="login.php?count2=1"> log out </a></div>
     <?php
         class MyDB extends SQLite3 {
             function __construct() {
@@ -66,16 +66,16 @@
                             <th>Qtt.</th>
                         </tr>
                         <tr>
-                            <td>Used Bricks</td>
-                            <td>7 millions</td>
+                            <td>name1</td>
+                            <td>qtt1</td>
                         </tr>
                         <tr>
-                            <td>7 pints of blood</td>
-                            <td>85 Swiss Franc</td>
+                            <td>name2</td>
+                            <td>qtt2</td>
                         </tr>
                         <tr>
-                            <td>7 pints of blood</td>
-                            <td>85 Swiss Franc</td>
+                            <td>name3</td>
+                            <td>qtt3</td>
                         </tr>
                     </table>
                 </div>
@@ -84,7 +84,7 @@
         <br><br>";
         // $_SESSION["count1"] = "2";
     ?>
-    <p><a class="btn-auth btn-twitter large" href="login.php?count2=1"> log out </a></p>
+    
     <!-- <button type='submit' class='btn btn-primary' onclick='location.href="login.php"; '>Log out</button> -->
     
 </body>

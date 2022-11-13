@@ -98,7 +98,7 @@ p#recommendedTitle {
     padding: 1% 5% 1% 5%;
     background-color: white;
     width: 100%;
-    height: 50%;
+    height: 60%;
     display: flex;
     /* background-color: bisque; */
     /* max-height: 25%; */
@@ -307,6 +307,18 @@ tr {
     padding: 10px 10px 10px 10px;
     z-index: 2;
     font-size: 20px;
+}
+
+#logoutDiv{
+    position: absolute;
+    left: 290px;
+    top: 460px;
+    z-index: 2;
+    background-color: bisque;
+    width: 80px;
+    height: 45px;
+    border-radius: 20px;
+    padding: 10px;
 }
 
 @media only screen and (max-width: 768px) {

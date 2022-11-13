@@ -130,7 +130,7 @@
     </div>
 
 
-    <?php include 'boiler/footer.html'; ?>
+    <?php include 'footer.html'; ?>
 </body>
 
 </html>

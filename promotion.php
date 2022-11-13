@@ -72,7 +72,7 @@
                 $authorName = $row["AUTHOR"];
                 $percent1 = $row["PERCENT"];
                 $cal1 = $bookPrice * ($percent1/100);
-                $fo1 = '<p class="BookPrice" style="text-align:center;font-size:20px;"><del>$%s</del>  $%.2f </p>';
+                $fo1 = '<p class="BookPrice" style="text-align:center;font-size:20px;"><del>$%s</del><span style="color:red;"> $%.2f</span> </p>';
                     echo '<div>
                     <a href="details.php?id=' . $bookID . '&cat=BOOKS"><img class="listingBookCover" src="images/books/'.$bookID.'.jpg'.'"></a>';
                     echo '<a class="invisiLink" href="details.php?id=' . $bookID . '&cat=BOOKS"><br><br><p class="listingBookName">' . $bookName . '</p></a>';
@@ -90,7 +90,7 @@
                 $bookIMG = $row['IMAGE'];
                 $manu = $row['MANUFACTURER'];
                 $cal1 = $bookPrice * ($percent1/100);
-                $fo1 = '<p class="BookPrice" style="text-align:center;font-size:20px;"><del>$%s</del>  $%.2f </p>';
+                $fo1 = '<p class="BookPrice" style="text-align:center;font-size:20px;"><del>$%s</del><span style="color:red;"> $%.2f</span> </p>';
                     echo '<div>
                     <a href="details.php?id=' . $bookID . '&cat=BOARD_GAMES"><img class="listingBookCover" src="images/boardgames/'.$bookID.'.jpg'.'"></a>';
                     echo '<a class="invisiLink" href="details.php?id=' . $bookID . '&cat=BOARD_GAMES"><br><br><p class="listingBookName">' . $bookName . '</p></a>';
@@ -107,7 +107,7 @@
                 $bookDes = $row['DESCRIPTION'];
                 $bookIMG = $row['IMAGE'];
                 $cal1 = $bookPrice * ($percent1/100);
-                $fo1 = '<p class="BookPrice" style="text-align:center;font-size:20px;"><del>$%s</del>  $%.2f </p>';
+                $fo1 = '<p class="BookPrice" style="text-align:center;font-size:20px;"><del>$%s</del>  <span style="color:red;"> $%.2f</span> </p>';
                     echo '<div>
                     <a href="details.php?id=' . $bookID . '&cat=STATIONERIES"><img class="listingBookCover" src="images/stationeries/'.$bookID.'.jpg'.'"></a>';
                     echo '<a class="invisiLink" href="details.php?id=' . $bookID . '&cat=STATIONERIES"><br><br><p class="listingBookName">' . $bookName . '</p></a>';
@@ -120,7 +120,7 @@
     </div>
     
 
-    <?php include 'boiler/footer.html'; ?>
+    <?php include 'footer.html'; ?>
 </body>
 
 </html>

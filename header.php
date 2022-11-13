@@ -25,8 +25,6 @@
                 <input type="text" name="search" id="searchInput" style="height: 40%; border-radius: 0.2rem; border: 1px;">
             </div>
             <div class="col-lg-4 col-md-6 col-sm-6  text-end" style="margin-top: 20px;" id="headerButtonDiv">
-                <a href="payment.php"><button class="headerButton bg-primary" id="headerPaymentButton">payment</button></a>
-                <a href="shipping.php"><button class="headerButton bg-primary" id="headerShippingButton">shipping</button></a>
                 <a href="cart.php"><button class="headerButton bg-primary" id="headerCartButton"><i class="fa fa-shopping-cart" aria-hidden="true"></i></button></a>
                 <a href="<?php if ($_SESSION['count1'] == '' || $_SESSION['count1'] == '1') {
                                 echo $_SESSION["link1"];
