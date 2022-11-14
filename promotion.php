@@ -50,16 +50,31 @@
             // Query process 
             // $_POST['cat_name'] = null;
             if (isset($_POST['sel_name'])) {
-                    $sql = "SELECT * from BOOKS ORDER BY " . $_POST['sel_name'];
+                    if (($_POST['sel_name']) == 'ID'){
+                        $b1 = "ID";
+                    }
+                    else if (($_POST['sel_name']) == 'PRODUCT_NAME'){
+                        $b1 = "PRODUCT_NAME";
+                    }
+                    else if (($_POST['sel_name']) == 'PRODUCT_NAME DESC'){
+                        $b1 = "PRODUCT_NAME DESC";
+                    }
+                    else if (($_POST['sel_name']) == 'PRICE'){
+                        $b1 = "PRICE";
+                    }
+                    else if (($_POST['sel_name']) == 'PRICE DESC'){
+                        $b1 = "PRICE DESC";
+                    }
+                    $sql = "SELECT * from BOOKS INNER JOIN PROMOTION ON BOOKS.ID = PROMOTION.ID AND PROMOTION.TYPES = 'BOOKS' ORDER BY " . $b1;
+                    $sql1 = "SELECT * from BOARD_GAMES INNER JOIN PROMOTION ON BOARD_GAMES.ID = PROMOTION.ID AND PROMOTION.TYPES = 'BOARD_GAMES' ORDER BY " . $b1;
+                    $sql2 = "SELECT * from STATIONERIES INNER JOIN PROMOTION ON STATIONERIES.ID = PROMOTION.ID AND PROMOTION.TYPES = 'STATIONERIES' ORDER BY " . $b1;
                 }
                 
-            else
-            {
-                $b1 = "BOOKS";
+            else {
                     $sql = "SELECT * from BOOKS INNER JOIN PROMOTION ON BOOKS.ID = PROMOTION.ID AND PROMOTION.TYPES = 'BOOKS'";
                     $sql1 = "SELECT * from BOARD_GAMES INNER JOIN PROMOTION ON BOARD_GAMES.ID = PROMOTION.ID AND PROMOTION.TYPES = 'BOARD_GAMES'";
                     $sql2 = "SELECT * from STATIONERIES INNER JOIN PROMOTION ON STATIONERIES.ID = PROMOTION.ID AND PROMOTION.TYPES = 'STATIONERIES'";
-            }
+                }
 
             $ret = $db->query($sql);
             while ($row = $ret->fetchArray(SQLITE3_ASSOC)) {
