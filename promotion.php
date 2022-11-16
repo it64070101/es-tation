@@ -65,15 +65,19 @@
                     else if (($_POST['sel_name']) == 'PRICE DESC'){
                         $b1 = "PRICE DESC";
                     }
-                    $sql = "SELECT * from BOOKS INNER JOIN PROMOTION ON BOOKS.ID = PROMOTION.ID AND PROMOTION.TYPES = 'BOOKS' ORDER BY " . $b1;
-                    $sql1 = "SELECT * from BOARD_GAMES INNER JOIN PROMOTION ON BOARD_GAMES.ID = PROMOTION.ID AND PROMOTION.TYPES = 'BOARD_GAMES' ORDER BY " . $b1;
-                    $sql2 = "SELECT * from STATIONERIES INNER JOIN PROMOTION ON STATIONERIES.ID = PROMOTION.ID AND PROMOTION.TYPES = 'STATIONERIES' ORDER BY " . $b1;
+                    $sql = "SELECT ID, PRODUCT_NAME, PRICE, SALE, AUTHOR, NULL as MANUFACTURER FROM BOOKS
+                            UNION ALL
+                            SELECT ID, PRODUCT_NAME, PRICE, SALE, NULL, MANUFACTURER FROM BOARD_GAMES
+                            UNION ALL
+                            SELECT ID, PRODUCT_NAME, PRICE, SALE, NULL, NULL FROM STATIONERIES ORDER BY " . $b1;
                 }
                 
             else {
-                    $sql = "SELECT * from BOOKS INNER JOIN PROMOTION ON BOOKS.ID = PROMOTION.ID AND PROMOTION.TYPES = 'BOOKS'";
-                    $sql1 = "SELECT * from BOARD_GAMES INNER JOIN PROMOTION ON BOARD_GAMES.ID = PROMOTION.ID AND PROMOTION.TYPES = 'BOARD_GAMES'";
-                    $sql2 = "SELECT * from STATIONERIES INNER JOIN PROMOTION ON STATIONERIES.ID = PROMOTION.ID AND PROMOTION.TYPES = 'STATIONERIES'";
+                    $sql = "SELECT ID, PRODUCT_NAME, PRICE, SALE, AUTHOR, NULL as MANUFACTURER FROM BOOKS
+                            UNION ALL
+                            SELECT ID, PRODUCT_NAME, PRICE, SALE, NULL, MANUFACTURER FROM BOARD_GAMES
+                            UNION ALL
+                            SELECT ID, PRODUCT_NAME, PRICE, SALE, NULL, NULL FROM STATIONERIES";
                 }
 
             $ret = $db->query($sql);
@@ -81,53 +85,38 @@
                 $bookID = $row["ID"];
                 $bookName = $row["PRODUCT_NAME"];
                 $bookPrice = $row['PRICE'];
-                $bookStock = $row['STOCK'];
-                $bookDes = $row['DESCRIPTION'];
-                $bookIMG = $row['IMAGE'];
-                $authorName = $row["AUTHOR"];
-                $percent1 = $row["PERCENT"];
-                $cal1 = $bookPrice * ($percent1/100);
-                $fo1 = '<p class="BookPrice" style="text-align:center;font-size:20px;"><del>$%s</del><span style="color:red;"> $%.2f</span> </p>';
-                    echo '<div>
-                    <a href="details.php?id=' . $bookID . '&cat=BOOKS"><img class="listingBookCover" src="images/books/'.$bookID.'.jpg'.'"></a>';
-                    echo '<a class="invisiLink" href="details.php?id=' . $bookID . '&cat=BOOKS"><br><br><p class="listingBookName">' . $bookName . '</p></a>';
-                    echo '<p class="bookAuthor" style="text-align:center;">' . $authorName . '</p>';
-                    echo sprintf($fo1, $bookPrice, $cal1);
-                    echo '</div>';
-                }
-            $ret = $db->query($sql1);
-            while ($row = $ret->fetchArray(SQLITE3_ASSOC)) {
-                $bookID = $row["ID"];
-                $bookName = $row["PRODUCT_NAME"];
-                $bookPrice = $row['PRICE'];
-                $bookStock = $row['STOCK'];
-                $bookDes = $row['DESCRIPTION'];
-                $bookIMG = $row['IMAGE'];
                 $manu = $row['MANUFACTURER'];
-                $cal1 = $bookPrice * ($percent1/100);
+                $authorName = $row["AUTHOR"];
+                $percent1 = $row["SALE"];
                 $fo1 = '<p class="BookPrice" style="text-align:center;font-size:20px;"><del>$%s</del><span style="color:red;"> $%.2f</span> </p>';
-                    echo '<div>
-                    <a href="details.php?id=' . $bookID . '&cat=BOARD_GAMES"><img class="listingBookCover" src="images/boardgames/'.$bookID.'.jpg'.'"></a>';
-                    echo '<a class="invisiLink" href="details.php?id=' . $bookID . '&cat=BOARD_GAMES"><br><br><p class="listingBookName">' . $bookName . '</p></a>';
-                    echo '<p class="bookAuthor" style="text-align:center;">' . $manu . '</p>';
-                    echo sprintf($fo1, $bookPrice, $cal1);
-                    echo '</div>';
+                if ($percent1 != 0){
+                    $cal1 = $bookPrice * ($percent1/100);
+                    if ($authorName != null){
+                        echo '<div>
+                        <a href="details.php?id=' . $bookID . '&cat=BOOKS"><img class="listingBookCover" src="images/books/'.$bookID.'.jpg'.'"></a>';
+                        echo '<a class="invisiLink" href="details.php?id=' . $bookID . '&cat=BOOKS"><br><br><p class="listingBookName">' . $bookName . '</p></a>';
+                        echo '<p class="bookAuthor" style="text-align:center;">' . $authorName . '</p>';
+                        echo sprintf($fo1, $bookPrice, $cal1);
+                        echo '</div>';
+                    }
+                    else if($manu != null){
+                        echo '<div>
+                        <a href="details.php?id=' . $bookID . '&cat=BOARD_GAMES"><img class="listingBookCover" src="images/boardgames/' . $bookID . '.jpg' . '"></a>';
+                        echo '<a class="invisiLink" href="details.php?id=' . $bookID . '&cat=BOARD_GAMES"><br><br><p class="listingBookName">' . $bookName . '</p></a>';
+                        echo '<p class="bookAuthor" style="text-align:center;">' . $manu . '</p>';
+                        echo sprintf($fo1, $bookPrice, $cal1);
+                        echo '</div>';
+                    }
+                    else{
+                        echo '<div>
+                        <a href="details.php?id=' . $bookID . '&cat=STATIONERIES"><img class="listingBookCover" src="images/stationeries/' . $bookID . '.jpg' . '"></a>';
+                        echo '<a class="invisiLink" href="details.php?id=' . $bookID . '&cat=STATIONERIES"><br><br><p class="listingBookName">' . $bookName . '</p></a>';
+                        echo sprintf($fo1, $bookPrice, $cal1);
+                        echo '</div>';
+                    }
                 }
-            $ret = $db->query($sql2);
-            while ($row = $ret->fetchArray(SQLITE3_ASSOC)) {
-                $bookID = $row["ID"];
-                $bookName = $row["PRODUCT_NAME"];
-                $bookPrice = $row['PRICE'];
-                $bookStock = $row['STOCK'];
-                $bookDes = $row['DESCRIPTION'];
-                $bookIMG = $row['IMAGE'];
-                $cal1 = $bookPrice * ($percent1/100);
-                $fo1 = '<p class="BookPrice" style="text-align:center;font-size:20px;"><del>$%s</del>  <span style="color:red;"> $%.2f</span> </p>';
-                    echo '<div>
-                    <a href="details.php?id=' . $bookID . '&cat=STATIONERIES"><img class="listingBookCover" src="images/stationeries/'.$bookID.'.jpg'.'"></a>';
-                    echo '<a class="invisiLink" href="details.php?id=' . $bookID . '&cat=STATIONERIES"><br><br><p class="listingBookName">' . $bookName . '</p></a>';
-                    echo sprintf($fo1, $bookPrice, $cal1);
-                    echo '</div>';
+                
+                
                 }
             $db->close();
             ?> 

@@ -197,20 +197,18 @@ p#recommendedTitle {
 }
 
 .listingBookCover {
-    /* width: 50%; */
+    width: 50%;
     height: 55%;
-    max-width: 50%;
     margin: 0 auto;
     display: block;
-    border-radius: 10px;
+    border-radius: 20px;
     box-shadow: 2px 2px 4px #888;
     transition: all .5s;
 }
 
 .listingBookCover:hover {
-    /* width: 55%; */
-    height: 65%;
-    max-width: 55%;
+    width: 55%;
+    height: 60%;
 }
 
 .listingBookName {
@@ -351,7 +349,7 @@ tr {
 
 .item {
     /* background-color: lightseagreen; */
-    min-width: 30%;
+    min-width: 20%;
     /* line-height: ; */
     text-align: center;
     /* margin: 2rem; */

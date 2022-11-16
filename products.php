@@ -27,8 +27,8 @@
             <option value="ID" selected>DEFAULT</option>
             <option value="PRODUCT_NAME" <?php if (isset($_POST['sel_name']) && $_POST['sel_name'] == "PRODUCT_NAME") echo "selected"; ?>>A - Z</option>
             <option value="PRODUCT_NAME DESC" <?php if (isset($_POST['sel_name']) && $_POST['sel_name'] == "PRODUCT_NAME DESC") echo "selected"; ?>>Z - A</option>
-            <option value="PRICE" <?php if (isset($_POST['sel_name']) && $_POST['sel_name'] == "PRICE") echo "selected"; ?>>lowerest to highest</option>
-            <option value="PRICE DESC" <?php if (isset($_POST['sel_name']) && $_POST['sel_name'] == "PRICE DESC") echo "selected"; ?>>highest to lowerest</option>
+            <option value="PRICE * ((100 - SALE)/100)" <?php if (isset($_POST['sel_name']) && $_POST['sel_name'] == "PRICE * ((100 - SALE)/100)") echo "selected"; ?>>lowerest to highest</option>
+            <option value="PRICE * ((100 - SALE)/100) DESC" <?php if (isset($_POST['sel_name']) && $_POST['sel_name'] == "PRICE * ((100 - SALE)/100) DESC") echo "selected"; ?>>highest to lowerest</option>
         </select>
         <select id="cat_sel" name="cat_name" onchange="this.form.submit();">
             <!-- <option value="ID" selected>ALL</option> -->
@@ -90,38 +90,80 @@
                 $bookStock = $row['STOCK'];
                 $bookDes = $row['DESCRIPTION'];
                 $bookIMG = $row['IMAGE'];
-
-                if (isset($_POST['cat_name']) && $_POST['cat_name'] == 'BOOKS') {
-                    $authorName = $row["AUTHOR"];
-                    echo '<div class="item">
-                    <a href="details.php?id=' . $bookID . '&cat=BOOKS"><img class="listingBookCover" src="images/books/' . $bookID . '.jpg' . '"></a>';
-                    echo '<a class="invisiLink" href="details.php?id=' . $bookID . '&cat=BOOKS"><br><br><p class="listingBookName">' . $bookName . '</p></a>';
-                    echo '<p class="bookAuthor" style="text-align:center;">' . $authorName . '</p>';
-                    echo '<p class="BookPrice" style="text-align:center;font-size:20px;">$' . $bookPrice . '</p>';
-                    echo '</div>';
-                } else if (isset($_POST['cat_name']) && $_POST['cat_name'] == 'BOARDGAME') {
-                    $manu = $row['MANUFACTURER'];
-                    echo '<div class="item">
-                    <a href="details.php?id=' . $bookID . '&cat=BOARD_GAMES"><img class="listingBookCover" src="images/boardgames/' . $bookID . '.jpg' . '"></a>';
-                    echo '<a class="invisiLink" href="details.php?id=' . $bookID . '&cat=BOARD_GAMES"><br><br><p class="listingBookName">' . $bookName . '</p></a>';
-                    echo '<p class="bookAuthor" style="text-align:center;">' . $manu . '</p>';
-                    echo '<p class="BookPrice" style="text-align:center;font-size:20px;">$' . $bookPrice . '</p>';
-                    echo '</div>';
-                } else if (isset($_POST['cat_name']) && $_POST['cat_name'] == 'STATIONARIES') {
-                    echo '<div class="item">
-                    <a href="details.php?id=' . $bookID . '&cat=STATIONERIES"><img class="listingBookCover" src="images/stationeries/' . $bookID . '.jpg' . '"></a>';
-                    echo '<a class="invisiLink" href="details.php?id=' . $bookID . '&cat=STATIONERIES"><br><br><p class="listingBookName">' . $bookName . '</p></a>';
-                    echo '<p class="BookPrice" style="text-align:center;font-size:20px;">$' . $bookPrice . '</p>';
-                    echo '</div>';
-                } else {
-                    $authorName = $row["AUTHOR"];
-                    // $translatorName = $row["TRANSLATOR"];
-                    echo '<div class="item">
-                    <a href="details.php?id=' . $bookID . '&cat=BOOKS"><img class="listingBookCover" src="images/books/' . $bookID . '.jpg' . '"></a>';
-                    echo '<a class="invisiLink" href="details.php?id=' . $bookID . '&cat=BOOKS"><br><br><p class="listingBookName">' . $bookName . '</p></a>';
-                    echo '<p class="bookAuthor" style="text-align:center;">' . $authorName . '</p>';
-                    echo '<p class="BookPrice" style="text-align:center;font-size:20px;">$' . $bookPrice . '</p>';
-                    echo '</div>';
+                $percent1 = $row["SALE"];
+                
+                // $cal1 = $bookPrice * ($percent1/100);
+                $fo1 = '<p class="BookPrice" style="text-align:center;font-size:20px;"><del>$%s</del><span style="color:red;"> $%.2f</span> </p>';
+                if ($percent1 != 0){
+                    $cal1 = $bookPrice * ((100-$percent1)/100);
+                    // echo $cal1;
+                    if (isset($_POST['cat_name']) && $_POST['cat_name'] == 'BOOKS') {
+                        $authorName = $row["AUTHOR"];
+                        echo '<div>
+                        <a href="details.php?id=' . $bookID . '&cat=BOOKS"><img class="listingBookCover" src="images/books/' . $bookID . '.jpg' . '"></a>';
+                        echo '<a class="invisiLink" href="details.php?id=' . $bookID . '&cat=BOOKS"><br><br><p class="listingBookName">' . $bookName . '</p></a>';
+                        echo '<p class="bookAuthor" style="text-align:center;">' . $authorName . '</p>';
+                        echo sprintf($fo1, $bookPrice, $cal1);
+                        echo '</div>';
+                    } else if (isset($_POST['cat_name']) && $_POST['cat_name'] == 'BOARDGAME') {
+                        $manu = $row['MANUFACTURER'];
+                        echo '<div>
+                        <a href="details.php?id=' . $bookID . '&cat=BOARD_GAMES"><img class="listingBookCover" src="images/boardgames/' . $bookID . '.jpg' . '"></a>';
+                        echo '<a class="invisiLink" href="details.php?id=' . $bookID . '&cat=BOARD_GAMES"><br><br><p class="listingBookName">' . $bookName . '</p></a>';
+                        echo '<p class="bookAuthor" style="text-align:center;">' . $manu . '</p>';
+                        echo sprintf($fo1, $bookPrice, $cal1);
+                        echo '</div>';
+                    } else if (isset($_POST['cat_name']) && $_POST['cat_name'] == 'STATIONARIES') {
+                        echo '<div>
+                        <a href="details.php?id=' . $bookID . '&cat=STATIONERIES"><img class="listingBookCover" src="images/stationeries/' . $bookID . '.jpg' . '"></a>';
+                        echo '<a class="invisiLink" href="details.php?id=' . $bookID . '&cat=STATIONERIES"><br><br><p class="listingBookName">' . $bookName . '</p></a>';
+                        echo sprintf($fo1, $bookPrice, $cal1);
+                        echo '</div>';
+                    } else {
+                        $authorName = $row["AUTHOR"];
+                        echo '<div>
+                        <a href="details.php?id=' . $bookID . '&cat=BOOKS"><img class="listingBookCover" src="images/books/' . $bookID . '.jpg' . '"></a>';
+                        echo '<a class="invisiLink" href="details.php?id=' . $bookID . '&cat=BOOKS"><br><br><p class="listingBookName">' . $bookName . '</p></a>';
+                        echo '<p class="bookAuthor" style="text-align:center;">' . $authorName . '</p>';
+                        echo sprintf($fo1, $bookPrice, $cal1);
+                        echo '</div>';
+                    }
+                }
+                
+                else {
+                    $cal1 = $bookPrice;
+                    // echo $cal1;
+                    if (isset($_POST['cat_name']) && $_POST['cat_name'] == 'BOOKS') {
+                        $authorName = $row["AUTHOR"];
+                        echo '<div>
+                        <a href="details.php?id=' . $bookID . '&cat=BOOKS"><img class="listingBookCover" src="images/books/' . $bookID . '.jpg' . '"></a>';
+                        echo '<a class="invisiLink" href="details.php?id=' . $bookID . '&cat=BOOKS"><br><br><p class="listingBookName">' . $bookName . '</p></a>';
+                        echo '<p class="bookAuthor" style="text-align:center;">' . $authorName . '</p>';
+                        echo '<p class="BookPrice" style="text-align:center;font-size:20px;">$' . $cal1 . '</p>';
+                        echo '</div>';
+                    } else if (isset($_POST['cat_name']) && $_POST['cat_name'] == 'BOARDGAME') {
+                        $manu = $row['MANUFACTURER'];
+                        echo '<div>
+                        <a href="details.php?id=' . $bookID . '&cat=BOARD_GAMES"><img class="listingBookCover" src="images/boardgames/' . $bookID . '.jpg' . '"></a>';
+                        echo '<a class="invisiLink" href="details.php?id=' . $bookID . '&cat=BOARD_GAMES"><br><br><p class="listingBookName">' . $bookName . '</p></a>';
+                        echo '<p class="bookAuthor" style="text-align:center;">' . $manu . '</p>';
+                        echo '<p class="BookPrice" style="text-align:center;font-size:20px;">$' . $cal1 . '</p>';
+                        echo '</div>';
+                    } else if (isset($_POST['cat_name']) && $_POST['cat_name'] == 'STATIONARIES') {
+                        echo '<div>
+                        <a href="details.php?id=' . $bookID . '&cat=STATIONERIES"><img class="listingBookCover" src="images/stationeries/' . $bookID . '.jpg' . '"></a>';
+                        echo '<a class="invisiLink" href="details.php?id=' . $bookID . '&cat=STATIONERIES"><br><br><p class="listingBookName">' . $bookName . '</p></a>';
+                        echo '<p class="BookPrice" style="text-align:center;font-size:20px;">$' . $cal1 . '</p>';
+                        echo '</div>';
+                    } else {
+                        $authorName = $row["AUTHOR"];
+                        echo '<div>
+                        <a href="details.php?id=' . $bookID . '&cat=BOOKS"><img class="listingBookCover" src="images/books/' . $bookID . '.jpg' . '"></a>';
+                        echo '<a class="invisiLink" href="details.php?id=' . $bookID . '&cat=BOOKS"><br><br><p class="listingBookName">' . $bookName . '</p></a>';
+                        echo '<p class="bookAuthor" style="text-align:center;">' . $authorName . '</p>';
+                        echo '<p class="BookPrice" style="text-align:center;font-size:20px;">$' . $cal1 . '</p>';
+                        echo '</div>';
+                    }
                 }
             }
             $db->close();
