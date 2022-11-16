@@ -51,25 +51,41 @@
             // $_POST['cat_name'] = null;
             if (isset($_POST['sel_name'])) {
                     if (($_POST['sel_name']) == 'ID'){
-                        $b1 = "ID";
-                    }
-                    else if (($_POST['sel_name']) == 'PRODUCT_NAME'){
-                        $b1 = "PRODUCT_NAME";
-                    }
-                    else if (($_POST['sel_name']) == 'PRODUCT_NAME DESC'){
-                        $b1 = "PRODUCT_NAME DESC";
-                    }
-                    else if (($_POST['sel_name']) == 'PRICE'){
-                        $b1 = "PRICE";
-                    }
-                    else if (($_POST['sel_name']) == 'PRICE DESC'){
-                        $b1 = "PRICE DESC";
-                    }
-                    $sql = "SELECT ID, PRODUCT_NAME, PRICE, SALE, AUTHOR, NULL as MANUFACTURER FROM BOOKS
+                        $sql = "SELECT ID, PRODUCT_NAME, PRICE, SALE, AUTHOR, NULL as MANUFACTURER FROM BOOKS
                             UNION ALL
                             SELECT ID, PRODUCT_NAME, PRICE, SALE, NULL, MANUFACTURER FROM BOARD_GAMES
                             UNION ALL
-                            SELECT ID, PRODUCT_NAME, PRICE, SALE, NULL, NULL FROM STATIONERIES ORDER BY " . $b1;
+                            SELECT ID, PRODUCT_NAME, PRICE, SALE, NULL, NULL FROM STATIONERIES ORDER BY ID";
+                    }
+                    else if (($_POST['sel_name']) == 'PRODUCT_NAME'){
+                        $sql = "SELECT ID, PRODUCT_NAME, PRICE, SALE, AUTHOR, NULL as MANUFACTURER FROM BOOKS
+                            UNION ALL
+                            SELECT ID, PRODUCT_NAME, PRICE, SALE, NULL, MANUFACTURER FROM BOARD_GAMES
+                            UNION ALL
+                            SELECT ID, PRODUCT_NAME, PRICE, SALE, NULL, NULL FROM STATIONERIES ORDER BY PRODUCT_NAME";
+                    }
+                    else if (($_POST['sel_name']) == 'PRODUCT_NAME DESC'){
+                        $sql = "SELECT ID, PRODUCT_NAME, PRICE, SALE, AUTHOR, NULL as MANUFACTURER FROM BOOKS
+                            UNION ALL
+                            SELECT ID, PRODUCT_NAME, PRICE, SALE, NULL, MANUFACTURER FROM BOARD_GAMES
+                            UNION ALL
+                            SELECT ID, PRODUCT_NAME, PRICE, SALE, NULL, NULL FROM STATIONERIES ORDER BY PRODUCT_NAME DESC";
+                    }
+                    else if (($_POST['sel_name']) == 'PRICE'){
+                        $sql = "SELECT ID, PRODUCT_NAME, PRICE, SALE, AUTHOR, NULL as MANUFACTURER, PRICE * ((100 - SALE)/100) as SALEPRICE FROM BOOKS
+                                UNION ALL
+                                SELECT ID, PRODUCT_NAME, PRICE, SALE, NULL, MANUFACTURER, PRICE * ((100 - SALE)/100) as SALEPRICE FROM BOARD_GAMES
+                                UNION ALL
+                                SELECT ID, PRODUCT_NAME, PRICE, SALE, NULL, NULL, PRICE * ((100 - SALE)/100) as SALEPRICE FROM STATIONERIES ORDER BY SALEPRICE";
+                    }
+                    else if (($_POST['sel_name']) == 'PRICE DESC'){
+                        $sql = "SELECT ID, PRODUCT_NAME, PRICE, SALE, AUTHOR, NULL as MANUFACTURER, PRICE * ((100 - SALE)/100) as SALEPRICE FROM BOOKS
+                                UNION ALL
+                                SELECT ID, PRODUCT_NAME, PRICE, SALE, NULL, MANUFACTURER, PRICE * ((100 - SALE)/100) as SALEPRICE FROM BOARD_GAMES
+                                UNION ALL
+                                SELECT ID, PRODUCT_NAME, PRICE, SALE, NULL, NULL, PRICE * ((100 - SALE)/100) as SALEPRICE FROM STATIONERIES ORDER BY SALEPRICE DESC";
+                    }
+        
                 }
                 
             else {

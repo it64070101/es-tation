@@ -24,14 +24,14 @@
     ?>
     <form method="post" name='sort1' style="margin: 20px;">
         <select id="sel_id" name="sel_name" onchange="this.form.submit();">
-            <option value="ID" selected>DEFAULT</option>
+            <option value="ID" <?php if (isset($_POST['cat_name']) && $_POST['sel_name'] == "ID") echo "selected" ?> selected>DEFAULT</option>
             <option value="PRODUCT_NAME" <?php if (isset($_POST['sel_name']) && $_POST['sel_name'] == "PRODUCT_NAME") echo "selected"; ?>>A - Z</option>
             <option value="PRODUCT_NAME DESC" <?php if (isset($_POST['sel_name']) && $_POST['sel_name'] == "PRODUCT_NAME DESC") echo "selected"; ?>>Z - A</option>
             <option value="PRICE * ((100 - SALE)/100)" <?php if (isset($_POST['sel_name']) && $_POST['sel_name'] == "PRICE * ((100 - SALE)/100)") echo "selected"; ?>>lowerest to highest</option>
             <option value="PRICE * ((100 - SALE)/100) DESC" <?php if (isset($_POST['sel_name']) && $_POST['sel_name'] == "PRICE * ((100 - SALE)/100) DESC") echo "selected"; ?>>highest to lowerest</option>
         </select>
         <select id="cat_sel" name="cat_name" onchange="this.form.submit();">
-            <!-- <option value="ID" selected>ALL</option> -->
+            <option value="ALL" <?php if (isset($_POST['cat_name']) && $_POST['cat_name'] == "ALL") echo "selected" ?> selected>ALL</option>
             <option value="BOOKS" <?php if (isset($_POST['cat_name']) && $_POST['cat_name'] == "BOOKS") echo "selected"; ?>>BOOKS</option>
             <option value="BOARDGAME" <?php if (isset($_POST['cat_name']) && $_POST['cat_name'] == "BOARDGAME") echo "selected"; ?>>BOARDGAME</option>
             <option value="STATIONARIES" <?php if (isset($_POST['cat_name']) && $_POST['cat_name'] == "STATIONARIES") echo "selected"; ?>>STATIONARIES</option>
@@ -60,26 +60,63 @@
             // $_POST['cat_name'] = null;
             if (isset($_POST['sel_name']) && $_POST['cat_name']) {
                 if ($_POST['cat_name'] == 'BOOKS') {
-                    $sql = "SELECT * from BOOKS ORDER BY " . $_POST['sel_name'];
-                } else if ($_POST['cat_name'] == 'BOARDGAME') {
-                    $sql = "SELECT * from BOARD_GAMES ORDER BY " . $_POST['sel_name'];
-                } else if ($_POST['cat_name'] == 'STATIONARIES') {
-                    $sql = "SELECT * from STATIONERIES ORDER BY " . $_POST['sel_name'];
-                } else {
-                    $sql = "SELECT * from BOOKS ORDER BY " . $_POST['sel_name'];
-                }
-                // $sql = "SELECT * from BOOKS ORDER BY " . $_POST['sel_name'];
+                    $sql = "SELECT ID, PRODUCT_NAME, PRICE, SALE, AUTHOR, NULL as MANUFACTURER FROM BOOKS ORDER BY " . $_POST['sel_name'];
+                } 
+                else if ($_POST['cat_name'] == 'BOARDGAME') {
+                    $sql = "SELECT ID, PRODUCT_NAME, PRICE, SALE, NULL, MANUFACTURER FROM BOARD_GAMES ORDER BY " . $_POST['sel_name'];
+                } 
+                else if ($_POST['cat_name'] == 'STATIONARIES') {
+                    $sql = "SELECT ID, PRODUCT_NAME, PRICE, SALE, NULL, NULL FROM STATIONERIES ORDER BY " . $_POST['sel_name'];
+                } 
+                else if ($_POST['cat_name'] == 'ALL') {
+                    if (($_POST['sel_name']) == 'PRICE * ((100 - SALE)/100)'){
+                        $sql = "SELECT ID, PRODUCT_NAME, PRICE, SALE, AUTHOR, NULL as MANUFACTURER, PRICE * ((100 - SALE)/100) as SALEPRICE FROM BOOKS
+                                UNION ALL
+                                SELECT ID, PRODUCT_NAME, PRICE, SALE, NULL, MANUFACTURER, PRICE * ((100 - SALE)/100) as SALEPRICE FROM BOARD_GAMES
+                                UNION ALL
+                                SELECT ID, PRODUCT_NAME, PRICE, SALE, NULL, NULL, PRICE * ((100 - SALE)/100) as SALEPRICE FROM STATIONERIES ORDER BY SALEPRICE";
+                    }
+                    else if (($_POST['sel_name']) == 'PRICE * ((100 - SALE)/100) DESC'){
+                        $sql = "SELECT ID, PRODUCT_NAME, PRICE, SALE, AUTHOR, NULL as MANUFACTURER, PRICE * ((100 - SALE)/100) as SALEPRICE FROM BOOKS
+                                UNION ALL
+                                SELECT ID, PRODUCT_NAME, PRICE, SALE, NULL, MANUFACTURER, PRICE * ((100 - SALE)/100) as SALEPRICE FROM BOARD_GAMES
+                                UNION ALL
+                                SELECT ID, PRODUCT_NAME, PRICE, SALE, NULL, NULL, PRICE * ((100 - SALE)/100) as SALEPRICE FROM STATIONERIES ORDER BY SALEPRICE DESC";
+                    }
+                    else{
+                        $sql = "SELECT ID, PRODUCT_NAME, PRICE, SALE, AUTHOR, NULL as MANUFACTURER FROM BOOKS
+                                UNION ALL
+                                SELECT ID, PRODUCT_NAME, PRICE, SALE, NULL, MANUFACTURER FROM BOARD_GAMES
+                                UNION ALL
+                                SELECT ID, PRODUCT_NAME, PRICE, SALE, NULL, NULL FROM STATIONERIES ORDER BY " . $_POST['sel_name'];
+                    }
+                } 
+                
             } else {
-                $_POST['cat_name'] = '';
-                if ($_POST['cat_name'] == 'BOOKS') {
-                    $sql = "SELECT * from BOOKS ORDER BY ID";
-                } else if ($_POST['cat_name'] == 'BOARDGAME') {
-                    $sql = "SELECT * from BOARD_GAMES ORDER BY ID";
-                } else if ($_POST['cat_name'] == 'STATIONARIES') {
-                    $sql = "SELECT * from STATIONERIES ORDER BY ID";
-                } else {
-                    $sql = "SELECT * from BOOKS ORDER BY ID";
+                $_POST['cat_name'] = 'ALL';
+                $_POST['sel_name'] = 'ID';
+                if (($_POST['sel_name']) == 'PRICE * ((100 - SALE)/100)'){
+                    $sql = "SELECT ID, PRODUCT_NAME, PRICE, SALE, AUTHOR, NULL as MANUFACTURER, PRICE * ((100 - SALE)/100) as SALEPRICE FROM BOOKS
+                            UNION ALL
+                            SELECT ID, PRODUCT_NAME, PRICE, SALE, NULL, MANUFACTURER, PRICE * ((100 - SALE)/100) as SALEPRICE FROM BOARD_GAMES
+                            UNION ALL
+                            SELECT ID, PRODUCT_NAME, PRICE, SALE, NULL, NULL, PRICE * ((100 - SALE)/100) as SALEPRICE FROM STATIONERIES ORDER BY SALEPRICE";
                 }
+                else if (($_POST['sel_name']) == 'PRICE * ((100 - SALE)/100) DESC'){
+                    $sql = "SELECT ID, PRODUCT_NAME, PRICE, SALE, AUTHOR, NULL as MANUFACTURER, PRICE * ((100 - SALE)/100) as SALEPRICE FROM BOOKS
+                            UNION ALL
+                            SELECT ID, PRODUCT_NAME, PRICE, SALE, NULL, MANUFACTURER, PRICE * ((100 - SALE)/100) as SALEPRICE FROM BOARD_GAMES
+                            UNION ALL
+                            SELECT ID, PRODUCT_NAME, PRICE, SALE, NULL, NULL, PRICE * ((100 - SALE)/100) as SALEPRICE FROM STATIONERIES ORDER BY SALEPRICE DESC";
+                }
+                else{
+                    $sql = "SELECT ID, PRODUCT_NAME, PRICE, SALE, AUTHOR, NULL as MANUFACTURER FROM BOOKS
+                            UNION ALL
+                            SELECT ID, PRODUCT_NAME, PRICE, SALE, NULL, MANUFACTURER FROM BOARD_GAMES
+                            UNION ALL
+                            SELECT ID, PRODUCT_NAME, PRICE, SALE, NULL, NULL FROM STATIONERIES ORDER BY " . $_POST['sel_name'];
+                }
+
             }
 
             $ret = $db->query($sql);
@@ -87,9 +124,6 @@
                 $bookID = $row["ID"];
                 $bookName = $row["PRODUCT_NAME"];
                 $bookPrice = $row['PRICE'];
-                $bookStock = $row['STOCK'];
-                $bookDes = $row['DESCRIPTION'];
-                $bookIMG = $row['IMAGE'];
                 $percent1 = $row["SALE"];
 
                 // $cal1 = $bookPrice * ($percent1/100);
@@ -119,14 +153,33 @@
                         echo '<a class="invisiLink" href="details.php?id=' . $bookID . '&cat=STATIONERIES"><br><br><p class="listingBookName">' . $bookName . '</p></a>';
                         echo sprintf($fo1, $bookPrice, $cal1);
                         echo '</div>';
+                        
                     } else {
                         $authorName = $row["AUTHOR"];
-                        echo '<div class="item">
-                        <a href="details.php?id=' . $bookID . '&cat=BOOKS"><img class="listingBookCover" src="images/books/' . $bookID . '.jpg' . '"></a>';
-                        echo '<a class="invisiLink" href="details.php?id=' . $bookID . '&cat=BOOKS"><br><br><p class="listingBookName">' . $bookName . '</p></a>';
-                        echo '<p class="bookAuthor" style="text-align:center;">' . $authorName . '</p>';
-                        echo sprintf($fo1, $bookPrice, $cal1);
-                        echo '</div>';
+                        $manu = $row['MANUFACTURER'];
+                        if ($authorName != null){
+                            echo '<div class="item">
+                            <a href="details.php?id=' . $bookID . '&cat=BOOKS"><img class="listingBookCover" src="images/books/'.$bookID.'.jpg'.'"></a>';
+                            echo '<a class="invisiLink" href="details.php?id=' . $bookID . '&cat=BOOKS"><br><br><p class="listingBookName">' . $bookName . '</p></a>';
+                            echo '<p class="bookAuthor" style="text-align:center;">' . $authorName . '</p>';
+                            echo sprintf($fo1, $bookPrice, $cal1);
+                            echo '</div>';
+                        }
+                        else if($manu != null){
+                            echo '<div class="item">
+                            <a href="details.php?id=' . $bookID . '&cat=BOARD_GAMES"><img class="listingBookCover" src="images/boardgames/' . $bookID . '.jpg' . '"></a>';
+                            echo '<a class="invisiLink" href="details.php?id=' . $bookID . '&cat=BOARD_GAMES"><br><br><p class="listingBookName">' . $bookName . '</p></a>';
+                            echo '<p class="bookAuthor" style="text-align:center;">' . $manu . '</p>';
+                            echo sprintf($fo1, $bookPrice, $cal1);
+                            echo '</div>';
+                        }
+                        else{
+                            echo '<div class="item">
+                            <a href="details.php?id=' . $bookID . '&cat=STATIONERIES"><img class="listingBookCover" src="images/stationeries/' . $bookID . '.jpg' . '"></a>';
+                            echo '<a class="invisiLink" href="details.php?id=' . $bookID . '&cat=STATIONERIES"><br><br><p class="listingBookName">' . $bookName . '</p></a>';
+                            echo sprintf($fo1, $bookPrice, $cal1);
+                            echo '</div>';
+                        }
                     }
                 } else {
                     $cal1 = $bookPrice;
@@ -155,12 +208,30 @@
                         echo '</div>';
                     } else {
                         $authorName = $row["AUTHOR"];
-                        echo '<div class="item">
-                        <a href="details.php?id=' . $bookID . '&cat=BOOKS"><img class="listingBookCover" src="images/books/' . $bookID . '.jpg' . '"></a>';
-                        echo '<a class="invisiLink" href="details.php?id=' . $bookID . '&cat=BOOKS"><br><br><p class="listingBookName">' . $bookName . '</p></a>';
-                        echo '<p class="bookAuthor" style="text-align:center;">' . $authorName . '</p>';
-                        echo '<p class="BookPrice" style="text-align:center;font-size:20px;">$' . $cal1 . '</p>';
-                        echo '</div>';
+                        $manu = $row['MANUFACTURER'];
+                        if ($authorName != null){
+                            echo '<div class="item">
+                            <a href="details.php?id=' . $bookID . '&cat=BOOKS"><img class="listingBookCover" src="images/books/'.$bookID.'.jpg'.'"></a>';
+                            echo '<a class="invisiLink" href="details.php?id=' . $bookID . '&cat=BOOKS"><br><br><p class="listingBookName">' . $bookName . '</p></a>';
+                            echo '<p class="bookAuthor" style="text-align:center;">' . $authorName . '</p>';
+                            echo '<p class="BookPrice" style="text-align:center;font-size:20px;">$' . $cal1 . '</p>';
+                            echo '</div>';
+                        }
+                        else if($manu != null){
+                            echo '<div class="item">
+                            <a href="details.php?id=' . $bookID . '&cat=BOARD_GAMES"><img class="listingBookCover" src="images/boardgames/' . $bookID . '.jpg' . '"></a>';
+                            echo '<a class="invisiLink" href="details.php?id=' . $bookID . '&cat=BOARD_GAMES"><br><br><p class="listingBookName">' . $bookName . '</p></a>';
+                            echo '<p class="bookAuthor" style="text-align:center;">' . $manu . '</p>';
+                            echo '<p class="BookPrice" style="text-align:center;font-size:20px;">$' . $cal1 . '</p>';
+                            echo '</div>';
+                        }
+                        else{
+                            echo '<div class="item">
+                            <a href="details.php?id=' . $bookID . '&cat=STATIONERIES"><img class="listingBookCover" src="images/stationeries/' . $bookID . '.jpg' . '"></a>';
+                            echo '<a class="invisiLink" href="details.php?id=' . $bookID . '&cat=STATIONERIES"><br><br><p class="listingBookName">' . $bookName . '</p></a>';
+                            echo '<p class="BookPrice" style="text-align:center;font-size:20px;">$' . $cal1 . '</p>';
+                            echo '</div>';
+                        }
                     }
                 }
             }
