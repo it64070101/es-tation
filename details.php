@@ -117,16 +117,23 @@ if (isset($_POST['add'])) {
                     <h2 class="bookAuthor"><?php echo $authorName; ?></h2>
                     <p><?php echo $_GET['cat']; ?></p>
                     <?php
-                    // if ($translatorName != NULL) {
-                    //     echo '<h2 class="bookTranslator">' . $translatorName . '</h2>';
-                    //     }
-                    ?>
-                    <h3 class="BookPrice"><?php if($sale1 != 0){echo sprintf($fo1, $bookPrice, $cal1);}else{echo '$' . $bookPrice;} ?></h3>
-                    <?php
+                    if($sale1 != 0){
+                        $o1 =  'sprintf($fo1, $bookPrice, $cal1)';
+                    }
+                    else{
+                        $o1 = '$' . $bookPrice;
+                    }
                     if ($bookStock != 0) {
+                        echo "<h3 class='BookPrice'>". $o1 ."</h3>";
                         echo '<p class="bookStatus">เหลืออยู่: ' . $bookStock . '</p>';
                         // echo '<input type="submit" class="headerButton btn btn-primary" id="headerPaymentButton" name="add" style="height:10%;"value="Add to cart">';
-                        echo '<button type="submit" class="btn btn-secondary" id="headerPaymentButton" name="add">Add Cart</button>';
+                        echo '<button type="submit" class="btn btn-primary" id="headerPaymentButton" name="add">Add Cart</button>';
+                    }
+                    else {
+                        echo "<h2 style='color:red;' class='BookPrice'>สินค้าหมด</h2>";
+                        echo '<p class="bookStatus">เหลืออยู่: ' . $bookStock . '</p>';
+                        // echo '<input type="submit" class="headerButton btn btn-primary" id="headerPaymentButton" name="add" style="height:10%;"value="Add to cart">';
+                        echo '<button type="submit" disabled class="btn btn-secondary" id="headerPaymentButton" name="add">Add Cart</button>';
                     }
                     ?>
                     <br><br>
