@@ -61,7 +61,7 @@
             }
             $db->close();
             ?>
-            <div class="text-end" id="mainButtonDiv">
+            <div class="text-end" id="mainButtonDiv" style="margin-right: 7%;">
                 <a href="newari.php"><button class="mainButton btn btn-primary" id="mainAllButton">new arrival</button></a>
                 <a href="promotion.php"><button class="mainButton btn btn-primary" id="mainAllButton">sales</button></a>
                 <a href="products.php"><button class="mainButton btn btn-primary" id="mainAllButton">all products</button></a>
@@ -92,7 +92,7 @@
                     echo $db->lastErrorMsg();
                 }
 
-                $sql = "SELECT * from BOOKS WHERE TAG = 'POPULAR'";
+                $sql = "SELECT * from BOOKS WHERE TAG = 'POPULAR' AND SALE == 0";
                 $ret = $db->query($sql);
 
                 while ($row = $ret->fetchArray(SQLITE3_ASSOC)) {
@@ -127,7 +127,7 @@
                     echo $db->lastErrorMsg();
                 }
 
-                $sql = "SELECT * from BOOKS WHERE ID > 10";
+                $sql = "SELECT * from BOOKS WHERE ID > 10 AND SALE == 0 LIMIT 7";
                 $ret = $db->query($sql);
 
                 while ($row = $ret->fetchArray(SQLITE3_ASSOC)) {
@@ -162,20 +162,23 @@
                     echo $db->lastErrorMsg();
                 }
 
-                $sql = "SELECT * from BOOKS INNER JOIN PROMOTION ON BOOKS.ID = PROMOTION.ID AND PROMOTION.TYPES = 'BOOKS'";
-                $sql1 = "SELECT * from BOARD_GAMES INNER JOIN PROMOTION ON BOARD_GAMES.ID = PROMOTION.ID AND PROMOTION.TYPES = 'BOARD_GAMES'";
-                $sql2 = "SELECT * from STATIONERIES INNER JOIN PROMOTION ON STATIONERIES.ID = PROMOTION.ID AND PROMOTION.TYPES = 'STATIONERIES'";
+                $sql = "SELECT ID, PRODUCT_NAME, PRICE, SALE, AUTHOR, NULL as MANUFACTURER
+                FROM BOOKS
+                WHERE SALE > 0.0";
+                $sql1 = "SELECT ID, PRODUCT_NAME, PRICE, SALE, NULL, MANUFACTURER
+                FROM BOARD_GAMES
+                WHERE SALE > 0.0";
+                $sql2 = "SELECT ID, PRODUCT_NAME, PRICE, SALE, NULL, NULL
+                FROM STATIONERIES
+                WHERE SALE > 0.0";
 
                 $ret = $db->query($sql);
                 while ($row = $ret->fetchArray(SQLITE3_ASSOC)) {
                     $bookID = $row["ID"];
                     $bookName = $row["PRODUCT_NAME"];
                     $bookPrice = $row['PRICE'];
-                    $bookStock = $row['STOCK'];
-                    $bookDes = $row['DESCRIPTION'];
-                    $bookIMG = $row['IMAGE'];
                     $authorName = $row["AUTHOR"];
-                    $percent1 = $row["PERCENT"];
+                    $percent1 = $row["SALE"];
                     $cal1 = $bookPrice * ((100-$percent1)/100);
                     $fo1 = '<p class="BookPrice" style="text-align:center;font-size:20px;"><del>$%s</del><span style="color:red;"> $%.2f</span> </p>';
                     echo '<div class="item">
@@ -190,10 +193,8 @@
                     $bookID = $row["ID"];
                     $bookName = $row["PRODUCT_NAME"];
                     $bookPrice = $row['PRICE'];
-                    $bookStock = $row['STOCK'];
-                    $bookDes = $row['DESCRIPTION'];
-                    $bookIMG = $row['IMAGE'];
                     $manu = $row['MANUFACTURER'];
+                    $percent1 = $row["SALE"];
                     $cal1 = $bookPrice * ((100-$percent1)/100);
                     $fo1 = '<p class="BookPrice" style="text-align:center;font-size:20px;"><del>$%s</del><span style="color:red;"> $%.2f</span> </p>';
                     echo '<div class="item">
@@ -208,9 +209,7 @@
                     $bookID = $row["ID"];
                     $bookName = $row["PRODUCT_NAME"];
                     $bookPrice = $row['PRICE'];
-                    $bookStock = $row['STOCK'];
-                    $bookDes = $row['DESCRIPTION'];
-                    $bookIMG = $row['IMAGE'];
+                    $percent1 = $row["SALE"];
                     $cal1 = $bookPrice * ((100-$percent1)/100);
                     $fo1 = '<p class="BookPrice" style="text-align:center;font-size:20px;"><del>$%s</del>  <span style="color:red;"> $%.2f</span> </p>';
                     echo '<div class="item">
@@ -235,7 +234,7 @@
                     echo $db->lastErrorMsg();
                 }
 
-                $sql = "SELECT * from BOOKS";
+                $sql = "SELECT * from BOOKS WHERE SALE == 0 LIMIT 7";
                 $ret = $db->query($sql);
 
                 while ($row = $ret->fetchArray(SQLITE3_ASSOC)) {
@@ -270,7 +269,7 @@
                     echo $db->lastErrorMsg();
                 }
 
-                $sql = "SELECT * from STATIONERIES";
+                $sql = "SELECT * from STATIONERIES WHERE SALE == 0 LIMIT 7";
                 $ret = $db->query($sql);
 
                 while ($row = $ret->fetchArray(SQLITE3_ASSOC)) {
@@ -303,7 +302,7 @@
                     echo $db->lastErrorMsg();
                 }
 
-                $sql = "SELECT * from BOARD_GAMES";
+                $sql = "SELECT * from BOARD_GAMES WHERE SALE == 0 LIMIT 7";
                 $ret = $db->query($sql);
 
                 while ($row = $ret->fetchArray(SQLITE3_ASSOC)) {

@@ -166,7 +166,8 @@ if (isset($_POST['add'])) {
                     echo $db->lastErrorMsg();
                 }
                 $m2 = $_GET['cat'];
-                $sql = "SELECT * FROM $m2 ORDER BY RANDOM() LIMIT 5;";
+                $id2 = $_GET['id'];
+                $sql = "SELECT * FROM $m2 WHERE ID != $id2 ORDER BY RANDOM() LIMIT 5;";
                 $ret = $db->query($sql);
 
                 while ($row = $ret->fetchArray(SQLITE3_ASSOC)) {
@@ -176,6 +177,7 @@ if (isset($_POST['add'])) {
                     $bookStock = $row['STOCK'];
                     $bookDes = $row['DESCRIPTION'];
                     $bookIMG = $row['IMAGE'];
+                    $percent1 = $row['SALE'];
                     if ($_GET['cat'] == 'BOOKS'){
                         $authorName = $row["AUTHOR"];
                     }
@@ -186,7 +188,12 @@ if (isset($_POST['add'])) {
                     <a href="details.php?id=' . $bookID . '&cat='.$m2.'"><img class="listingBookCover" src="images/'.$m1.'/' . $bookID . '.jpg' . '"></a>';
                     echo '<a class="invisiLink" href="details.php?id=' . $bookID . '&cat=BOOKS"><br><br><p class="listingBookName">' . $bookName . '</p></a>';
                     echo '<p class="bookAuthor" style="text-align:center;">' . $authorName . '</p>';
-                    echo '<p class="BookPrice" style="text-align:center;font-size:20px;">$' . $bookPrice . '</p>';
+                    if($percent1 != 0){
+                        echo '<p class="BookPrice" style="text-align:center;font-size:20px;"><del>' . $bookPrice . '</del> <span style="color:red;">$'.number_format($bookPrice * ((100 - $percent1)/100),2).'</span></p>';
+                    }else{
+                        echo '<p class="BookPrice" style="text-align:center;font-size:20px;">$' . $bookPrice . '</p>';
+                    }
+                    
                     echo '</div>';
                 }
                 $db->close();

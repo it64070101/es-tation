@@ -31,14 +31,14 @@ button.headerButton {
 
 button.mainButton {
     height: 7%;
-    margin: 1% 1% 2% 1%;
+    margin: 1% 0% 2% 0%;
     color: white;
     border: 3px solid white;
     border-radius: 0px;
 }
 
 #mainAllButton {
-    margin-right: 3%;
+    margin-right: 0.5%;
 
 }
 

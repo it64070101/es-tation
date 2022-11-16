@@ -57,16 +57,16 @@
             // $_POST['cat_name'] = null;
             if (isset($_POST['sel_name']) && $_POST['cat_name']) {
                 if ($_POST['cat_name'] == 'BOOKS'){
-                    $sql = "SELECT * from BOOKS ORDER BY " . $_POST['sel_name'];
+                    $sql = "SELECT * from BOOKS WHERE ID > 10 AND SALE == 0 ORDER BY " . $_POST['sel_name'].' LIMIT 9';
                 }
                 else if ($_POST['cat_name'] == 'BOARDGAME'){
-                    $sql = "SELECT * from BOARD_GAMES ORDER BY " . $_POST['sel_name'];
+                    $sql = "SELECT * from BOARD_GAMES WHERE ID > 10 AND SALE == 0 ORDER BY " . $_POST['sel_name'].' LIMIT 9';
                 }
                 else if ($_POST['cat_name'] == 'STATIONARIES'){
-                    $sql = "SELECT * from STATIONERIES ORDER BY " . $_POST['sel_name'];
+                    $sql = "SELECT * from STATIONERIES WHERE ID > 10 AND SALE == 0 ORDER BY " . $_POST['sel_name'].' LIMIT 9';
                 }
                 else{
-                    $sql = "SELECT * from BOOKS ORDER BY " . $_POST['sel_name'];
+                    $sql = "SELECT * from BOOKS WHERE ID > 10  AND SALE == 0 ORDER BY " . $_POST['sel_name'].' LIMIT 9';
                 }
                 // $sql = "SELECT * from BOOKS ORDER BY " . $_POST['sel_name'];
             } 
@@ -74,16 +74,16 @@
             {
                 $_POST['cat_name'] = '';
                 if ($_POST['cat_name'] == 'BOOKS'){
-                    $sql = "SELECT * from BOOKS ORDER BY ID";
+                    $sql = "SELECT * from BOOKS WHERE ID > 10 ORDER BY ID LIMIT 9";
                 }
                 else if ($_POST['cat_name'] == 'BOARDGAME'){
-                    $sql = "SELECT * from BOARD_GAMES ORDER BY ID";
+                    $sql = "SELECT * from BOARD_GAMES WHERE ID > 10 ORDER BY ID LIMIT 9";
                }
                 else if ($_POST['cat_name'] == 'STATIONARIES'){
-                    $sql = "SELECT * from STATIONERIES ORDER BY ID";
+                    $sql = "SELECT * from STATIONERIES WHERE ID > 10 ORDER BY ID LIMIT 9";
                }
                else{
-                    $sql = "SELECT * from BOOKS ORDER BY ID";
+                    $sql = "SELECT * from BOOKS WHERE ID > 10 ORDER BY ID LIMIT 9";
                }
             }
 

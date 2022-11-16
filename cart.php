@@ -37,8 +37,7 @@ if (isset($_GET['action'])) {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Mitr&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-    <style>
-    </style>
+    <script src="cart_calcu.js"></script>
 </head>
 
 <body>
@@ -66,7 +65,7 @@ if (isset($_GET['action'])) {
         if (!empty($_SESSION['cart'])) {
         ?>
             <div class="container mt-5">
-                <a href="cart.php?action=del&add">Emty</a>
+                <a href="cart.php?action=del&add">Empty</a>
                 <div class="row" style="background-color:white;;">
                     <div style="border:1px solid #0004;" class="col-8 m-2">
                         <h5>รายการสินค้า</h5>
@@ -103,20 +102,25 @@ if (isset($_GET['action'])) {
                                     }
                                     $img = $row['ID'];
                                     $name = $row['PRODUCT_NAME'];
+                                    $stock = $row['STOCK'];
 
                                     $total = $total + $price;
                                     echo '
                                     <tbody>
                                         <tr>
-                                            <td><img style="width:100px;" src="images/' . $imgcat . '/' . $img . '.jpg" alt=""></td>
+                                            <td><a href="details.php?id='.$img.'&cat='.$value['catagory'].'" class="invisilink"><img style="width:100px;" src="images/' . $imgcat . '/' . $img . '.jpg" alt=""></a></td>
                                             <td style="text-align: center; margin-top:50%;">
-                                                <p style="margin-top:22.5px;">' . $name . '</p></td>
+                                            <a href="details.php?id='.$img.'&cat='.$value['catagory'].'" class="invisilink"><p style="margin-top:22.5px;">' . $name . '</p></a></td>
                                             <td style="text-align: center;">
-                                                <p style="margin-top:22.5px;">' . $price . '</p></td>
-                                            <td style="text-align: center;"><input type="number" name="Quantity-product" style="width: 100%; text-align:center; margin-top:20px; border:0px;" value="1" min="1"></td>
+                                                <p style="margin-top:22.5px;">' . number_format($price ,2) . '</p></td>
+                                            <td style="text-align: center;">
+                                            
+                                            <input type="number" name="Quantity-product" style="width: 100%; text-align:center; margin-top:20px; border:0px;" value="1" min="1" max="'.$stock.'" onchange="dynamic_pricecal(this.value)">
+                                            
+                                            </td>
                                             <td style="text-align: center;"><a href="cart.php?action=delete&id=' . $img . '"<i class="fa fa-trash" style="margin-top:25px;"></i></a></td>
                                         </tr>
-                                    </tbody> ';
+                                    </tbody>';
                                 }
                             }
                         }
@@ -142,11 +146,11 @@ if (isset($_GET['action'])) {
                         <div class="row">
                             <p class="col-8">Vat(7%)</p>
                             <p style="text-align: right;" class="col-4"><?php $vax = $total * 0.07;
-                                                                        echo $vax ?></p>
+                                                                        echo number_format($vax,2) ?></p>
                         </div>
                         <div class="row">
                             <p class="col-8">ราคาสุทธิ</p>
-                            <p style="text-align: right;" class="col-4"><?php echo $total + $vax ?></p>
+                            <p style="text-align: right;" class="col-4"><?php echo number_format($total + $vax,2) ?></p>
                         </div>
                         <input type="submit" value="ทำการสั่งซื้อ">
                     </div>
