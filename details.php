@@ -118,7 +118,7 @@ if (isset($_POST['add'])) {
                     <p><?php echo $_GET['cat']; ?></p>
                     <?php
                     if($sale1 != 0){
-                        $o1 =  'sprintf($fo1, $bookPrice, $cal1)';
+                        $o1 =  sprintf($fo1, $bookPrice, $cal1);
                     }
                     else{
                         $o1 = '$' . $bookPrice;
