@@ -11,9 +11,11 @@ if (isset($_POST['add'])) {
                 'catagory' => $_POST['cat']
             );
             $_SESSION['cart'][$count] = $item_array;
+            echo "<script>alert('สินค้าเพิ่มแล้วจ้า')</script>";
+            echo "<script>window.location ='products.php'</script>";
         } else {
             echo "<script>alert('คุณมีสินค้านี้อยู่ในตะกร้าแล้ว')</script>";
-            echo "<script>window.location ='details.php'</script>";
+            echo "<script>window.location ='products.php'</script>";
         }
     } else {
 
@@ -93,9 +95,12 @@ if (isset($_POST['add'])) {
         }
 
         // $translatorName = $row["TRANSLATOR"];
+        $sale1 = $row['SALE'];
         $bookPrice = $row['PRICE'];
+        $cal1 = $bookPrice * ((100 - $sale1)/100);
         $bookStock = $row['STOCK'];
         $bookDes = $row['DESCRIPTION'];
+        $fo1 = '<p class="BookPrice"><del>$%s</del><span style="color:red;"> $%.2f</span> </p>';
     }
     $db->close();
 
@@ -116,11 +121,12 @@ if (isset($_POST['add'])) {
                     //     echo '<h2 class="bookTranslator">' . $translatorName . '</h2>';
                     //     }
                     ?>
-                    <h3 class="BookPrice">$<?php echo $bookPrice; ?></h3>
+                    <h3 class="BookPrice"><?php if($sale1 != 0){echo sprintf($fo1, $bookPrice, $cal1);}else{echo '$' . $bookPrice;} ?></h3>
                     <?php
                     if ($bookStock != 0) {
                         echo '<p class="bookStatus">เหลืออยู่: ' . $bookStock . '</p>';
-                        echo '<input type="submit" class="headerButton btn btn-primary" id="headerPaymentButton" name="add" style="height:10%;"value="Add to cart">';
+                        // echo '<input type="submit" class="headerButton btn btn-primary" id="headerPaymentButton" name="add" style="height:10%;"value="Add to cart">';
+                        echo '<button type="submit" class="btn btn-secondary" id="headerPaymentButton" name="add">Add Cart</button>';
                     }
                     ?>
                     <br><br>
@@ -136,7 +142,47 @@ if (isset($_POST['add'])) {
     <div id="relatedDiv">
         <div class="categoryText" id="popularCatText">คุณอาจสนใจ</div>
         <div class="categoryCarousel" id="popularCarousel">
-            คุณอาจสนใจทำ carousel
+            <?php
+                if($_GET['cat'] == 'BOOKS'){
+                    $m1 = 'books';
+                }
+                else if($_GET['cat'] == 'BOARD_GAMES'){
+                    $m1 = 'boardgames';
+                }
+                else{
+                    $m1 = 'stationeries';
+                }
+                $db = new MyDB();
+                if (!$db) {
+                    echo $db->lastErrorMsg();
+                }
+                $m2 = $_GET['cat'];
+                $sql = "SELECT * FROM $m2 ORDER BY RANDOM() LIMIT 5;";
+                $ret = $db->query($sql);
+
+                while ($row = $ret->fetchArray(SQLITE3_ASSOC)) {
+                    $bookID = $row["ID"];
+                    $bookName = $row["PRODUCT_NAME"];
+                    $bookPrice = $row['PRICE'];
+                    $bookStock = $row['STOCK'];
+                    $bookDes = $row['DESCRIPTION'];
+                    $bookIMG = $row['IMAGE'];
+                    if ($_GET['cat'] == 'BOOKS'){
+                        $authorName = $row["AUTHOR"];
+                    }
+                    else if($_GET['cat'] == 'BOARD_GAMES'){
+                        $authorName = $row["MANUFACTURER"];
+                    }
+                    echo '<div class="item">
+                    <a href="details.php?id=' . $bookID . '&cat='.$m2.'"><img class="listingBookCover" src="images/'.$m1.'/' . $bookID . '.jpg' . '"></a>';
+                    echo '<a class="invisiLink" href="details.php?id=' . $bookID . '&cat=BOOKS"><br><br><p class="listingBookName">' . $bookName . '</p></a>';
+                    echo '<p class="bookAuthor" style="text-align:center;">' . $authorName . '</p>';
+                    echo '<p class="BookPrice" style="text-align:center;font-size:20px;">$' . $bookPrice . '</p>';
+                    echo '</div>';
+                }
+                $db->close();
+                
+            ?>
         </div>
     </div>
     <br><br>

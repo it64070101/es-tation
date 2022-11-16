@@ -46,9 +46,9 @@ if (isset($_GET['action'])) {
 
         <?php include 'header.php'; ?>
         <?php
-        foreach ($_SESSION['cat'] as $key => $value) {
-            echo $value['cat'];
-        }
+        // foreach ($_SESSION['cat'] as $key => $value) {
+        //     echo $value['cat'];
+        // }
         class MyDB extends SQLite3
         {
             function __construct()
