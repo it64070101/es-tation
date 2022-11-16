@@ -21,10 +21,7 @@
                     <h1 class="text-white" style="margin-top: 5%;">es'tation</h1>
                 </a>
             </div>
-            <div class="col-lg-5 col-md-5 col-sm-3 col-3" id="searchInputDiv">
-                <input type="text" name="search" id="searchInput" style="height: 40%; border-radius: 0.2rem; border: 1px;">
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-6  text-end" style="margin-top: 20px;" id="headerButtonDiv">
+            <div class="col-lg-4 col-md-6 col-sm-6  text-end" style="margin-top: 20px; margin-left:auto;" id="headerButtonDiv">
                 <a href="cart.php"><button class="headerButton bg-primary" id="headerCartButton"><i class="fa fa-shopping-cart" aria-hidden="true"></i></button></a>
                 <a href="<?php if ($_SESSION['count1'] == '' || $_SESSION['count1'] == '1') {
                                 echo $_SESSION["link1"];
