@@ -1,9 +1,4 @@
 <!DOCTYPE html>
-<?php
-
-// echo $_SESSION['count1'] . "<br>";
-// echo $_SESSION['count2'];
-?>
 <html lang="en">
 
 <head>

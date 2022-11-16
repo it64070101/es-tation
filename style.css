@@ -17,6 +17,9 @@ body {
 
 
 /* index.html styling */
+button {
+    transition: 0.2s;
+}
 
 button.headerButton {
     height: 65%;
@@ -36,6 +39,21 @@ button.mainButton {
 
 #mainAllButton {
     margin-right: 3%;
+
+}
+
+button:hover {
+    scale: (1.02, 1.02);
+    box-shadow: 0.5em 0.5em 0.5em #0005;
+}
+
+#headerPaymentButton {
+    transition: 0.1s;
+}
+
+#headerPaymentButton:hover {
+    scale: (1.02, 1.02);
+    box-shadow: 0.5em 0.5em 0.5em #0005;
 }
 
 #searchInput {
@@ -68,7 +86,7 @@ img#bookCover {
     width: 20%;
     object-fit: contain;
     z-index: 1;
-    transition: all .5s;
+    transition: all .2s;
 }
 
 img#bookCover:hover {
@@ -203,7 +221,7 @@ p#recommendedTitle {
     display: block;
     border-radius: 20px;
     box-shadow: 2px 2px 4px #888;
-    transition: all .5s;
+    transition: all .2s;
 }
 
 .listingBookCover:hover {
