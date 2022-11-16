@@ -25,6 +25,8 @@ if (isset($_POST['add'])) {
         );
         // Create new session variable
         $_SESSION['cart'][0] = $item_array;
+        echo "<script>alert('สินค้าเพิ่มแล้วจ้า')</script>";
+        echo "<script>window.location ='products.php'</script>";
     }
 }
 ?>
