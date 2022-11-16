@@ -8,7 +8,8 @@ if (isset($_POST['add'])) {
             $count = count($_SESSION['cart']);
             $item_array = array(
                 'product_id' => $_POST['product_id'],
-                'catagory' => $_POST['cat']
+                'catagory' => $_POST['cat'],
+                'quantity' => 1
             );
             $_SESSION['cart'][$count] = $item_array;
             echo "<script>alert('สินค้าเพิ่มแล้วจ้า')</script>";
@@ -21,7 +22,8 @@ if (isset($_POST['add'])) {
 
         $item_array = array(
             'product_id' => $_POST['product_id'],
-            'catagory' => $_POST['cat']
+            'catagory' => $_POST['cat'],
+            'quantity' => 1
         );
         // Create new session variable
         $_SESSION['cart'][0] = $item_array;
@@ -99,7 +101,7 @@ if (isset($_POST['add'])) {
         // $translatorName = $row["TRANSLATOR"];
         $sale1 = $row['SALE'];
         $bookPrice = $row['PRICE'];
-        $cal1 = $bookPrice * ((100 - $sale1)/100);
+        $cal1 = $bookPrice * ((100 - $sale1) / 100);
         $bookStock = $row['STOCK'];
         $bookDes = $row['DESCRIPTION'];
         $fo1 = '<p class="BookPrice"><del>$%s</del><span style="color:red;"> $%.2f</span> </p>';
@@ -119,19 +121,17 @@ if (isset($_POST['add'])) {
                     <h2 class="bookAuthor"><?php echo $authorName; ?></h2>
                     <p><?php echo $_GET['cat']; ?></p>
                     <?php
-                    if($sale1 != 0){
+                    if ($sale1 != 0) {
                         $o1 =  sprintf($fo1, $bookPrice, $cal1);
-                    }
-                    else{
+                    } else {
                         $o1 = '$' . $bookPrice;
                     }
                     if ($bookStock != 0) {
-                        echo "<h3 class='BookPrice'>". $o1 ."</h3>";
+                        echo "<h3 class='BookPrice'>" . $o1 . "</h3>";
                         echo '<p class="bookStatus">เหลืออยู่: ' . $bookStock . '</p>';
                         // echo '<input type="submit" class="headerButton btn btn-primary" id="headerPaymentButton" name="add" style="height:10%;"value="Add to cart">';
                         echo '<button type="submit" class="btn btn-primary" id="headerPaymentButton" name="add">Add Cart</button>';
-                    }
-                    else {
+                    } else {
                         echo "<h2 style='color:red;' class='BookPrice'>สินค้าหมด</h2>";
                         echo '<p class="bookStatus">เหลืออยู่: ' . $bookStock . '</p>';
                         // echo '<input type="submit" class="headerButton btn btn-primary" id="headerPaymentButton" name="add" style="height:10%;"value="Add to cart">';
@@ -152,52 +152,49 @@ if (isset($_POST['add'])) {
         <div class="categoryText" id="popularCatText">คุณอาจสนใจ</div>
         <div class="categoryCarousel" id="popularCarousel">
             <?php
-                if($_GET['cat'] == 'BOOKS'){
-                    $m1 = 'books';
-                }
-                else if($_GET['cat'] == 'BOARD_GAMES'){
-                    $m1 = 'boardgames';
-                }
-                else{
-                    $m1 = 'stationeries';
-                }
-                $db = new MyDB();
-                if (!$db) {
-                    echo $db->lastErrorMsg();
-                }
-                $m2 = $_GET['cat'];
-                $id2 = $_GET['id'];
-                $sql = "SELECT * FROM $m2 WHERE ID != $id2 ORDER BY RANDOM() LIMIT 5;";
-                $ret = $db->query($sql);
+            if ($_GET['cat'] == 'BOOKS') {
+                $m1 = 'books';
+            } else if ($_GET['cat'] == 'BOARD_GAMES') {
+                $m1 = 'boardgames';
+            } else {
+                $m1 = 'stationeries';
+            }
+            $db = new MyDB();
+            if (!$db) {
+                echo $db->lastErrorMsg();
+            }
+            $m2 = $_GET['cat'];
+            $id2 = $_GET['id'];
+            $sql = "SELECT * FROM $m2 WHERE ID != $id2 ORDER BY RANDOM() LIMIT 5;";
+            $ret = $db->query($sql);
 
-                while ($row = $ret->fetchArray(SQLITE3_ASSOC)) {
-                    $bookID = $row["ID"];
-                    $bookName = $row["PRODUCT_NAME"];
-                    $bookPrice = $row['PRICE'];
-                    $bookStock = $row['STOCK'];
-                    $bookDes = $row['DESCRIPTION'];
-                    $bookIMG = $row['IMAGE'];
-                    $percent1 = $row['SALE'];
-                    if ($_GET['cat'] == 'BOOKS'){
-                        $authorName = $row["AUTHOR"];
-                    }
-                    else if($_GET['cat'] == 'BOARD_GAMES'){
-                        $authorName = $row["MANUFACTURER"];
-                    }
-                    echo '<div class="item">
-                    <a href="details.php?id=' . $bookID . '&cat='.$m2.'"><img class="listingBookCover" src="images/'.$m1.'/' . $bookID . '.jpg' . '"></a>';
-                    echo '<a class="invisiLink" href="details.php?id=' . $bookID . '&cat=BOOKS"><br><br><p class="listingBookName">' . $bookName . '</p></a>';
-                    echo '<p class="bookAuthor" style="text-align:center;">' . $authorName . '</p>';
-                    if($percent1 != 0){
-                        echo '<p class="BookPrice" style="text-align:center;font-size:20px;"><del>' . $bookPrice . '</del> <span style="color:red;">$'.number_format($bookPrice * ((100 - $percent1)/100),2).'</span></p>';
-                    }else{
-                        echo '<p class="BookPrice" style="text-align:center;font-size:20px;">$' . $bookPrice . '</p>';
-                    }
-                    
-                    echo '</div>';
+            while ($row = $ret->fetchArray(SQLITE3_ASSOC)) {
+                $bookID = $row["ID"];
+                $bookName = $row["PRODUCT_NAME"];
+                $bookPrice = $row['PRICE'];
+                $bookStock = $row['STOCK'];
+                $bookDes = $row['DESCRIPTION'];
+                $bookIMG = $row['IMAGE'];
+                $percent1 = $row['SALE'];
+                if ($_GET['cat'] == 'BOOKS') {
+                    $authorName = $row["AUTHOR"];
+                } else if ($_GET['cat'] == 'BOARD_GAMES') {
+                    $authorName = $row["MANUFACTURER"];
                 }
-                $db->close();
-                
+                echo '<div class="item">
+                    <a href="details.php?id=' . $bookID . '&cat=' . $m2 . '"><img class="listingBookCover" src="images/' . $m1 . '/' . $bookID . '.jpg' . '"></a>';
+                echo '<a class="invisiLink" href="details.php?id=' . $bookID . '&cat=BOOKS"><br><br><p class="listingBookName">' . $bookName . '</p></a>';
+                echo '<p class="bookAuthor" style="text-align:center;">' . $authorName . '</p>';
+                if ($percent1 != 0) {
+                    echo '<p class="BookPrice" style="text-align:center;font-size:20px;"><del>' . $bookPrice . '</del> <span style="color:red;">$' . number_format($bookPrice * ((100 - $percent1) / 100), 2) . '</span></p>';
+                } else {
+                    echo '<p class="BookPrice" style="text-align:center;font-size:20px;">$' . $bookPrice . '</p>';
+                }
+
+                echo '</div>';
+            }
+            $db->close();
+
             ?>
         </div>
     </div>

@@ -75,11 +75,14 @@ if (isset($_GET['action'])) {
                                     <th style="text-align: center;">Product</th>
                                     <th style="text-align: center;" width="50%">Name</th>
                                     <th style="text-align: center;" width="10%">Price</th>
-                                    <th style="text-align: center;" width="10%">Quntity</th>
+                                    <th style="text-align: center;" width="10%">Quantity</th>
                                     <th style="text-align: center;" width="10%"></th>
                                 </tr>
                             </thead>
                         <?php
+                        // echo print_r($_SESSION['cart']);
+                        // $_SESSION['cart'][0]['quantity'] -= 2;
+                        // $index = 0;
                         foreach ($_SESSION['cart'] as $key => $value) {
                             if ($value['catagory'] == "BOOKS") {
                                 $sql = 'SELECT* from BOOKS';
@@ -93,36 +96,45 @@ if (isset($_GET['action'])) {
                             }
 
                             $ret = $db->query($sql);
+                            echo '<form action="cart.php" method="GET">';
                             while ($row = $ret->fetchArray(SQLITE3_ASSOC)) {
                                 if ($row['ID'] == $value['product_id']) {
                                     if ($row['SALE'] == NULL) {
                                         $price = $row['PRICE'];
                                     } else {
-                                        $price = (($row['PRICE'])/100) * (100-$row['SALE']);
+                                        $price = (($row['PRICE']) / 100) * (100 - $row['SALE']);
                                     }
                                     $img = $row['ID'];
                                     $name = $row['PRODUCT_NAME'];
                                     $stock = $row['STOCK'];
+                                    if (isset($_GET['Quantity-product-' . $img])) {
+                                        // $key = array_search('green', $array);
+                                        $_SESSION['cart'][$key]['quantity'] = $_GET['Quantity-product-' . $img];
+                                        $value['quantity'] = $_GET['Quantity-product-' . $img];
+                                    } else {
+                                        $_GET['Quantity-product-' . $img] = 1;
+                                    }
 
-                                    $total = $total + $price;
+
+                                    $total = $total + ($price * $_GET['Quantity-product-' . $img]);
                                     echo '
                                     <tbody>
                                         <tr>
-                                            <td><a href="details.php?id='.$img.'&cat='.$value['catagory'].'" class="invisilink"><img style="width:100px;" src="images/' . $imgcat . '/' . $img . '.jpg" alt=""></a></td>
+                                            <td><a href="details.php?id=' . $img . '&cat=' . $value['catagory'] . '" class="invisilink"><img style="width:100px;" src="images/' . $imgcat . '/' . $img . '.jpg" alt=""></a></td>
                                             <td style="text-align: center; margin-top:50%;">
-                                            <a href="details.php?id='.$img.'&cat='.$value['catagory'].'" class="invisilink"><p style="margin-top:22.5px;">' . $name . '</p></a></td>
+                                            <a href="details.php?id=' . $img . '&cat=' . $value['catagory'] . '" class="invisilink"><p style="margin-top:22.5px;">' . $name . '</p></a></td>
                                             <td style="text-align: center;">
-                                                <p style="margin-top:22.5px;">' . number_format($price ,2) . '</p></td>
+                                                <p style="margin-top:22.5px;">' . number_format($price, 2) . '</p></td>
                                             <td style="text-align: center;">
                                             
-                                            <input type="number" name="Quantity-product" style="width: 100%; text-align:center; margin-top:20px; border:0px;" value="1" min="1" max="'.$stock.'" onchange="dynamic_pricecal(this.value)">
-                                            
+                                            <input type="number" name="Quantity-product-' . $img . '" style="width: 100%; text-align:center; margin-top:20px; border:0px;" value="' . $value['quantity'] . '" min="1" max="' . $stock . '" onchange="this.form.submit()">
                                             </td>
                                             <td style="text-align: center;"><a href="cart.php?action=delete&id=' . $img . '"<i class="fa fa-trash" style="margin-top:25px;"></i></a></td>
                                         </tr>
                                     </tbody>';
                                 }
                             }
+                            echo "</form>";
                         }
                     } else {
                         echo '<div class="container mt-5">
@@ -146,13 +158,15 @@ if (isset($_GET['action'])) {
                         <div class="row">
                             <p class="col-8">Vat(7%)</p>
                             <p style="text-align: right;" class="col-4"><?php $vax = $total * 0.07;
-                                                                        echo number_format($vax,2) ?></p>
+                                                                        echo number_format($vax, 2) ?></p>
                         </div>
                         <div class="row">
                             <p class="col-8">ราคาสุทธิ</p>
-                            <p style="text-align: right;" class="col-4"><?php echo number_format($total + $vax,2) ?></p>
+                            <p style="text-align: right;" class="col-4"><?php echo number_format($total + $vax, 2) ?></p>
                         </div>
-                        <input type="submit" value="ทำการสั่งซื้อ">
+                        <form action="cart.php">
+                            <input type="submit" value="ทำการสั่งซื้อ">
+                        </form>
                     </div>
                 </div>
             </div>
