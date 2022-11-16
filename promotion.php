@@ -90,7 +90,7 @@
                 $percent1 = $row["SALE"];
                 $fo1 = '<p class="BookPrice" style="text-align:center;font-size:20px;"><del>$%s</del><span style="color:red;"> $%.2f</span> </p>';
                 if ($percent1 != 0){
-                    $cal1 = $bookPrice * ($percent1/100);
+                    $cal1 = $bookPrice * ((100-$percent1)/100);
                     if ($authorName != null){
                         echo '<div>
                         <a href="details.php?id=' . $bookID . '&cat=BOOKS"><img class="listingBookCover" src="images/books/'.$bookID.'.jpg'.'"></a>';

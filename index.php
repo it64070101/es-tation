@@ -176,7 +176,7 @@
                     $bookIMG = $row['IMAGE'];
                     $authorName = $row["AUTHOR"];
                     $percent1 = $row["PERCENT"];
-                    $cal1 = $bookPrice * ($percent1 / 100);
+                    $cal1 = $bookPrice * ((100-$percent1)/100);
                     $fo1 = '<p class="BookPrice" style="text-align:center;font-size:20px;"><del>$%s</del><span style="color:red;"> $%.2f</span> </p>';
                     echo '<div class="item">
                     <a href="details.php?id=' . $bookID . '&cat=BOOKS"><img class="listingBookCover" src="images/books/' . $bookID . '.jpg' . '"></a>';
@@ -194,7 +194,7 @@
                     $bookDes = $row['DESCRIPTION'];
                     $bookIMG = $row['IMAGE'];
                     $manu = $row['MANUFACTURER'];
-                    $cal1 = $bookPrice * ($percent1 / 100);
+                    $cal1 = $bookPrice * ((100-$percent1)/100);
                     $fo1 = '<p class="BookPrice" style="text-align:center;font-size:20px;"><del>$%s</del><span style="color:red;"> $%.2f</span> </p>';
                     echo '<div class="item">
                     <a href="details.php?id=' . $bookID . '&cat=BOARD_GAMES"><img class="listingBookCover" src="images/boardgames/' . $bookID . '.jpg' . '"></a>';
@@ -211,7 +211,7 @@
                     $bookStock = $row['STOCK'];
                     $bookDes = $row['DESCRIPTION'];
                     $bookIMG = $row['IMAGE'];
-                    $cal1 = $bookPrice * ($percent1 / 100);
+                    $cal1 = $bookPrice * ((100-$percent1)/100);
                     $fo1 = '<p class="BookPrice" style="text-align:center;font-size:20px;"><del>$%s</del>  <span style="color:red;"> $%.2f</span> </p>';
                     echo '<div class="item">
                     <a href="details.php?id=' . $bookID . '&cat=STATIONERIES"><img class="listingBookCover" src="images/stationeries/' . $bookID . '.jpg' . '"></a>';
