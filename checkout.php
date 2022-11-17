@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 ?>
 
 <head>
@@ -150,7 +151,13 @@ session_start();
                         echo $db1->lastErrorMsg();
                     }
 
-                    $sql = "SELECT * from REGISTER WHERE REGISTER.ID = " . $_SESSION['USERS1'];
+                    if ($_SESSION['count1'] == '2'){
+                        $sql = "SELECT * from REGISTER WHERE REGISTER.ID = " . $_SESSION['USERS1'];
+                    }
+                    else{
+                        $sql = "SELECT * from REGISTER WHERE REGISTER.ID = 3";
+                    }
+                    // $sql = "SELECT * from REGISTER WHERE REGISTER.ID = 3";
                     $ret = $db1->query($sql);
                     $row = $ret->fetchArray(SQLITE3_ASSOC);
                     if ($_SESSION['count1'] != '2') {
