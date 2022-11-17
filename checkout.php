@@ -1,6 +1,7 @@
 <?php
 session_start();
-
+// $_SESSION["link3"] = 'complete.php';
+// $_SESSION["link4"] = 'checkout.php';
 ?>
 
 <head>
@@ -15,6 +16,9 @@ session_start();
     <style>
         <?php include "style.css" ?>
     </style>
+    <script>
+        <?php include "script.js" ?>
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Mitr&display=swap" rel="stylesheet">
@@ -171,52 +175,63 @@ session_start();
                             <form action='profile.php' method='POST'>
                                 <p>
                                     <label for='fname'>First Name * : </label><br>
-                                    <input name='fname' id='fname' type='text' style="width: 100%;" value=<?php echo $_SESSION['count1'] == '2' ? $row['FNAME'] : ""; ?>><br>
+                                    <input name='fname' id='fname2' type='text' placeholder="3-50 Characters" style="width: 100%;" value=<?php echo $_SESSION['count1'] == '2' ? $row['FNAME'] : ""; ?>><br>
                                 </p>
 
                                 <p>
                                     <label for='lname'>Last Name * : </label><br>
-                                    <input name='lname' id='lname' type='text' style="width: 100%;" value=<?php echo $_SESSION['count1'] == '2' ? $row['LNAME'] : ""; ?>><br>
+                                    <input name='lname' id='lname2' type='text' placeholder="3-50 Characters" style="width: 100%;" value=<?php echo $_SESSION['count1'] == '2' ? $row['LNAME'] : ""; ?>><br>
                                 </p>
 
                                 <p>
                                     <label for='address'>Address * : </label><br>
-                                    <input name='address' id='address' type='text' style="width: 100%;" value=<?php echo $_SESSION['count1'] == '2' ? $row['ADDRESS'] : ""; ?>><br>
+                                    <input name='address' id='address2' type='text' placeholder="30-200 Characters" style="width: 100%;" value=<?php echo $_SESSION['count1'] == '2' ? $row['ADDRESS'] : ""; ?>><br>
                                 </p>
 
                                 <p>
                                     <label for='phone'>Phone * : </label><br>
-                                    <input name='phone' id='phone' type='text' style="width: 100%;" value=<?php echo $_SESSION['count1'] == '2' ? $row['PHONE'] : ""; ?>><br>
+                                    <input name='phone' id='phone2' type='text' placeholder="xxxxxxxxxx" style="width: 100%;" value=<?php echo $_SESSION['count1'] == '2' ? $row['PHONE'] : ""; ?>><br>
                                 </p>
 
                                 <p>
                                     <label for='email'>Email * : </label><br>
-                                    <input name='email' id='email' type='text' style="width: 100%;" value=<?php echo $_SESSION['count1'] == '2' ? $row['EMAIL'] : "";
+                                    <input name='email' id='email2' type='text' placeholder="15-100 Characters" style="width: 100%;" value=<?php echo $_SESSION['count1'] == '2' ? $row['EMAIL'] : "";
                                                                                                             echo $_SESSION['count1'] == '2' ? " disabled" : ""; ?>><br>
                                 </p>
                                 เลือกวิธีการชำระเงิน * :
-                                <p>
-                                    <input type="radio" name="payment" value="card">
+                                <div>
+                                    <!-- <input type="radio" name="payment" value="000" style="display: none;" checked> -->
+                                    <input type="radio" class='rad1' name="payment" value="card">
                                     <label for="card">Card</label><br>
-                                    <input type="radio" name="payment" value="wallet">
+                                    <input type="radio" class='rad1' name="payment" value="wallet">
                                     <label for="wallet">Wallet</label><br>
-                                    <input type="radio" name="payment" value="bank">
+                                    <input type="radio" class='rad1' name="payment" value="bank">
                                     <label for="bank">Bank</label><br>
-                                    <input type="radio" name="payment" value="qrpayment">
+                                    <input type="radio" class='rad1' name="payment" value="qrpayment">
                                     <label for="qrpayment">QR Payment</label>
-                                </p>
-
+                                </div>
+                        
                                 <!-- <button id='editButton' class='mainButton btn btn-primary' type='button' onclick='this.form.submit();'>Edit Profile</button> -->
                             </form>
                         </div>
                     </div>
-                    <?php
-
-                    echo '<form action="complete.php">
+                    
+                        
+                    <form method="post">
                             <div>
-                                <button type="submit" class="mainButton btn btn-primary" style="display:flex; margin-left:auto; margin-right:auto;">ยืนยันการชำระเงิน</button>
+                            <button type="submit" id="checkout1" name='checkout2' onclick="Check222();" class="mainButton btn btn-primary" style="display:flex; margin-left:auto; margin-right:auto;" value='1'>ยืนยันการชำระเงิน</button>
                             </div>
-                        </form>';
+                    </form>
+                    
+                    <?php
+                        if (isset($_POST['checkout2']) && $_POST['checkout2'] == '1') {
+                            echo "<script> location.href='complete.php'; </script>";
+                            // $_POST['checkout2'] = '2';
+                        }
+                        // else{
+                        //     echo "<script> location.href='checkout.php'; </script>";
+                        //     $_POST['checkout2'] = '1';
+                        // }
                     ?>
 
                 </div>
