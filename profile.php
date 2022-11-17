@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>es'tation: Books, Stationeries, and Board games</title>
+    <title>Your Profile</title>
     <link rel="icon" href="images/icon.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
@@ -20,41 +20,43 @@
 </head>
 
 <body>
-    <?php include 'header.php';?>
+    <?php include 'header.php'; ?>
 
     <div id="logoutDiv"><a class="btn-auth btn-twitter large invisilink" href="login.php?count2=1"> log out </a></div>
     <?php
-        class MyDB extends SQLite3 {
-            function __construct() {
-               $this->open('Register.db');
-            }
-         }
-     
-         // Open Database 
-         $db1 = new MyDB();
-         if(!$db1) {
-            echo $db1->lastErrorMsg();
-         } 
+    class MyDB extends SQLite3
+    {
+        function __construct()
+        {
+            $this->open('Register.db');
+        }
+    }
 
-         $sql = "SELECT * from REGISTER WHERE REGISTER.ID = ".$_SESSION['USERS1'];
-         $ret = $db1->query($sql);
-         $row = $ret->fetchArray(SQLITE3_ASSOC);
-        echo "<img id='profilePicture' src='https://cdn.discordapp.com/attachments/847393439704285204/1016577438513373236/funny_whoa_cat.jpg' alt='bruh'>";
-        echo "
+    // Open Database 
+    $db1 = new MyDB();
+    if (!$db1) {
+        echo $db1->lastErrorMsg();
+    }
+
+    $sql = "SELECT * from REGISTER WHERE REGISTER.ID = " . $_SESSION['USERS1'];
+    $ret = $db1->query($sql);
+    $row = $ret->fetchArray(SQLITE3_ASSOC);
+    echo "<img id='profilePicture' src='https://cdn.discordapp.com/attachments/847393439704285204/1016577438513373236/funny_whoa_cat.jpg' alt='bruh'>";
+    echo "
         <div class='profileMainDiv'>
             <div class='row'>
                 <div class='col-md-3'></div>
                 <div class='col-md-9' id='profileDetail'>
                     <label for='fname'>FirstName : </label><br>
-                    <div class='profileData'>". $row['FNAME'] ."</div><br>
+                    <div class='profileData'>" . $row['FNAME'] . "</div><br>
                     <label for='lname'>Last Name : </label><br>
-                    <div class='profileData'>". $row['LNAME'] ."</div><br>
+                    <div class='profileData'>" . $row['LNAME'] . "</div><br>
                     <label for='address'>Address : </label><br>
-                    <div class='profileData'>". $row['ADDRESS'] ."</div><br>
+                    <div class='profileData'>" . $row['ADDRESS'] . "</div><br>
                     <label for='phone'>Phone : </label><br>
-                    <div class='profileData'>". $row['PHONE'] ."</div><br>
+                    <div class='profileData'>" . $row['PHONE'] . "</div><br>
                     <label for='email'>Email : </label><br>
-                    <div class='profileData'>". $row['EMAIL'] ."</div><br>
+                    <div class='profileData'>" . $row['EMAIL'] . "</div><br>
                 </div>
             </div>
             <div class='container' id='purchaseHistory'>
@@ -82,11 +84,11 @@
             </div>
         </div>
         <br><br>";
-        // $_SESSION["count1"] = "2";
+    // $_SESSION["count1"] = "2";
     ?>
-    
+
     <!-- <button type='submit' class='btn btn-primary' onclick='location.href="login.php"; '>Log out</button> -->
-    
+
 </body>
 
 </html>

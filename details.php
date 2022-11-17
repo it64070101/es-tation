@@ -13,10 +13,10 @@ if (isset($_POST['add'])) {
             );
             $_SESSION['cart'][$count] = $item_array;
             echo "<script>alert('สินค้าเพิ่มแล้วจ้า')</script>";
-            echo "<script>window.location ='products.php'</script>";
+            echo "<script>window.location ='cart.php'</script>";
         } else {
             echo "<script>alert('คุณมีสินค้านี้อยู่ในตะกร้าแล้ว')</script>";
-            echo "<script>window.location ='products.php'</script>";
+            echo "<script>window.location ='cart.php'</script>";
         }
     } else {
 
@@ -37,7 +37,7 @@ if (isset($_POST['add'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Details</title>
     <link rel="icon" href="images/icon.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
@@ -119,7 +119,7 @@ if (isset($_POST['add'])) {
                 <div class="col-md-9">
                     <h1 class="bookName"><?php echo $bookName; ?></h1>
                     <h2 class="bookAuthor"><?php echo $authorName; ?></h2>
-                    <p><?php echo $_GET['cat']; ?></p>
+                    <!-- <p><?php echo $_GET['cat']; ?></p> -->
                     <?php
                     if ($sale1 != 0) {
                         $o1 =  sprintf($fo1, $bookPrice, $cal1);

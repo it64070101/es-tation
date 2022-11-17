@@ -25,7 +25,7 @@ if (isset($_GET['action'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>es'tation: Books, Stationeries, and Board games</title>
+    <title>Cart</title>
     <link rel="icon" href="images/icon.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
@@ -65,7 +65,7 @@ if (isset($_GET['action'])) {
         if (!empty($_SESSION['cart'])) {
         ?>
             <div class="container mt-5">
-                <a href="cart.php?action=del&add">Empty</a>
+                <a href="cart.php?action=del&add">Clear</a>
                 <div class="row" style="background-color:white;;">
                     <div style="border:1px solid #0004;" class="col-8 m-2">
                         <h5>รายการสินค้า</h5>
@@ -138,7 +138,7 @@ if (isset($_GET['action'])) {
                         }
                     } else {
                         echo '<div class="container mt-5">
-                            <a href="">Empty</a>
+                            <a href="">Clear</a>
                             <div class="row" style="background-color:white;;">
                                 <div style="border:1px solid #0004;" class="col-8 m-2 text-center">
                                 <img src="imgcart.png" style="width:150px;">
