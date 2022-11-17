@@ -66,8 +66,8 @@ if (isset($_GET['action'])) {
         ?>
             <div class="container mt-5">
                 <a href="cart.php?action=del&add" class="invisilink"><button class="mainButton btn btn-primary">Clear</button></a>
-                <div class="row" style="background-color:white;;">
-                    <div style="border:1px solid #0004;" class="col-8 m-2">
+                <div class="row bg-light">
+                    <div style="border:1px solid #0004;border-radius:0.5em;" class="col-8 m-2">
                         <h5>รายการสินค้า</h5>
                         <table class="table">
                             <thead>
@@ -152,22 +152,22 @@ if (isset($_GET['action'])) {
                         <h5>สรุปราการสั่งซื้อ</h5>
                         <div class="row">
                             <p class="col-8">ราคาสินค้าทั้งหมด</p>
-                            <p style="text-align: right;" class="col-4"><?php echo number_format($total, 2) ?></p>
+                            <p style="text-align: right;" class="col-4"><?php echo "$" . number_format($total, 2) ?></p>
                         </div>
                         <div class="row">
                             <p class="col-8">Vat(7%)</p>
                             <p style="text-align: right;" class="col-4"><?php $vax = $total * 0.07;
-                                                                        echo number_format($vax, 2) ?></p>
+                                                                        echo "$" . number_format($vax, 2) ?></p>
                         </div>
                         <div class="row">
                             <p class="col-8">ราคาสุทธิ</p>
-                            <p style="text-align: right;" class="col-4"><?php echo number_format($total + $vax, 2) ?></p>
+                            <p style="text-align: right;" class="col-4"><?php echo "$" . number_format($total + $vax, 2) ?></p>
                         </div>
                         <?php
                         if (!empty($_SESSION['cart'])) {
-                            echo '<form action="cart.php">
+                            echo '<form action="checkout.php">
                             <div>
-                                <button type="submit" class="mainButton btn btn-primary" style="display:flex; margin-left:auto; margin-right:auto;">ทำการสั่งซื้อ</button>
+                                <button type="submit" class="mainButton btn btn-primary" style="padding:2% 25% 2% 25%; display:flex; margin-left:auto; margin-right:auto;">สั่งซื้อ</button>
                             </div>
                         </form>';
                         }

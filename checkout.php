@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,5 +22,199 @@
 </head>
 
 <body>
-    <h1>หน้ากรอกข้อมูล</h1>
+    <main>
+
+        <?php include 'header.php'; ?>
+        <?php
+        // foreach ($_SESSION['cat'] as $key => $value) {
+        //     echo $value['cat'];
+        // }
+        class MyDB extends SQLite3
+        {
+            function __construct()
+            {
+                $this->open('products.db');
+            }
+        }
+        $db = new MyDB();
+        if (!$db) {
+            echo $db->lastErrorMsg();
+        }
+        $sql = 'SELECT* from BOOKS';
+        $ret = $db->query($sql);
+        $total = 0;
+        ?>
+        <div class="container mt-5">
+
+            <div class="row" style="background-color:white;">
+                <div style="border:1px solid #0004; padding:2%;" class="">
+                    <h5>รายการสินค้า</h5>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th style="text-align: center;" width="50%">Name</th>
+                                <th style="text-align: center;" width="10%">Price</th>
+                                <th style="text-align: center;" width="10%">Quantity</th>
+                            </tr>
+                        </thead>
+                        <?php
+                        // echo print_r($_SESSION['cart']);
+                        // $_SESSION['cart'][0]['quantity'] -= 2;
+                        // $index = 0;
+                        foreach ($_SESSION['cart'] as $key => $value) {
+                            if ($value['catagory'] == "BOOKS") {
+                                $sql = 'SELECT* from BOOKS';
+                                $imgcat = 'books';
+                            } elseif ($value['catagory'] == "BOARD_GAMES") {
+                                $sql = 'SELECT* from BOARD_GAMES';
+                                $imgcat = 'boardgames';
+                            } elseif ($value['catagory'] == "STATIONERIES") {
+                                $sql = 'SELECT* from STATIONERIES';
+                                $imgcat = 'stationeries';
+                            }
+
+                            $ret = $db->query($sql);
+                            while ($row = $ret->fetchArray(SQLITE3_ASSOC)) {
+                                if ($row['ID'] == $value['product_id']) {
+                                    if ($row['SALE'] == NULL) {
+                                        $price = $row['PRICE'];
+                                    } else {
+                                        $price = (($row['PRICE']) / 100) * (100 - $row['SALE']);
+                                    }
+                                    $img = $row['ID'];
+                                    $name = $row['PRODUCT_NAME'];
+                                    $stock = $row['STOCK'];
+                                    if (isset($_POST['Quantity-product-' . $img])) {
+                                        // $key = array_search('green', $array);
+                                        $_SESSION['cart'][$key]['quantity'] = $_POST['Quantity-product-' . $img];
+                                        $value['quantity'] = $_POST['Quantity-product-' . $img];
+                                    } else {
+                                        $_POST['Quantity-product-' . $img] = 1;
+                                    }
+
+
+                                    $total = $total + ($price * $_SESSION['cart'][$key]['quantity']);
+                                    echo '
+                                    <tbody>
+                                        <tr>
+                                            <td style="margin-top:50%;">
+                                            <p style="margin-top:22.5px;">' . $name . '</p></td>
+                                            <td style="text-align: center;">
+                                                <p style="margin-top:22.5px;">' . number_format($price, 2) . '</p></td>
+                                            <td style="text-align: center;">
+                                            
+                                            <p style="margin-top:22.5px;">' .  $value['quantity']  . '</p>
+                                            </td>
+                                            
+                                        </tr>
+                                    </tbody>';
+                                }
+                            }
+                        }
+                        ?>
+                    </table>
+
+                    <?php
+                    echo '<form action="cart.php">
+                            <div>
+                                <button type="submit" class="mainButton btn btn-primary" style="display:flex; margin-left:auto; margin-right:0;">จัดการรถเข็น</button>
+                            </div>
+                        </form>';
+                    ?>
+                </div>
+                <div class="" style="border:1px solid #0005; border-radius:0.5em;padding:2%;">
+                    <h5>สรุปราการสั่งซื้อ</h5>
+                    <div class="row">
+                        <p class="col-8">ราคาสินค้าทั้งหมด</p>
+                        <p style="text-align: right;" class="col-4"><?php echo "$" . number_format($total, 2) ?></p>
+                    </div>
+                    <div class="row">
+                        <p class="col-8">Vat(7%)</p>
+                        <p style="text-align: right;" class="col-4"><?php $vax = $total * 0.07;
+                                                                    echo "$" . number_format($vax, 2) ?></p>
+                    </div>
+                    <div class="row">
+                        <p class="col-8">ราคาสุทธิ</p>
+                        <p style="text-align: right;" class="col-4"><?php echo "$" . number_format($total + $vax, 2) ?></p>
+                    </div>
+                    <?php
+                    class MyDB2 extends SQLite3
+                    {
+                        function __construct()
+                        {
+                            $this->open('Register.db');
+                        }
+                    }
+                    $db1 = new MyDB2();
+                    if (!$db1) {
+                        echo $db1->lastErrorMsg();
+                    }
+
+                    $sql = "SELECT * from REGISTER WHERE REGISTER.ID = " . $_SESSION['USERS1'];
+                    $ret = $db1->query($sql);
+                    $row = $ret->fetchArray(SQLITE3_ASSOC);
+                    if ($_SESSION['count1'] != '2') {
+                        echo "คุณยังไม่ได้ล็อกอิน หากคุณเป็นสมาชิกอยู่แล้ว <a href='login.php'>คลิ๊กเพื่อล็อกอิน</a> หากต้องการสมัครสมาชิก <a href='register.php'>คลิ๊กเพื่อสมัครสมาชิก</a>";
+                    }
+                    // echo $_SESSION['count1'] == '2' ? $row['FNAME']:"";
+                    ?>
+                    <div class='row'>
+                        <div class=''></div>
+                        <div class='' id='profileDetail'>
+                            <form action='profile.php' method='POST'>
+                                <p>
+                                    <label for='fname'>First Name * : </label><br>
+                                    <input name='fname' id='fname' type='text' style="width: 100%;" value=<?php echo $_SESSION['count1'] == '2' ? $row['FNAME'] : ""; ?>><br>
+                                </p>
+
+                                <p>
+                                    <label for='lname'>Last Name * : </label><br>
+                                    <input name='lname' id='lname' type='text' style="width: 100%;" value=<?php echo $_SESSION['count1'] == '2' ? $row['LNAME'] : ""; ?>><br>
+                                </p>
+
+                                <p>
+                                    <label for='address'>Address * : </label><br>
+                                    <input name='address' id='address' type='text' style="width: 100%;" value=<?php echo $_SESSION['count1'] == '2' ? $row['ADDRESS'] : ""; ?>><br>
+                                </p>
+
+                                <p>
+                                    <label for='phone'>Phone * : </label><br>
+                                    <input name='phone' id='phone' type='text' style="width: 100%;" value=<?php echo $_SESSION['count1'] == '2' ? $row['PHONE'] : ""; ?>><br>
+                                </p>
+
+                                <p>
+                                    <label for='email'>Email * : </label><br>
+                                    <input name='email' id='email' type='text' style="width: 100%;" value=<?php echo $_SESSION['count1'] == '2' ? $row['EMAIL'] : "";
+                                                                                                            echo $_SESSION['count1'] == '2' ? " disabled" : ""; ?>><br>
+                                </p>
+                                เลือกวิธีการชำระเงิน * :
+                                <p>
+                                    <input type="radio" name="payment" value="card">
+                                    <label for="card">Card</label><br>
+                                    <input type="radio" name="payment" value="wallet">
+                                    <label for="wallet">Wallet</label><br>
+                                    <input type="radio" name="payment" value="bank">
+                                    <label for="bank">Bank</label><br>
+                                    <input type="radio" name="payment" value="qrpayment">
+                                    <label for="qrpayment">QR Payment</label>
+                                </p>
+
+                                <!-- <button id='editButton' class='mainButton btn btn-primary' type='button' onclick='this.form.submit();'>Edit Profile</button> -->
+                            </form>
+                        </div>
+                    </div>
+                    <?php
+
+                    echo '<form action="complete.php">
+                            <div>
+                                <button type="submit" class="mainButton btn btn-primary" style="display:flex; margin-left:auto; margin-right:auto;">ยืนยันการชำระเงิน</button>
+                            </div>
+                        </form>';
+                    ?>
+
+                </div>
+            </div>
+        </div>
+
+    </main>
 </body>
