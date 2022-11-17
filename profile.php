@@ -43,6 +43,7 @@
     $sql = "SELECT * from REGISTER WHERE REGISTER.ID = " . $_SESSION['USERS1'];
     $ret = $db1->query($sql);
     $row = $ret->fetchArray(SQLITE3_ASSOC);
+    $email = $row['EMAIL'];
     ?>
     <img id='profilePicture' src='images/profile.png' alt='bruh'>
     <div class='profileMainDiv'>
@@ -78,31 +79,56 @@
 
                     <!-- <button id='editButton' class='mainButton btn btn-primary' type='button' onclick='this.form.submit();'>Edit Profile</button> -->
                 </form>
+                <h1>TOTAL POINTS : <?php echo $row['POINTS']; ?></h1>
             </div>
+
         </div>
         <div class='container' id='purchaseHistory'>
             <label id='purchaseHistoryLabel' for='purchaseHistory'>Purchase History</label><br>
             <div id='historyTable' class='card'>
                 <table class='table table-bordered'>
                     <tr>
-                        <th>Name</th>
-                        <th>Qtt.</th>
+                        <th>Date</th>
+                        <th>Purchase ID</th>
+                        <th>Total</th>
+                        <th>Payment</th>
+                        <th>List</th>
+                        <th>Points</th>
                     </tr>
-                    <tr>
-                        <td>name1</td>
-                        <td>qtt1</td>
-                    </tr>
-                    <tr>
-                        <td>name2</td>
-                        <td>qtt2</td>
-                    </tr>
-                    <tr>
-                        <td>name3</td>
-                        <td>qtt3</td>
-                    </tr>
+                    <?php
+                    class MyDB2 extends SQLite3
+                    {
+                        function __construct()
+                        {
+                            $this->open('purchases.db');
+                        }
+                    }
+
+                    // Open Database 
+                    $db1 = new MyDB2();
+                    if (!$db1) {
+                        echo $db1->lastErrorMsg();
+                    }
+
+                    $sql = "SELECT * from PURCHASES WHERE EMAIL = '$email'";
+                    $ret = $db1->query($sql);
+                    while ($row = $ret->fetchArray(SQLITE3_ASSOC)) {
+                        echo "<tr>";
+                        echo "<td>" . $row['DATE'] . "</td>";
+                        echo "<td>" . $row['ID'] . "</td>";
+                        echo "<td>" . $row['TOTAL'] . "</td>";
+                        echo "<td>" . $row['PAYMENT'] . "</td>";
+                        echo "<td class='text-start'>" . $row['LIST'] . "</td>";
+                        echo "<td>" . $row['POINTS'] . "</td>";
+                        echo "</tr>";
+                    }
+
+                    ?>
+
                 </table>
             </div>
         </div>
+
     </div>
     <br><br>
     <script type="text/javascript">
