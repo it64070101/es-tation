@@ -109,6 +109,9 @@ if (isset($_GET['action'])) {
                                     $stock = $row['STOCK'];
                                     if (isset($_POST['Quantity-product-' . $img])) {
                                         // $key = array_search('green', $array);
+                                        if($_POST['Quantity-product-' . $img] > $stock){
+                                            $_POST['Quantity-product-' . $img] = $stock;
+                                        }
                                         $_SESSION['cart'][$key]['quantity'] = $_POST['Quantity-product-' . $img];
                                         $value['quantity'] = $_POST['Quantity-product-' . $img];
                                     } else {

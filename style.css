@@ -415,10 +415,6 @@ tr {
     background-color: #ffffff;
     border-radius: 5px;
 }
-.cart{
-
-}
-
 
 .item {
     /* background-color: lightseagreen; */
@@ -427,6 +423,34 @@ tr {
     text-align: center;
     margin: 2rem;
     /* padding: 2%; */
+}
+
+/* complete */
+#receiptHeaderDiv{
+    height: auto;
+    margin-top: 50px;
+    padding: 3%;
+}
+
+#receiptBodyDiv{
+    height: auto;
+    margin-top: 50px;
+    padding: 3%;
+    background-color : #fff;
+}
+
+.receiptTitle{
+    font-size: 20px;
+    color: rgb(0, 42, 255);
+    font-style: bold;
+}
+
+.receiptField{
+    font-size: 14px;
+}
+
+.receiptFieldPoints{
+    font-size: 10px;
 }
 
 /* feet  */

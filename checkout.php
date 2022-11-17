@@ -24,6 +24,7 @@ session_start();
     <link href="https://fonts.googleapis.com/css2?family=Mitr&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <script src="cart_calcu.js"></script>
+    
 </head>
 
 <body>
@@ -66,6 +67,7 @@ session_start();
                         // echo print_r($_SESSION['cart']);
                         // $_SESSION['cart'][0]['quantity'] -= 2;
                         // $index = 0;
+                        $list = '';
                         foreach ($_SESSION['cart'] as $key => $value) {
                             if ($value['catagory'] == "BOOKS") {
                                 $sql = 'SELECT* from BOOKS';
@@ -96,8 +98,8 @@ session_start();
                                     } else {
                                         $_POST['Quantity-product-' . $img] = 1;
                                     }
-
-
+                                    $list = $list . $name.' ('.$_SESSION['cart'][$key]['quantity'].')<br>';
+                                    
                                     $total = $total + ($price * $_SESSION['cart'][$key]['quantity']);
                                     echo '
                                     <tbody>
@@ -172,7 +174,7 @@ session_start();
                     <div class='row'>
                         <div class=''></div>
                         <div class='' id='profileDetail'>
-                            <form action='profile.php' method='POST'>
+                            <form action='complete.php' method='POST' id="dateForm">
                                 <p>
                                     <label for='fname'>First Name * : </label><br>
                                     <input name='fname' id='fname2' type='text' placeholder="3-50 Characters" style="width: 100%;" value=<?php echo $_SESSION['count1'] == '2' ? $row['FNAME'] : ""; ?>><br>
@@ -195,44 +197,54 @@ session_start();
 
                                 <p>
                                     <label for='email'>Email * : </label><br>
-                                    <input name='email' id='email2' type='text' placeholder="15-100 Characters" style="width: 100%;" value=<?php echo $_SESSION['count1'] == '2' ? $row['EMAIL'] : "";
-                                                                                                            echo $_SESSION['count1'] == '2' ? " disabled" : ""; ?>><br>
+                                    <input name='email' id='email' type='text' style="width: 100%;" placeholder="10-1000 characters" value=<?php echo $_SESSION['count1'] == '2' ? $row['EMAIL'] : "";
+                                                                                                            echo $_SESSION['count1'] == '2' ? " readonly" : ""; ?>><br>
+                                </p>
+                                <p>
+                                    <textarea name='list' hidden><?php echo $list; ?></textarea>
+                                </p>
+                                <p>
+                                    <input name='total' type="text" value="<?php echo $total; ?>" hidden>
                                 </p>
                                 เลือกวิธีการชำระเงิน * :
-                                <div>
-                                    <!-- <input type="radio" name="payment" value="000" style="display: none;" checked> -->
-                                    <input type="radio" class='rad1' name="payment" value="card">
-                                    <label for="card">Card</label><br>
-                                    <input type="radio" class='rad1' name="payment" value="wallet">
-                                    <label for="wallet">Wallet</label><br>
-                                    <input type="radio" class='rad1' name="payment" value="bank">
+                                <p>
+                                    <input type="radio" name="payment" value="Credit Card">
+                                    <label for="card">Credit Card</label><br>
+                                    <input type="radio" name="payment" value="True Wallet">
+                                    <label for="wallet">True Wallet</label><br>
+                                    <input type="radio" name="payment" value="Bank">
                                     <label for="bank">Bank</label><br>
-                                    <input type="radio" class='rad1' name="payment" value="qrpayment">
+                                    <input type="radio" name="payment" value="QR Payment">
                                     <label for="qrpayment">QR Payment</label>
-                                </div>
-                        
+                                </p>
+                                <button type="submit" name='submit' class="mainButton btn btn-primary" style="display:flex; margin-left:auto; margin-right:auto;">ยืนยันการชำระเงิน</button>
                                 <!-- <button id='editButton' class='mainButton btn btn-primary' type='button' onclick='this.form.submit();'>Edit Profile</button> -->
                             </form>
                         </div>
                     </div>
                     
-                        
-                    <form method="post">
-                            <div>
-                            <button type="submit" id="checkout1" name='checkout2' onclick="Check222();" class="mainButton btn btn-primary" style="display:flex; margin-left:auto; margin-right:auto;" value='1'>ยืนยันการชำระเงิน</button>
-                            </div>
-                    </form>
+<!--                         
+                    <form method="post"> -->
+                    <!-- <?php
+
+                    // echo '<form action="complete.php">
+                    //         <div>
+                    //         <button type="submit" id="checkout1" name='checkout2' onclick="Check222();" class="mainButton btn btn-primary" style="display:flex; margin-left:auto; margin-right:auto;" value='1'>ยืนยันการชำระเงิน</button>
+                    //         </div>
+                    // </form>
                     
-                    <?php
-                        if (isset($_POST['checkout2']) && $_POST['checkout2'] == '1') {
-                            echo "<script> location.href='complete.php'; </script>";
-                            // $_POST['checkout2'] = '2';
-                        }
-                        // else{
-                        //     echo "<script> location.href='checkout.php'; </script>";
-                        //     $_POST['checkout2'] = '1';
-                        // }
-                    ?>
+                    // <?php
+                    //     if (isset($_POST['checkout2']) && $_POST['checkout2'] == '1') {
+                    //         echo "<script> location.href='complete.php'; </script>";
+                    //         // $_POST['checkout2'] = '2';
+                    //     }
+                    //     // else{
+                    //     //     echo "<script> location.href='checkout.php'; </script>";
+                    //     //     $_POST['checkout2'] = '1';
+                    //     // }
+                    // ?>
+                    //     </form>';
+                    // ?> -->
 
                 </div>
             </div>
