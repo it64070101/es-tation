@@ -130,7 +130,7 @@ if (isset($_POST['add'])) {
                         echo "<h3 class='BookPrice'>" . $o1 . "</h3>";
                         echo '<p class="bookStatus">เหลืออยู่: ' . $bookStock . '</p>';
                         // echo '<input type="submit" class="headerButton btn btn-primary" id="headerPaymentButton" name="add" style="height:10%;"value="Add to cart">';
-                        echo '<button type="submit" class="mainButton btn btn-primary" id="headerPaymentButton" name="add">Add to Cart</button>';
+                        echo '<button type="submit" class="mainButton " id="headerPaymentButton" name="add">Add to Cart</button>';
                     } else {
                         echo "<h2 style='color:red;' class='BookPrice'>สินค้าหมด</h2>";
                         echo '<p class="bookStatus">เหลืออยู่: ' . $bookStock . '</p>';
@@ -146,8 +146,6 @@ if (isset($_POST['add'])) {
             </div><br><br>
         </form>
     </div>
-
-
     <div id="relatedDiv">
         <div class="categoryText" id="popularCatText">คุณอาจสนใจ</div>
         <div class="categoryCarousel" id="popularCarousel">

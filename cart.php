@@ -65,9 +65,9 @@ if (isset($_GET['action'])) {
         if (!empty($_SESSION['cart'])) {
         ?>
             <div class="container mt-5">
-                <a href="cart.php?action=del&add" class="invisilink"><button class="mainButton btn btn-primary">Clear</button></a>
-                <div class="row bg-light">
-                    <div style="border:1px solid #0004;border-radius:0.5em;" class="col-8 m-2">
+                <a href="cart.php?action=del&add" class="invisilink"><button class="mainButton" style="padding: 0.3em 1.5em 0.3em 1.5em;">Clear</button></a>
+                <div class="row cartcover">
+                    <div class="col-8 m-2 cart">
                         <h5>รายการสินค้า</h5>
                         <table class="table">
                             <thead>
