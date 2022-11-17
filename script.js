@@ -40,7 +40,3 @@ function Check111() {
         document.getElementById("signbut2").value = "1";
     }
 }
-
-function quantity() {
-    print
-}

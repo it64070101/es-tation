@@ -9,7 +9,7 @@
     <link rel="icon" href="images/icon.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-    <script src="script.js"></script>
+    <script type="text/javascript" src="script.js"></script>
     <style>
         <?php include "style.css" ?>
     </style>
@@ -23,7 +23,9 @@
     <?php include 'header.php'; ?>
 
     <div id="logoutDiv"><a class="btn-auth btn-twitter large invisilink" href="login.php?count2=1"> log out </a></div>
+
     <?php
+
     class MyDB extends SQLite3
     {
         function __construct()
@@ -41,53 +43,108 @@
     $sql = "SELECT * from REGISTER WHERE REGISTER.ID = " . $_SESSION['USERS1'];
     $ret = $db1->query($sql);
     $row = $ret->fetchArray(SQLITE3_ASSOC);
-    echo "<img id='profilePicture' src='https://cdn.discordapp.com/attachments/847393439704285204/1016577438513373236/funny_whoa_cat.jpg' alt='bruh'>";
-    echo "
-        <div class='profileMainDiv'>
-            <div class='row'>
-                <div class='col-md-3'></div>
-                <div class='col-md-9' id='profileDetail'>
-                    <label for='fname'>FirstName : </label><br>
-                    <div class='profileData'>" . $row['FNAME'] . "</div><br>
-                    <label for='lname'>Last Name : </label><br>
-                    <div class='profileData'>" . $row['LNAME'] . "</div><br>
-                    <label for='address'>Address : </label><br>
-                    <div class='profileData'>" . $row['ADDRESS'] . "</div><br>
-                    <label for='phone'>Phone : </label><br>
-                    <div class='profileData'>" . $row['PHONE'] . "</div><br>
-                    <label for='email'>Email : </label><br>
-                    <div class='profileData'>" . $row['EMAIL'] . "</div><br>
-                </div>
-            </div>
-            <div class='container' id='purchaseHistory'>
-                <label id='purchaseHistoryLabel' for='purchaseHistory'>Purchase History</label><br>
-                <div id='historyTable' class='card'>
-                    <table class='table table-bordered'>
-                        <tr>
-                            <th>Name</th>
-                            <th>Qtt.</th>
-                        </tr>
-                        <tr>
-                            <td>name1</td>
-                            <td>qtt1</td>
-                        </tr>
-                        <tr>
-                            <td>name2</td>
-                            <td>qtt2</td>
-                        </tr>
-                        <tr>
-                            <td>name3</td>
-                            <td>qtt3</td>
-                        </tr>
-                    </table>
-                </div>
+    ?>
+    <img id='profilePicture' src='images/profile.png' alt='bruh'>
+    <div class='profileMainDiv'>
+        <div class='row'>
+            <div class='col-md-3'></div>
+            <div class='col-md-9' id='profileDetail'>
+                <form action='profile.php' method='POST'>
+
+                    <p>
+                        <label for='fname'>FirstName : </label><br>
+                        <input name='fname' id='fname' type='text' class='profileData' value=<?php echo $row['FNAME']; ?> disabled="disabled"><br>
+                    </p>
+
+                    <p>
+                        <label for='lname'>Last Name : </label><br>
+                        <input name='lname' id='lname' type='text' class='profileData' value=<?php echo $row['LNAME']; ?> disabled><br>
+                    </p>
+
+                    <p>
+                        <label for='address'>Address : </label><br>
+                        <input name='address' id='address' type='text' class='profileData' value=<?php echo $row['ADDRESS']; ?> disabled><br>
+                    </p>
+
+                    <p>
+                        <label for='phone'>Phone : </label><br>
+                        <input name='phone' id='phone' type='text' class='profileData' value=<?php echo $row['PHONE']; ?> disabled><br>
+                    </p>
+
+                    <p>
+                        <label for='email'>Email : </label><br>
+                        <input name='email' id='email' type='text' class='profileData' value=<?php echo $row['EMAIL']; ?> disabled><br>
+                    </p>
+
+                    <!-- <button id='editButton' class='mainButton btn btn-primary' type='button' onclick='this.form.submit();'>Edit Profile</button> -->
+                </form>
             </div>
         </div>
-        <br><br>";
-    // $_SESSION["count1"] = "2";
-    ?>
+        <div class='container' id='purchaseHistory'>
+            <label id='purchaseHistoryLabel' for='purchaseHistory'>Purchase History</label><br>
+            <div id='historyTable' class='card'>
+                <table class='table table-bordered'>
+                    <tr>
+                        <th>Name</th>
+                        <th>Qtt.</th>
+                    </tr>
+                    <tr>
+                        <td>name1</td>
+                        <td>qtt1</td>
+                    </tr>
+                    <tr>
+                        <td>name2</td>
+                        <td>qtt2</td>
+                    </tr>
+                    <tr>
+                        <td>name3</td>
+                        <td>qtt3</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <br><br>
+    <script type="text/javascript">
+        editable = false
 
-    <!-- <button type='submit' class='btn btn-primary' onclick='location.href="login.php"; '>Log out</button> -->
+        function editProfile() {
+            fname = document.getElementById("fname");
+            lname = document.getElementById("lname");
+            address = document.getElementById("address");
+            phone = document.getElementById("phone");
+            email = document.getElementById("email");
+            editButton = document.getElementById("editButton");
+
+            if (editable) {
+                fname.disabled = true;
+                lname.disabled = true;
+                address.disabled = true;
+                phone.disabled = true;
+                email.disabled = true;
+
+                editButton.innerText = "Edit Profile";
+                editButton.classList.remove('btn-danger');
+                editButton.classList.add('btn-primary');
+                editable = false;
+                this.form.submit();
+            } else {
+                fname.disabled = false;
+                lname.disabled = false;
+                address.disabled = false;
+                phone.disabled = false;
+                email.disabled = false;
+
+                editButton.innerText = "Save Profile";
+                editButton.classList.remove('btn-primary');
+                editButton.classList.add('btn-danger');
+                editable = true;
+            }
+
+
+        }
+    </script>
+
 
 </body>
 
