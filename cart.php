@@ -116,7 +116,7 @@ if (isset($_GET['action'])) {
                                     }
 
 
-                                    $total = $total + ($price * $_GET['Quantity-product-' . $img]);
+                                    $total = $total + ($price * $_SESSION['cart'][$key]['quantity']);
                                     echo '
                                     <tbody>
                                         <tr>
@@ -153,7 +153,7 @@ if (isset($_GET['action'])) {
                         <h5>สรุปราการสั่งซื้อ</h5>
                         <div class="row">
                             <p class="col-8">ราคาสินค้าทั้งหมด</p>
-                            <p style="text-align: right;" class="col-4"><?php echo $total ?></p>
+                            <p style="text-align: right;" class="col-4"><?php echo number_format($total, 2) ?></p>
                         </div>
                         <div class="row">
                             <p class="col-8">Vat(7%)</p>
