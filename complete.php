@@ -41,8 +41,9 @@
     }
 
     // Query process 
+    $date = new DateTime("now", new DateTimeZone('Antarctica/Davis') );
     $email = $_POST['email'];
-    $date = date("y/m/d (H:i:s)");
+    $date = $date->format('y/m/d (H:i:s)');
     $payment = $_POST['payment'];
     $total = floatval($_POST['total']);
     $points = intval($total / 10);

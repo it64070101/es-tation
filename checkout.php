@@ -207,13 +207,13 @@ session_start();
                                 เลือกวิธีการชำระเงิน * :
                                 <div>
                                     <!-- <input type="radio" name="payment" value="000" style="display: none;" checked> -->
-                                    <input type="radio" class='rad1' name="payment" value="card">
-                                    <label for="card">Card</label><br>
-                                    <input type="radio" class='rad1' name="payment" value="wallet">
-                                    <label for="wallet">Wallet</label><br>
-                                    <input type="radio" class='rad1' name="payment" value="bank">
+                                    <input type="radio" class='rad1' name="payment" value="Credit card">
+                                    <label for="card">Credit card</label><br>
+                                    <input type="radio" class='rad1' name="payment" value="True wallet">
+                                    <label for="wallet">True Wallet</label><br>
+                                    <input type="radio" class='rad1' name="payment" value="Bank">
                                     <label for="bank">Bank</label><br>
-                                    <input type="radio" class='rad1' name="payment" value="qrpayment">
+                                    <input type="radio" class='rad1' name="payment" value="QR Payment">
                                     <label for="qrpayment">QR Payment</label>
                                 </div>
                                 <button type="submit" id="checkout1" name='checkout2' onclick="Check222();" class="mainButton btn btn-primary" style="display:flex; margin-left:auto; margin-right:auto;" value='1'>ยืนยันการชำระเงิน</button>
