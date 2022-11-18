@@ -98,7 +98,7 @@ session_start();
                                         $_POST['Quantity-product-' . $img] = 1;
                                     }
 
-                                    $list = $list . $name.' ('.$_SESSION['cart'][$key]['quantity'].')<br>';
+                                    $list = $list . $name . ' (' . $_SESSION['cart'][$key]['quantity'] . ')<br>';
                                     $total = $total + ($price * $_SESSION['cart'][$key]['quantity']);
                                     echo '
                                     <tbody>
@@ -156,10 +156,9 @@ session_start();
                         echo $db1->lastErrorMsg();
                     }
 
-                    if ($_SESSION['count1'] == '2'){
+                    if ($_SESSION['count1'] == '2') {
                         $sql = "SELECT * from REGISTER WHERE REGISTER.ID = " . $_SESSION['USERS1'];
-                    }
-                    else{
+                    } else {
                         $sql = "SELECT * from REGISTER WHERE REGISTER.ID = 3";
                     }
                     // $sql = "SELECT * from REGISTER WHERE REGISTER.ID = 3";
@@ -186,7 +185,7 @@ session_start();
 
                                 <p>
                                     <label for='address'>Address * : </label><br>
-                                    <input name='address' id='address2' type='text' placeholder="30-200 Characters" style="width: 100%;" value=<?php echo $_SESSION['count1'] == '2' ? $row['ADDRESS'] : ""; ?>><br>
+                                    <textarea name='address' id='address2' type='text' placeholder="30-200 Characters" col="30" row="10" style="width:100%;height:auto;"><?php echo $_SESSION['count1'] == '2' ? $row['ADDRESS'] : ""; ?></textarea><br>
                                 </p>
 
                                 <p>
@@ -197,8 +196,8 @@ session_start();
                                 <p>
                                     <label for='email'>Email * : </label><br>
                                     <input name='email' id='email2' type='text' style="width: 100%;" placeholder="10-1000 characters" value=<?php echo $_SESSION['count1'] == '2' ? $row['EMAIL'] : "";
-                                                                                                            echo $_SESSION['count1'] == '2' ? " readonly" : ""; ?>><br>
-                                    </p>
+                                                                                                                                            echo $_SESSION['count1'] == '2' ? " readonly" : ""; ?>><br>
+                                </p>
                                 <p>
                                     <textarea name='list' hidden><?php echo $list; ?></textarea>
                                 </p>
@@ -220,35 +219,35 @@ session_start();
                                 <button type="submit" id="checkout1" name='checkout2' onclick="Check222();" class="mainButton btn btn-primary" style="display:flex; margin-left:auto; margin-right:auto;" value='1'>ยืนยันการชำระเงิน</button>
                                 <!-- <button id='editButton' class='mainButton btn btn-primary' type='button' onclick='this.form.submit();'>Edit Profile</button> -->
                                 <?php
-                                    if (isset($_POST['checkout2']) && $_POST['checkout2'] == '1') {
-                                        echo "<script> location.href='checkout.php'; </script>";
-                                        // $_POST['checkout2'] = '2';
-                                    }
-                                    // else{
-                                    //     echo "<script> location.href='checkout.php'; </script>";
-                                    //     $_POST['checkout2'] = '1';
-                                    // }
+                                if (isset($_POST['checkout2']) && $_POST['checkout2'] == '1') {
+                                    echo "<script> location.href='checkout.php'; </script>";
+                                    // $_POST['checkout2'] = '2';
+                                }
+                                // else{
+                                //     echo "<script> location.href='checkout.php'; </script>";
+                                //     $_POST['checkout2'] = '1';
+                                // }
                                 ?>
                             </form>
                         </div>
                     </div>
-                    
-                        
+
+
                     <!-- <form method="post">
                             <div>
                             <button type="submit" id="checkout1" name='checkout2' onclick="Check222();" class="mainButton btn btn-primary" style="display:flex; margin-left:auto; margin-right:auto;" value='1'>ยืนยันการชำระเงิน</button>
                             </div>
                     </form> -->
-                    
+
                     <?php
-                        // if (isset($_POST['checkout2']) && $_POST['checkout2'] == '1') {
-                        //     echo "<script> location.href='complete.php'; </script>";
-                        //     // $_POST['checkout2'] = '2';
-                        // }
-                        // else{
-                        //     echo "<script> location.href='checkout.php'; </script>";
-                        //     $_POST['checkout2'] = '1';
-                        // }
+                    // if (isset($_POST['checkout2']) && $_POST['checkout2'] == '1') {
+                    //     echo "<script> location.href='complete.php'; </script>";
+                    //     // $_POST['checkout2'] = '2';
+                    // }
+                    // else{
+                    //     echo "<script> location.href='checkout.php'; </script>";
+                    //     $_POST['checkout2'] = '1';
+                    // }
                     ?>
 
                 </div>
