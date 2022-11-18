@@ -89,6 +89,7 @@ function Checkreg() {
 
 function Check222() {
 
+    let form1 = document.getElementById('dateForm');
     let fnamecheck = document.getElementById("fname2").value;
     let lnamecheck = document.getElementById("lname2").value;
     let phonecheck = document.getElementById("phone2").value;
@@ -98,71 +99,86 @@ function Check222() {
 
     if (fnamecheck.length == 0) {
         alert("Firstname must be filled out!");
+        form1.action = 'checkout.php';
+        // form1.action = 'checkout.php';
         document.getElementById("checkout1").value = "2";
         return false;
     }
     else if (fnamecheck.length < 3) {
         alert("Firstname too short!");
+        form1.action = 'checkout.php';
         document.getElementById("checkout1").value = "2";
         return false;
     }
     else if (fnamecheck.length > 50) {
         alert("Firstname too long!");
+        form1.action = 'checkout.php';
         document.getElementById("checkout1").value = "2";
         return false;
     }
     else if (lnamecheck.length == 0) {
         alert("Lastname must be filled out!");
+        form1.action = 'checkout.php';
         document.getElementById("checkout1").value = "2";
         return false;
     }
     else if (lnamecheck.length < 3) {
         alert("Lastname too short!");
+        form1.action = 'checkout.php';
         document.getElementById("checkout1").value = "2";
         return false;
     }
     else if (lnamecheck.length > 50) {
         alert("Lastname too long!");
+        form1.action = 'checkout.php';
         document.getElementById("checkout1").value = "2";
         return false;
     }
     else if (phonecheck.length == 0) {
         alert("Phone number must be filled out!");
+        form1.action = 'checkout.php';
         document.getElementById("checkout1").value = "2";
         return false;
     }
     else if (emailcheck.length == 0) {
         alert("Email must be filled out");
+        form1.action = 'checkout.php';
         document.getElementById("checkout1").value = "2";
         return false;
     }
     else if (emailcheck.length < 15) {
         alert("Email too short!");
+        form1.action = 'checkout.php';
         document.getElementById("checkout1").value = "2";
         return false;
     }
     else if (emailcheck.length > 100) {
         alert("Email too long!");
+        form1.action = 'checkout.php';
         document.getElementById("checkout1").value = "2";
         return false;
     }
     else if (addcheck.length == 0) {
         alert("Address must be filled out");
+        form1.action = 'checkout.php';
         document.getElementById("checkout1").value = "2";
         return false;
     }
     else if (addcheck.length < 30) {
         alert("Address too short!");
+        form1.action = 'checkout.php';
         document.getElementById("checkout1").value = "2";
         return false;
     }
     else if (addcheck.length > 200) {
         alert("Address too long!");
+        form1.action = 'checkout.php';
         document.getElementById("checkout1").value = "2";
         return false;
     }
     else if (checkrad == null) {
         alert("Payment must be filled out");
+        form1.action = 'checkout.php';
         document.getElementById("checkout1").value = "2";
         return false;
     }
@@ -171,6 +187,7 @@ function Check222() {
         // form1.action = 'complete.php';
         // window.location.href = "complete.php" ;
         // return false;
+        form1.action = 'complete.php';
         document.getElementById("checkout1").value = "1";
     }
 }
