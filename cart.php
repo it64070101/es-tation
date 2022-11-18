@@ -65,7 +65,10 @@ if (isset($_GET['action'])) {
         if (!empty($_SESSION['cart'])) {
         ?>
             <div class="container mt-5">
-                <a href="cart.php?action=del&add" class="invisilink"><button class="mainButton" style="padding: 0.3em 1.5em 0.3em 1.5em;">Clear</button></a>
+                <div>
+                    <a href="cart.php?action=del&add" class="invisilink"><button class="clearbutton" style="padding: 0.3em 1.5em 0.3em 1.5em;">Clear</button></a>
+                    <a href="products.php" class="invisilink"><button class="gotoshopbutton">กลับไปเลือกสินค้า</button></a>
+                </div>
                 <div class="row cartcover">
                     <div class="col-8 m-2 cart">
                         <h5>รายการสินค้า</h5>
@@ -109,7 +112,7 @@ if (isset($_GET['action'])) {
                                     $stock = $row['STOCK'];
                                     if (isset($_POST['Quantity-product-' . $img])) {
                                         // $key = array_search('green', $array);
-                                        if($_POST['Quantity-product-' . $img] > $stock){
+                                        if ($_POST['Quantity-product-' . $img] > $stock) {
                                             $_POST['Quantity-product-' . $img] = $stock;
                                         }
                                         $_SESSION['cart'][$key]['quantity'] = $_POST['Quantity-product-' . $img];
@@ -151,7 +154,7 @@ if (isset($_GET['action'])) {
                         </table>
                     </div>
                     <div class="col"></div>
-                    <div class="col-3 m-2" style="border:1px solid #0005; border-radius:0.5em;padding:1%;">
+                    <div class="col-md-3 col-sm-12 mt-2 me-2" style="border:1px solid #0007; border-radius:0.5em;padding:1%;">
                         <h5>สรุปราการสั่งซื้อ</h5>
                         <div class="row">
                             <p class="col-8">ราคาสินค้าทั้งหมด</p>

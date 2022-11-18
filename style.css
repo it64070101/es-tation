@@ -1,13 +1,9 @@
 /* overall */
 
-:root {
-    --color1: rgb(0, 89, 255);
-    --color2: rgb(0, 153, 255);
-}
 
 body {
     font-family: 'Mitr', sans-serif;
-    background-image: linear-gradient(to bottom,#ffffff ,#83ffe4 55%);
+    background-image: linear-gradient(to bottom, #ffffff, #83fff5 55%);
 }
 
 .invisiLink {
@@ -24,7 +20,7 @@ body {
 
 button.headerButton {
     transition: 0.2s;
-    background-color: var(--color1);
+    background-color: rgb(0, 89, 255);
     height: 65%;
     margin: 0% 2% 0% 0%;
     padding: 0% 3% 0% 3%;
@@ -38,18 +34,18 @@ button.headerButton {
 button.mainButton {
     /* height: 7%; */
     margin: 1% 0% 2% 0%;
-    background-color: #3044f7;
+    background-color: rgb(6, 85, 255);
     color: white;
-    border: 2px solid white;
     transition: 0.2s;
-    
     padding: 0.5em;
+    border: 2px solid white;
     box-shadow: 0.2em 0.2em 0.3em #0008;
     border-radius: 0px;
     height: auto;
 }
+
 #mainAllButton {
-    margin:0.5% 1% 0% 1%;
+    margin: 0.5% 1% 0% 1%;
     border-radius: 2px;
 }
 
@@ -59,29 +55,77 @@ button:hover {
 }
 
 
+.clearbutton {
+    
+    margin: 1% 0% 2% 0%;
+    background-color: #3044f7;
+    color: white;
+    transition: 0.2s;
+    box-shadow: 0.2em 0.2em 0.3em #0008;
+    border-radius: 0px;
+    height: auto;
+    border: 0px;
+    transition: 0.2s;
+}
+
+.clearbutton:hover {
+    background-color: rgb(255, 53, 53);
+}
+
+.gotoshopbutton {
+    padding: 0.5em 1.5em 0.5em 1.5em;
+    margin-left: 50%;
+    background-color: #0052FF;
+
+    color: white;
+    transition: 0.2s;
+    box-shadow: 0.2em 0.2em 0.3em #0008;
+    border-radius: 0px;
+    height: auto;
+    border: 0px;
+    transition: 0.2s;
+}
+
+.gotoshopbutton:hover {
+    background-color: rgb(0, 255, 21);
+}
 
 .header {
-    background-color: var(--color2);
+    background-color: #2C59FF;
 
 }
-#webNameDiv{
-    animation: animeheader 1s ;
+
+#webNameDiv {
+    animation: animeheader 1s;
 }
+
 @keyframes animeheader {
-    from{transform: translateX(-100px);}
-    to{transform: translateX(0px);}
+    from {
+        transform: translateX(-100px);
+    }
+
+    to {
+        transform: translateX(0px);
+    }
 }
-#headerButtonDiv{
-    animation: animeheaderbt 1s ;
+
+#headerButtonDiv {
+    animation: animeheaderbt 1s;
 }
+
 @keyframes animeheaderbt {
-    from{transform: translateX(100px);}
-    to{transform: translateX(0px);}
+    from {
+        transform: translateX(100px);
+    }
+
+    to {
+        transform: translateX(0px);
+    }
 }
 
 .estation {
     text-decoration: underline;
-    text-decoration-color: rgb(55, 0, 255);
+    text-decoration-color: rgb(0, 255, 21);
     color: white;
     text-shadow: 0.2em 0.3em 0.5em #0007;
     transition: 0.2s;
@@ -410,8 +454,9 @@ tr {
         padding-bottom: 20px;
     }
 }
+
 /* cart */
-.cartcover{
+.cartcover {
     background-color: #ffffff;
     border-radius: 5px;
 }
@@ -426,30 +471,30 @@ tr {
 }
 
 /* complete */
-#receiptHeaderDiv{
+#receiptHeaderDiv {
     height: auto;
     margin-top: 50px;
     padding: 3%;
 }
 
-#receiptBodyDiv{
+#receiptBodyDiv {
     height: auto;
     margin-top: 50px;
     padding: 3%;
-    background-color : #fff;
+    background-color: #fff;
 }
 
-.receiptTitle{
+.receiptTitle {
     font-size: 20px;
     color: rgb(0, 42, 255);
     font-style: bold;
 }
 
-.receiptField{
+.receiptField {
     font-size: 14px;
 }
 
-.receiptFieldPoints{
+.receiptFieldPoints {
     font-size: 10px;
 }
 
