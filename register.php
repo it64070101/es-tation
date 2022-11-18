@@ -32,19 +32,19 @@
                 <div class="row">
                     <div class="col-5">
                         <label for="Fname" id="FnameLabel">Firstname</label><br>
-                        <input type="text" placeholder="3-50 Characters" id="FnameInput" class="form-control" name='fname' value=""><br>
+                        <input type="text" placeholder="3-50 Characters" id="FnameInput" class="form-control" name='fname' value=<?php echo isset($_POST['fname']) ? $_POST['fname'] : ""; ?>><br>
                     </div>
                     <div class="col-5">
                         <label for="Lname" id="LnameLabel">Lastname</label><br>
-                        <input type="text" placeholder="3-50 Characters" id="LnameInput" class="form-control" name='lname' value=""><br>
+                        <input type="text" placeholder="3-50 Characters" id="LnameInput" class="form-control" name='lname' value=<?php echo isset($_POST['lname']) ? $_POST['lname'] : ""; ?>><br>
                     </div>
                     <div class="col-10">
                         <label for="phone" id="phoneLabel">Phone-Number</label><br>
-                        <input type="text" placeholder="xxxxxxxxxx" id="phoneInput" class="form-control" name='phone1'><br>
+                        <input type="text" placeholder="xxxxxxxxxx" id="phoneInput" class="form-control" name='phone1' value=<?php echo isset($_POST['phone1']) ? $_POST['phone1'] : ""; ?>><br>
                     </div>
                     <div class="col-10">
                         <label for="email" id="EmailLabel">Email</label><br>
-                        <input type="text" placeholder="example@mymail.com" id="emailInput" class="form-control" name='email1'><br>
+                        <input type="text" placeholder="example@mymail.com" id="emailInput" class="form-control" name='email1' value=<?php echo isset($_POST['email1']) ? $_POST['email1'] : ""; ?>><br>
                     </div>
                     <div class="col-10">
                         <label for="pass" id="passLabel">Password</label><br>
@@ -52,7 +52,7 @@
                     </div>
                     <div class="col-10">
                         <label for="addr" id="addrLabel">Address</label><br>
-                        <textarea placeholder="30-200 Characters" id="addInput" class="form-control" name='add1'></textarea><br>
+                        <textarea placeholder="30-200 Characters" id="addInput" class="form-control" name='add1'><?php echo isset($_POST['add1']) ? $_POST['add1'] : ""; ?></textarea><br>
                     </div>
                 </div>
                 <button id='signbut2' class="btn btn-success" name="sign1" type="submit" onclick="Checkreg();" value="1">Sign up</button>

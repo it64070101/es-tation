@@ -135,7 +135,6 @@
             <a href="index.php"><button class="mainButton btn btn-primary" style="padding:2% 25% 2% 25%; display:flex; margin-left:auto; margin-right:auto;">Return to homepage</button></a>
         </div>
     </div>
-    <?php echo $email . " " . $points ?>
     <br><br><br>
 </body>
 
