@@ -53,7 +53,7 @@
                 <form action='profile.php' method='POST'>
 
                     <p>
-                        <label for='fname'>FirstName : </label><br>
+                        <label for='fname'>First Name : </label><br>
                         <input name='fname' id='fname' type='text' class='profileData' value=<?php echo $row['FNAME']; ?> disabled="disabled"><br>
                     </p>
 
@@ -64,7 +64,7 @@
 
                     <p>
                         <label for='address'>Address : </label><br>
-                        <input name='address' id='address' type='text' class='profileData' value=<?php echo $row['ADDRESS']; ?> disabled><br>
+                        <textarea name='address' id='address' type='text' class='profileData' col="30" row="10" style="height:auto;" disabled><?php echo $row['ADDRESS']; ?></textarea><br>
                     </p>
 
                     <p>
@@ -79,7 +79,7 @@
 
                     <!-- <button id='editButton' class='mainButton btn btn-primary' type='button' onclick='this.form.submit();'>Edit Profile</button> -->
                 </form>
-                <h1>TOTAL POINTS : <?php echo $row['POINTS']; ?></h1>
+                <h1>Your Points : <?php echo $row['POINTS']; ?></h1>
             </div>
 
         </div>

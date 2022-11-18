@@ -5,6 +5,7 @@ function Checkreg() {
     let emailcheck = document.getElementById("emailInput").value;
     let passcheck = document.getElementById("passInput").value;
     let addcheck = document.getElementById("addInput").value;
+    var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
     if (fnamecheck.length == 0) {
         alert("Firstname must be filled out!");
@@ -36,8 +37,8 @@ function Checkreg() {
         document.getElementById("signbut2").value = "2";
         return false;
     }
-    else if (phonecheck.length == 0) {
-        alert("Phone number must be filled out!");
+    else if (phonecheck.length != 10) {
+        alert("Invalid Phone Number!");
         document.getElementById("signbut2").value = "2";
         return false;
     }
@@ -46,16 +47,21 @@ function Checkreg() {
         document.getElementById("signbut2").value = "2";
         return false;
     }
-    else if (emailcheck.length < 15) {
-        alert("Email too short!");
+    else if (!emailcheck.match(validRegex)) {
+        alert("Invalid Email!");
         document.getElementById("signbut2").value = "2";
         return false;
     }
-    else if (emailcheck.length > 100) {
-        alert("Email too long!");
-        document.getElementById("signbut2").value = "2";
-        return false;
-    }
+    // else if (emailcheck.length < 15) {
+    //     alert("Email too short!");
+    //     document.getElementById("signbut2").value = "2";
+    //     return false;
+    // }
+    // else if (emailcheck.length > 100) {
+    //     alert("Email too long!");
+    //     document.getElementById("signbut2").value = "2";
+    //     return false;
+    // }
     else if (passcheck.length == 0) {
         alert("Password must be filled out");
         document.getElementById("signbut2").value = "2";
@@ -95,7 +101,9 @@ function Check222() {
     let phonecheck = document.getElementById("phone2").value;
     let emailcheck = document.getElementById("email2").value;
     let addcheck = document.getElementById("address2").value;
-    let checkrad = document.querySelector( 'input[name="payment"]:checked');   
+    let checkrad = document.querySelector('input[name="payment"]:checked');
+    var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
 
     if (fnamecheck.length == 0) {
         alert("Firstname must be filled out!");
@@ -134,8 +142,8 @@ function Check222() {
         document.getElementById("checkout1").value = "2";
         return false;
     }
-    else if (phonecheck.length == 0) {
-        alert("Phone number must be filled out!");
+    else if (phonecheck.length != 10) {
+        alert("Invalid Phone Number!");
         form1.action = 'checkout.php';
         document.getElementById("checkout1").value = "2";
         return false;
@@ -146,18 +154,24 @@ function Check222() {
         document.getElementById("checkout1").value = "2";
         return false;
     }
-    else if (emailcheck.length < 15) {
-        alert("Email too short!");
+    else if (!emailcheck.match(validRegex)) {
+        alert("Invalid Email!");
         form1.action = 'checkout.php';
         document.getElementById("checkout1").value = "2";
         return false;
     }
-    else if (emailcheck.length > 100) {
-        alert("Email too long!");
-        form1.action = 'checkout.php';
-        document.getElementById("checkout1").value = "2";
-        return false;
-    }
+    // else if (emailcheck.length < 15) {
+    //     alert("Email too short!");
+    //     form1.action = 'checkout.php';
+    //     document.getElementById("checkout1").value = "2";
+    //     return false;
+    // }
+    // else if (emailcheck.length > 100) {
+    //     alert("Email too long!");
+    //     form1.action = 'checkout.php';
+    //     document.getElementById("checkout1").value = "2";
+    //     return false;
+    // }
     else if (addcheck.length == 0) {
         alert("Address must be filled out");
         form1.action = 'checkout.php';
@@ -182,7 +196,7 @@ function Check222() {
         document.getElementById("checkout1").value = "2";
         return false;
     }
-    else{
+    else {
         alert("Thank For Purchase!");
         // form1.action = 'complete.php';
         // window.location.href = "complete.php" ;
