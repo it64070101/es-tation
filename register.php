@@ -23,6 +23,15 @@
 
 <body style="height: 100%;">
     <?php include 'header.php'; ?>
+    <?php
+    class MyDB extends SQLite3
+    {
+        function __construct()
+        {
+            $this->open('Register.db');
+        }
+    }
+    ?>
 
     <main style="height: 70%;">
         <!-- <div> -->
@@ -69,19 +78,15 @@
     // Connect to Database 
 
 
-    class MyDB extends SQLite3
-    {
-        function __construct()
-        {
-            $this->open('Register.db');
-        }
-    }
+
 
     // Open Database 
     $db1 = new MyDB();
     if (!$db1) {
         echo $db1->lastErrorMsg();
     }
+
+
 
 
     // Query process 
@@ -92,6 +97,20 @@
         $email2 = $_POST['email1'];
         $pass2 = $_POST['pass1'];
         $add2 = $_POST['add1'];
+
+        $sql = "SELECT EMAIL FROM REGISTER WHERE EMAIL = '$email2'";
+        $ret = $db1->query($sql);
+        $str = "";
+        while ($row = $ret->fetchArray(SQLITE3_ASSOC)) {
+            $str = $str . $row['EMAIL'];
+        }
+        echo "<input type='text' id='sameEmail' value='$str'>";
+        echo "<script>
+        if (document.getElementById('sameEmail').value != ''){
+            alert('อีเมลนี้มีผู้ใช้งานอยู่แล้ว');
+            location.href='register.php';
+        }
+        }</script>";
 
         $sql1 = <<<EOF
    INSERT INTO REGISTER (FNAME, LNAME, PHONE, EMAIL, PASSLOG, ADDRESS, POINTS)
