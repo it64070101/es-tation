@@ -51,8 +51,8 @@ session_start();
         ?>
         <div class="container mt-5">
 
-            <div class="row" style="background-color:white;">
-                <div style="border:1px solid #0004; padding:2%;" class="">
+            <div class="row cartcover">
+                <div style="border-bottom:2px dashed #0006; padding:2%;" class="">
                     <h5>รายการสินค้า</h5>
                     <table class="table">
                         <thead>
@@ -128,7 +128,7 @@ session_start();
                         </form>';
                     ?>
                 </div>
-                <div class="" style="border:1px solid #0005; border-radius:0.5em;padding:2%;">
+                <div class="" style="border:1px solid #0005; border-top:2px dashed #0006; padding:2%;">
                     <h5>สรุปราการสั่งซื้อ</h5>
                     <div class="row">
                         <p class="col-8">ราคาสินค้าทั้งหมด</p>
