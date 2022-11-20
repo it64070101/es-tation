@@ -12,10 +12,10 @@ if (isset($_POST['add'])) {
                 'quantity' => 1
             );
             $_SESSION['cart'][$count] = $item_array;
-            echo "<script>alert('สินค้าเพิ่มแล้วจ้า')</script>";
+            echo "<script>alert('เพิ่มสินค้าลงรถเข็น')</script>";
             echo "<script>window.location ='cart.php'</script>";
         } else {
-            echo "<script>alert('คุณมีสินค้านี้อยู่ในตะกร้าแล้ว')</script>";
+            echo "<script>alert('คุณมีสินค้านี้อยู่ในรถเข็นแล้ว')</script>";
             echo "<script>window.location ='cart.php'</script>";
         }
     } else {
@@ -27,7 +27,7 @@ if (isset($_POST['add'])) {
         );
         // Create new session variable
         $_SESSION['cart'][0] = $item_array;
-        echo "<script>alert('สินค้าเพิ่มแล้วจ้า')</script>";
+        echo "<script>alert('เพิ่มสินค้าลงรถเข็น')</script>";
         echo "<script>window.location ='cart.php'</script>";
     }
 }
