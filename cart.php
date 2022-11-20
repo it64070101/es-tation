@@ -18,7 +18,6 @@ if (isset($_GET['action'])) {
         echo '<script>window.location="cart.php"</script>';
     }
 }
-
 ?>
 
 <head>
@@ -45,9 +44,6 @@ if (isset($_GET['action'])) {
 
         <?php include 'header.php'; ?>
         <?php
-        // foreach ($_SESSION['cat'] as $key => $value) {
-        //     echo $value['cat'];
-        // }
         class MyDB extends SQLite3
         {
             function __construct()
@@ -59,8 +55,7 @@ if (isset($_GET['action'])) {
         if (!$db) {
             echo $db->lastErrorMsg();
         }
-        $sql = 'SELECT* from BOOKS';
-        $ret = $db->query($sql);
+
         $total = 0;
         if (!empty($_SESSION['cart'])) {
         ?>

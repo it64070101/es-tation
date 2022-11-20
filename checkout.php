@@ -31,9 +31,6 @@ session_start();
 
         <?php include 'header.php'; ?>
         <?php
-        // foreach ($_SESSION['cat'] as $key => $value) {
-        //     echo $value['cat'];
-        // }
         class MyDB extends SQLite3
         {
             function __construct()
@@ -45,8 +42,6 @@ session_start();
         if (!$db) {
             echo $db->lastErrorMsg();
         }
-        $sql = 'SELECT* from BOOKS';
-        $ret = $db->query($sql);
         $total = 0;
         ?>
         <div class="container mt-5">
@@ -221,6 +216,7 @@ session_start();
                                 <?php
                                 if (isset($_POST['checkout2']) && $_POST['checkout2'] == '1') {
                                     echo "<script> location.href='checkout.php'; </script>";
+
                                     // $_POST['checkout2'] = '2';
                                 }
                                 // else{
