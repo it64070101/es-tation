@@ -1,4 +1,7 @@
 <html lang="en">
+<?php
+session_start();
+?>
 
 <head>
     <meta charset="UTF-8">
@@ -64,6 +67,8 @@
             $this->open('register.db');
         }
     }
+
+    unset($_SESSION['cart']);
 
     // Open Database 
     $db1 = new MyDB4();
