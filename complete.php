@@ -20,63 +20,8 @@
 
 </head>
 
-<body>
+<body style="background-size:cover;background-image: url('./images/background.jpg');">
     <?php include 'header.php'; ?>
-
-    <?php
-    // Connect to Database 
-
-    class MyDB3 extends SQLite3
-    {
-        function __construct()
-        {
-            $this->open('purchases.db');
-        }
-    }
-
-    // Open Database 
-    $db1 = new MyDB3();
-    if (!$db1) {
-        echo $db1->lastErrorMsg();
-    }
-
-    // Query process 
-    $date = new DateTime("now", new DateTimeZone('Antarctica/Davis') );
-    $email = $_POST['email'];
-    $date = $date->format('y/m/d (H:i:s)');
-    $payment = $_POST['payment'];
-    $total = floatval($_POST['total']);
-    $points = intval($total / 10);
-    $list = $_POST['list'];
-    $id = intval(date("YmdHis)") . rand(10, 99));
-
-
-    $sql1 = <<<EOF
-    INSERT INTO PURCHASES (ID, EMAIL, DATE, TOTAL, PAYMENT, LIST, POINTS)
-        VALUES ($id, '$email', '$date', '$total', '$payment', '$list', '$points');
-    EOF;
-    $db1->exec($sql1);
-
-    class MyDB4 extends SQLite3
-    {
-        function __construct()
-        {
-            $this->open('register.db');
-        }
-    }
-
-    // Open Database 
-    $db1 = new MyDB4();
-    if (!$db1) {
-        echo $db1->lastErrorMsg();
-    }
-
-    $sql = "UPDATE REGISTER SET POINTS = POINTS + $points WHERE EMAIL =  '$email' ;";
-
-    $db1->exec($sql);
-
-    $db1->close();
-    ?>
 
     <?php
     // Connect to Database 
@@ -114,10 +59,9 @@
     ?>
 
     <br><br><br>
-    <div class="container col-md-6 bg-primary" style="margin: auto;" id="receiptHeaderDiv">
+    <div class="container col-md-6" style="margin: auto;" id="receiptHeaderDiv">
         <h1 class="text-white">es'tation</h1>
-        <p class="text-white">Thank you for your purchase, <?php echo $_POST['fname'];
-                                                            echo ' ' . $_POST['lname']; ?></p>
+        <p class="text-white">Thank you for your purchase.</p>
     </div>
     <div class="container col-md-6" style="margin: auto;" id="receiptBodyDiv">
         <p class="receiptTitle">Date of order</p>

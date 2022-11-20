@@ -197,11 +197,11 @@ function Check222() {
         return false;
     }
     else {
-        alert("Thank For Purchase!");
+        alert("Thanks For Purchase!");
         // form1.action = 'complete.php';
         // window.location.href = "complete.php" ;
         // return false;
-        form1.action = 'complete.php';
+        form1.action = 'ordering.php';
         document.getElementById("checkout1").value = "1";
     }
 }

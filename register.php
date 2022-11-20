@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 </head>
 
-<body style="height: 100%;">
+<body style="height: 100%;background-size:cover;background-image: url('./images/background.jpg');">
     <?php include 'header.php'; ?>
     <?php
     class MyDB extends SQLite3
@@ -33,7 +33,7 @@
     }
     ?>
 
-    <main style="height: 70%;">
+    <main style="height: 100%;">
         <!-- <div> -->
         <div id="mainRegDiv">
             <!-- <p style="font-size: 40px; margin-top: 15px; text-align: center;">es'tation</p> -->
@@ -64,7 +64,7 @@
                         <textarea placeholder="30-200 Characters" id="addInput" class="form-control" name='add1'><?php echo isset($_POST['add1']) ? $_POST['add1'] : ""; ?></textarea><br>
                     </div>
                 </div>
-                <button id='signbut2' class="btn btn-success" name="sign1" type="submit" onclick="Checkreg();" value="1">Sign up</button>
+                <button id='signbut2' class="btn btn-success mainButton" name="sign1" type="submit" onclick="Checkreg();" value="1">Sign up</button>
             </form>
             <!-- <div style="text-align:center;">
                 <button type="submit" class="btn btn-success" name='sign1'>Sign up</button>

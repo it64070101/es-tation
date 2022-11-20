@@ -1,6 +1,7 @@
 <!-- Main page, portal to anything else -->
-<?php session_start(); 
-// session_destroy();?>
+<?php session_start();
+// session_destroy();
+?>
 <html lang="en">
 
 <head>
@@ -9,19 +10,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>es'tation: Books, Stationeries, and Board games</title>
     <link rel="icon" href="images/icon.png">
-    <link rel=”stylesheet” href=”https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css”/>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-        crossorigin="anonymous"></script>
+    <link rel=”stylesheet” href=”https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css” />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     <script src="script.js"></script>
     <style>
         <?php include "style.css" ?>
     </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Mitr&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Charm:wght@700&family=Mitr&family=Noto+Serif+Thai&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 </head>
 
@@ -180,7 +178,7 @@
                     $bookPrice = $row['PRICE'];
                     $authorName = $row["AUTHOR"];
                     $percent1 = $row["SALE"];
-                    $cal1 = $bookPrice * ((100-$percent1)/100);
+                    $cal1 = $bookPrice * ((100 - $percent1) / 100);
                     $fo1 = '<p class="BookPrice" style="text-align:center;font-size:20px;"><del>$%s</del><span style="color:red;"> $%.2f</span> </p>';
                     echo '<div class="item">
                     <a href="details.php?id=' . $bookID . '&cat=BOOKS"><img class="listingBookCover" src="images/books/' . $bookID . '.jpg' . '"></a>';
@@ -196,7 +194,7 @@
                     $bookPrice = $row['PRICE'];
                     $manu = $row['MANUFACTURER'];
                     $percent1 = $row["SALE"];
-                    $cal1 = $bookPrice * ((100-$percent1)/100);
+                    $cal1 = $bookPrice * ((100 - $percent1) / 100);
                     $fo1 = '<p class="BookPrice" style="text-align:center;font-size:20px;"><del>$%s</del><span style="color:red;"> $%.2f</span> </p>';
                     echo '<div class="item">
                     <a href="details.php?id=' . $bookID . '&cat=BOARD_GAMES"><img class="listingBookCover" src="images/boardgames/' . $bookID . '.jpg' . '"></a>';
@@ -211,7 +209,7 @@
                     $bookName = $row["PRODUCT_NAME"];
                     $bookPrice = $row['PRICE'];
                     $percent1 = $row["SALE"];
-                    $cal1 = $bookPrice * ((100-$percent1)/100);
+                    $cal1 = $bookPrice * ((100 - $percent1) / 100);
                     $fo1 = '<p class="BookPrice" style="text-align:center;font-size:20px;"><del>$%s</del>  <span style="color:red;"> $%.2f</span> </p>';
                     echo '<div class="item">
                     <a href="details.php?id=' . $bookID . '&cat=STATIONERIES"><img class="listingBookCover" src="images/stationeries/' . $bookID . '.jpg' . '"></a>';

@@ -26,7 +26,7 @@ session_start();
     <script src="cart_calcu.js"></script>
 </head>
 
-<body>
+<body style="background-size:cover;background-image: url('./images/background.jpg');">
     <main>
 
         <?php include 'header.php'; ?>

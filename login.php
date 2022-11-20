@@ -28,7 +28,7 @@ if ($_SESSION['count1'] != '1' || $_SESSION['count1'] != '') {
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 </head>
 
-<body style="height: 100%;">
+<body style="height: 100%;background-size:cover;background-image: url('./images/background.jpg');">
     <?php include 'header.php'; ?>
     <main style="height: 70%;">
         <!-- <div> -->
@@ -40,9 +40,9 @@ if ($_SESSION['count1'] != '1' || $_SESSION['count1'] != '') {
                 <label for="password" id="passwordLabel">Password</label><br>
                 <input type="password" placeholder="Password" id="passwordInput" class="form-control" name='pass1'><br>
                 <div style="text-align:center;">
-                    <button style="text-align:center;" type="submit" class="btn btn-primary text-center" name='log1'>Log in</button><br>
+                    <button style="text-align:center;" type="submit" class="btn btn-primary text-center mainButton" name='log1'>Log in</button><br>
                     <p style="text-align: center;">or</p>
-                    <a href="register.php"><button type="button" class="btn btn-success">Sign up</button></a>
+                    <a href="register.php"><button type="button" class="btn btn-success mainButton">Sign up</button></a>
             </form>
         </div>
     </main>
