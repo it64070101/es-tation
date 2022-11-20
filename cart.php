@@ -112,9 +112,9 @@ if (isset($_GET['action'])) {
                                     $stock = $row['STOCK'];
                                     if (isset($_POST['Quantity-product-' . $img])) {
                                         // $key = array_search('green', $array);
-                                        if ($_POST['Quantity-product-' . $img] > $stock) {
-                                            $_POST['Quantity-product-' . $img] = $stock;
-                                        }
+                                        // if ($_POST['Quantity-product-' . $img] > $stock) {
+                                        //     $_POST['Quantity-product-' . $img] = $stock;
+                                        // }
                                         $_SESSION['cart'][$key]['quantity'] = $_POST['Quantity-product-' . $img];
                                         $value['quantity'] = $_POST['Quantity-product-' . $img];
                                     } else {
@@ -133,7 +133,7 @@ if (isset($_GET['action'])) {
                                                 <p style="margin-top:22.5px;">' . number_format($price, 2) . '</p></td>
                                             <td style="text-align: center;">
                                             
-                                            <input type="number" name="Quantity-product-' . $img . '" style="width: 80%; text-align:center; margin-top:20px; " value="' . $value['quantity'] . '" min="1" max="' . $stock . '" onchange="this.form.submit()">
+                                            <input type="number" name="Quantity-product-' . $img . '" style="width: 80%; text-align:center; margin-top:20px; " value="' . $value['quantity'] . '" min="1" onchange="this.form.submit()">
                                             </td>
                                             <td style="text-align: center;"><a href="cart.php?action=delete&id=' . $img . '"<i class="fa fa-trash" style="margin-top:25px;"></i></a></td>
                                         </tr>
