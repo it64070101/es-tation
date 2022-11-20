@@ -19,6 +19,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Mitr&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    
 </head>
 
 <body style="height: 100%;background-size:cover;background-image: url('./images/background.jpg');">
@@ -36,8 +37,8 @@
     <main style="height: 100%;">
         <!-- <div> -->
         <div id="mainRegDiv">
-            <!-- <p style="font-size: 40px; margin-top: 15px; text-align: center;">es'tation</p> -->
-            <form method="post" id="loginForm" class="form-group">
+            <p style="font-size: 40px; margin-top: 15px; text-align: center;">Register</p>
+            <form method="post" id="loginForm" class="form-group mt-5 mx-5 p-3">
                 <div class="row">
                     <div class="col-5">
                         <label for="Fname" id="FnameLabel">Firstname</label><br>
@@ -66,8 +67,9 @@
                 </div>
                 <button id='signbut2' class="btn btn-success mainButton" name="sign1" type="submit" onclick="Checkreg();" value="1">Sign up</button>
             </form>
-            <!-- <div style="text-align:center;">
-                <button type="submit" class="btn btn-success" name='sign1'>Sign up</button>
+            <!-- <button id='signbut2' class="btn btn-success mainButton" name="sign1" type="submit" onclick="Checkreg();" value="1">Sign up</button> -->
+            <!-- <div">
+                <button type="submit" class="btn btn-success" name='sign1' onclick="ale();">Sign up</button>
             </div> -->
         </div>
     </main>

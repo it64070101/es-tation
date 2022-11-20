@@ -23,7 +23,7 @@
     <?php include 'header.php';
     ?>
     <form method="post" name='sort1' style="margin: 20px;">
-        <select id="sel_id" name="sel_name" onchange="this.form.submit();">
+        <select class="btn btn-secondary dropdown-toggle" id="sel_id" name="sel_name" onchange="this.form.submit();">
             <option value="ID" selected>DEFAULT</option>
             <option value="PRODUCT_NAME" <?php if (isset($_POST['sel_name']) && $_POST['sel_name'] == "PRODUCT_NAME") echo "selected"; ?>>A - Z</option>
             <option value="PRODUCT_NAME DESC" <?php if (isset($_POST['sel_name']) && $_POST['sel_name'] == "PRODUCT_NAME DESC") echo "selected"; ?>>Z - A</option>
