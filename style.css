@@ -32,6 +32,10 @@ button.headerButton {
     border-radius: 2px;
 }
 
+button .loginButton {
+    background-color: rgb(0, 255, 21);
+}
+
 button.mainButton {
     /* height: 7%; */
     margin: 1% 0% 2% 0%;

@@ -22,7 +22,7 @@
                                 echo $_SESSION["link1"];
                             } else if ($_SESSION['count1'] == '2') {
                                 echo $_SESSION['link2'];
-                            } ?>"><button class="headerButton" id="headerProfileButton"><i class="fa fa-user" aria-hidden="true"></i></button></a>
+                            } ?>"><button class="headerButton" style="<?php echo $_SESSION['count1'] == '2' ? "background-color: rgb(0, 255, 21);border-radius:100%;" : ""; ?>" id="headerProfileButton"><i class="fa fa-user" aria-hidden="true"></i></button></a>
             </div>
         </div>
     </header>
