@@ -141,7 +141,7 @@ if (isset($_GET['action'])) {
                         echo '<div class="container mt-5">
                             <div class="row cartcover">
                                 <div style="border:1px solid #0004;" class="col-8 m-2 text-center">
-                                <img src="imgcart.png" style="width:150px;">
+                                <img src="imgcart.png" style="width:150px;margin:30px 0px 30px 0px;">
                                 <p>ยังไม่มีสินค้าในตะกร้าของคุณ</p>
                                 <a href="products.php"><button class="mainButton btn btn-primary ">เลือกซื้อสินค้าเลย!</button></a>';
                     }
