@@ -61,7 +61,7 @@
             $db->close();
             ?>
             <div class="text-end" id="mainButtonDiv" style="margin-right: 7%;">
-                <a href="newari.php"><button class="mainButton" id="mainAllButton">new arrival</button></a>
+                <a href="newari.php"><button class="mainButton" id="mainAllButton">new arrivals</button></a>
                 <a href="promotion.php"><button class="mainButton" id="mainAllButton">sales</button></a>
                 <a href="products.php"><button class="mainButton" id="mainAllButton">all products</button></a>
             </div>
