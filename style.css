@@ -184,6 +184,18 @@ img#bookCover {
     z-index: 1;
     transition: all .2s;
     box-shadow: 0.2em 0.2em 0.3em #0008;
+    /* transform-origin: 0% 0%; */
+    animation: recommendedAnimation 1s infinite alternate;
+}
+
+@keyframes recommendedAnimation {
+    from {
+        transform: scale(0.9, 0.9);
+    }
+
+    to {
+        transform: scale(1.05, 1.05);
+    }
 }
 
 img#bookCover:hover {
