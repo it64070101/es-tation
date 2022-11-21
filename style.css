@@ -104,7 +104,7 @@ button:hover {
     animation: animeheader 1s;
 }
 
-@keyframes animeheader {
+/* @keyframes animeheader {
     from {
         transform: translateX(-100px);
     }
@@ -126,7 +126,7 @@ button:hover {
     to {
         transform: translateX(0px);
     }
-}
+} */
 
 .estation {
     text-decoration: none;
