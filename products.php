@@ -27,8 +27,8 @@
             <option value="ID" <?php if (isset($_POST['cat_name']) && $_POST['sel_name'] == "ID") echo "selected" ?> selected>DEFAULT</option>
             <option value="PRODUCT_NAME" <?php if (isset($_POST['sel_name']) && $_POST['sel_name'] == "PRODUCT_NAME") echo "selected"; ?>>A - Z</option>
             <option value="PRODUCT_NAME DESC" <?php if (isset($_POST['sel_name']) && $_POST['sel_name'] == "PRODUCT_NAME DESC") echo "selected"; ?>>Z - A</option>
-            <option value="PRICE * ((100 - SALE)/100)" <?php if (isset($_POST['sel_name']) && $_POST['sel_name'] == "PRICE * ((100 - SALE)/100)") echo "selected"; ?>>lowerest to highest</option>
-            <option value="PRICE * ((100 - SALE)/100) DESC" <?php if (isset($_POST['sel_name']) && $_POST['sel_name'] == "PRICE * ((100 - SALE)/100) DESC") echo "selected"; ?>>highest to lowerest</option>
+            <option value="PRICE * ((100 - SALE)/100)" <?php if (isset($_POST['sel_name']) && $_POST['sel_name'] == "PRICE * ((100 - SALE)/100)") echo "selected"; ?>>lowest to highest</option>
+            <option value="PRICE * ((100 - SALE)/100) DESC" <?php if (isset($_POST['sel_name']) && $_POST['sel_name'] == "PRICE * ((100 - SALE)/100) DESC") echo "selected"; ?>>highest to lowest</option>
         </select>
         <select class="btn btn-secondary dropdown-toggle" id="cat_sel" name="cat_name" onchange="this.form.submit();">
             <option value="ALL" <?php if (isset($_POST['cat_name']) && $_POST['cat_name'] == "ALL") echo "selected" ?> selected>ALL</option>
