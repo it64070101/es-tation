@@ -25,8 +25,12 @@
 
     <main style="height: 70%;">
         <div class="mainLoginDiv">
-            <p style="font-size: 3em; margin-top: 15px; text-align: center; color:green; font-weight:bold;">Your Register Successful !</p>
-            <a href="login.php"><button type="submit" class="btn btn-primary d-flex mainButton" style="position:relative; left:41%;">go to log in page.</button></a><br>
+            <p style="font-size: 3em; margin-top: 16%; text-align: center; color:green; font-weight:bold;">Your Register Successful !</p>
+            <div style="display: flex;justify-content: center;">
+                <a href="login.php"><button type="submit" class="btn btn-primary d-flex mainButton" style="margin: 10px;">go to log in page.</button></a>
+                <a href="index.php"><button type="submit" class="btn btn-primary d-flex mainButton" style="margin: 10px;">go to main page.</button></a><br>
+        
+            </div>
         </div>
     </main>
 
